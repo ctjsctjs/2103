@@ -1,0 +1,244 @@
+body{font-family: 'Lato', 'FontAwesome', sans-serif;}
+
+div{display:block;}
+
+.navbar-light {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+header nav div ul {
+  margin-right: 30px;
+}
+
+section article {
+  background-color: #D3D3D3;
+  height: 300px;
+  width: 300px;
+  margin: 0 10px;
+}
+
+.wrapper {
+  padding: 0 20px 0 20px;
+}
+
+.map-section {
+  width: 100%;
+  height: 540px;
+  background-color: #D3D3D3;
+}
+
+.loginsignupfooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  /* Vertically center the text there */
+  line-height: 60px; 
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+
+.container-search{
+  height: 650px;
+  width:100%;
+  background-color:black;
+  position:relative;
+  z-index:10;
+}
+
+.bg{
+  height:100%;
+  width:100%;
+  background: url("../images/landing.jpg") 50% 50%;
+  background-size: cover;
+  opacity: 0.5;
+  position:absolute;
+}
+
+.search-inner{
+  position:absolute;
+  width: 500px;
+  height: 300px;
+  margin: 0 auto;
+  left:0;
+  right:0;
+  padding-top: 230px;
+}
+
+.search-inner .search-form{
+  width: 100%;
+  height: 50px;
+  border-radius: 2px;
+  left:0;
+  right:0;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 13px;
+  box-shadow: none;
+  border: none;
+}
+
+.search-inner p{
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.search-inner img{
+  display: table;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.search-inner .search-inner-row{
+  width: 400px;
+  margin: 0 auto;
+}
+
+.search-inner-row #signup{
+  float: right;
+  margin-top: 12px;
+}
+
+.container-description{
+  width: 100%;
+  height: 450px;
+  background-color:white;
+  padding: 50px;
+  text-align: center;
+}
+
+.container-description h1{
+  font-size: 30px;
+  font-weight: 700;
+  color: #ff5555;
+  margin: 100px auto 0;
+}
+
+.container-description p{
+  max-width: 600px;
+  font-size: 16px;
+  text-align: center;
+  margin: 30px auto;
+}
+
+.container-feature{
+  width: 100%;
+  height: 450px;
+  background-color:#ff5555;
+  padding: 50px;
+  text-align: center;
+}
+
+.container-feature h1{
+  font-size: 30px;
+  font-weight: 700;
+  color: white;
+  margin: 100px auto 0;
+}
+
+.container-feature p{
+  max-width: 600px;
+  font-size: 16px;
+  text-align: center;
+  margin: 30px auto;
+  color:white;
+}
+
+.nav{
+  padding:10px 100px;
+  z-index:10;
+  background-color: #191919;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  width: 100%;  
+}
+
+.nav-logo{
+  margin-top:5px;
+}
+
+.nav-button-container{
+  position:fixed;
+  right: 100px;
+}
+
+.button-container{
+  padding:10px 100px;
+  height: 60px;
+  float:right;
+}
+
+.button-container a .button{
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.button-container a .button:hover{
+  background-color: #ff5555;
+  border: 1px solid #e84343;
+}
+
+
+.button{
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.4rem;
+  outline: none;
+  padding: 7px 15px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  font-size: 13px;
+  height: 35px;
+  width: 100px;
+}
+
+.button:hover{
+  -webkit-transition: 200ms ease;
+  transition: 200ms ease;
+}
+
+.button-red{
+  margin-top: 2.5px;
+  background-color: #ff5555;
+  color: white;
+}
+
+.button-red:hover{
+  background-color: #e84343;
+}
+
+#login-button{
+  margin-right: 3px;
+}
+
+.mainfooter {
+  padding-top: 50px;
+  position: relative;
+  min-height: 100%;
+  bottom: 0;
+  width: 100%;
+  height: 500px;
+  line-height: 60px; 
+  background-color: #191919;
+  text-align: center;
+}
+
+.mainfooter span{
+  color: #cccccc;
+  font-size: 13px;
+}
+
