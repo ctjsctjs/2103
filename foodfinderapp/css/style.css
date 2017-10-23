@@ -49,6 +49,12 @@ section article {
   transition: 200ms ease;
 }
 
+.container-responsive{
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 100px;
+}
+
 /*FONT*/
 .black-body{
   font-size:15px;
@@ -57,45 +63,43 @@ section article {
 
 /*INDEX PAGE*/
 
-.container-search{
-  height: 600px;
+.container-main{
+  height: 800px;
   width:100%;
   position:relative;
-  background: url("../images/bg.jpg") no-repeat center center;
+  background: url("../images/bg2.jpg") no-repeat center center;
   background-size: cover;
   margin-top:-60px;
 }
 
-.search-logo{
+.main-logo{
   position:absolute;
-  height: 40px;
-  left: 100px;
-  top: 23px;
+  height: 60px;
+  margin: 50px 0;
 }
 
-.search-logo:hover{
+.main-logo:hover{
   filter: brightness(0.9);
 }
 
 
-.container-search p{
+.main-header{
   text-align: left;
-  color: white;
+  color: #777;
   font-size: 40px;
-  font-weight: 400;
-  margin: 0 100px 20px;
+  font-weight: 500;
+  margin: 0 0 20px;
   line-height:1.2;
-  padding-top: 200px;
+  padding-top: 300px;
 }
 
 
-.search-row{
-  margin: 0 100px;
+.main-row{
   max-width:600px;
-  box-shadow: 0 5px 15px 0 rgba(0,0,0,0.7);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.3);
 }
 
-.search-form{
+.main-form{
   width: calc(100% - 70px);
   height: 70px;
   border-radius: 2px;
@@ -110,7 +114,7 @@ section article {
   -webkit-transition: border linear 0.2 s;
 }
 
-.container-search .search-form:focus{
+.container-main .main-form:focus{
   border: 1px solid rgb(255, 85, 85);
   transition: border linear 0.2s;
   -ms-transition: border linear 0.2s;
@@ -118,7 +122,7 @@ section article {
 }
 
 
-.search-button{
+.main-button{
   float:right;
   border-radius: 2px;
   cursor: pointer;
@@ -141,7 +145,7 @@ section article {
   width: 70px;
 }
 
-.search-button:hover{
+.main-button:hover{
   background-color: #e84343;
   -webkit-transition: 100ms ease;
   transition: 100ms ease;
@@ -296,6 +300,31 @@ nav ul li a:hover, nav ul li a:active{
 
 
 /*BUTTON*/
+.button{
+  border-radius: 2px;
+  font-size: 1.4rem;
+  padding: 7px 15px;
+  font-size: 13px;
+  height: 35px;
+  width: 100px;
+
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+}
+
+.button:hover{
+  -webkit-transition: 200ms ease;
+  transition: 200ms ease;
+}
 
 .button-white{
   background-color: transparent;
@@ -306,32 +335,6 @@ nav ul li a:hover, nav ul li a:active{
 .button-white:hover{
   background-color: #ff5555;
   border: 1px solid #e84343;
-}
-
-
-.button{
-  border-radius: 2px;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.4rem;
-  outline: none;
-  padding: 7px 15px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  -webkit-transition: 100ms ease;
-  transition: 100ms ease;
-  vertical-align: middle;
-  white-space: nowrap;
-
-  font-size: 13px;
-  height: 35px;
-  width: 100px;
-}
-
-.button:hover{
-  -webkit-transition: 200ms ease;
-  transition: 200ms ease;
 }
 
 .button-red{
@@ -347,6 +350,23 @@ nav ul li a:hover, nav ul li a:active{
 #login-button{
   margin-right: 3px;
 }
+
+.main-login{
+  width: 200px;
+  height: 70px;
+  border-radius: 2px;
+  left:0;
+  right:0;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 16px;
+  border: 1px solid white;
+  transition: border linear 0.2s;
+  -ms-transition: border linear 0.2s;
+  -webkit-transition: border linear 0.2 s;
+}
+
+/**/
 
 .mainfooter {
   padding-top: 50px;
@@ -365,9 +385,44 @@ nav ul li a:hover, nav ul li a:active{
   font-size: 13px;
 }
 
-
 .center{
   position:relative;
   width:100%;
   height:100%;
 }
+
+@media screen and (max-width: 1600px){   
+  .container-main{
+    height:700px;
+  }
+
+  .container-main p{
+    padding-top:200px;
+  }
+}
+
+/*RESPONSIVE*/
+
+/* Portrait and Landscape */
+@media only screen 
+  and (max-width: 1024px) {
+    .container-main{
+      height:600px;
+    }
+}
+
+/* Portrait and Landscape */
+@media only screen 
+  and (max-width: 736px) { 
+    .container-main{
+      height:500px;
+    }
+
+    .container-responsive{
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+}
+

@@ -7,14 +7,17 @@ else
   include_once 'includes/nav_index.php';
 ?>
 
-<section class="container-search">
-  <a href="index.php"><img class="search-logo ease"src="images/logo-white.svg"></a>
-  <p>Parking and eating<br>has never been easier</p>
-  <div class="search-row">
-    <input type="text" class="search-form" placeholder="Enter a food establishment or carpark">
-    <button class="search-button"><i class="fa fa-search" aria-hidden="true"></i>      
-    </button>
-  </div> 
+<section class="container-main">
+  <div class="container-responsive">
+    <a href="index.php"><img class="main-logo ease"src="images/logo-white.svg"></a>
+    <p class="main-header">Bringing to you a dining and  <br>parking experience like to other</p>
+    <div class="main-row">
+      <input type="text" class="main-form" placeholder="Enter a food establishment or carpark">
+      <button class="main-button"><i class="fa fa-search" aria-hidden="true"></i>      
+      </button>
+    </div> 
+
+  </div>
 </section>
 
 <section class="container-news">
