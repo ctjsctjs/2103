@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2017 at 07:38 PM
+-- Generation Time: Sep 30, 2017 at 12:52 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -23088,8 +23088,15 @@ CREATE TABLE `user` (
   `firstName` varchar(100) NOT NULL,
   `lastName` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
-  `password` varchar(16) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `password` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userId`, `firstName`, `lastName`, `email`, `password`) VALUES
+(1, 'Clement', 'Admin ', 'abc@email.com', '$2y$10$mIudNdh29hrwKURi.jxf8.UHJynVN1Hcrh4xcsX.RN.BXg2.o1Hny');
 
 --
 -- Indexes for dumped tables
@@ -23185,7 +23192,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --

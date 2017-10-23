@@ -12,65 +12,65 @@ $valid = True;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-	//=====================  email validation ==========================
-	// if the email field is empty
-    if (empty($_POST["email"])){
-        $emailError = "Please enter your email.";
-        $_POST['email'] = "";
-        $valid = False;
+  //=====================  email validation ==========================
+  // if the email field is empty
+  if (empty($_POST["email"])){
+    $emailError = "Please enter your email.";
+    $_POST['email'] = "";
+    $valid = False;
+  }
+
+  //=====================  password validation ==========================
+  // if the password field is empty
+  if (empty($_POST["password"])){
+    $passwordError = "Please enter your password.";
+    $_POST['password'] = "";
+    $valid = False;
+  }
+
+  if($valid == True){
+
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $selectUser = "SELECT * FROM user WHERE email = '$email'";
+    $result = mysqli_query($conn, $selectUser) or die(mysqli_connect_error());
+    $resultCheck = mysqli_num_rows($result);
+
+    if($resultCheck < 1) {
+      echo '<script language="javascript">';
+      echo 'alert("Login Failed! Please try again.")';
+      echo '</script>';
+      $_POST['email'] = "";
+      $_POST['password'] = "";
     }
 
-    //=====================  password validation ==========================
-    // if the password field is empty
-    if (empty($_POST["password"])){
-        $passwordError = "Please enter your password.";
-        $_POST['password'] = "";
-        $valid = False;
-    }
+    else {
 
-    if($valid == True){
+      if($row = mysqli_fetch_array($result)) {
 
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-       	$password = mysqli_real_escape_string($conn, $_POST['password']);
-
-       	$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        
-        $selectUser = "SELECT * FROM user WHERE email = '$email'";
-        $result = mysqli_query($conn, $selectUser) or die(mysqli_connect_error());
-        $resultCheck = mysqli_num_rows($result);
-
-        if($resultCheck < 1) {
-        	echo '<script language="javascript">';
-			echo 'alert("Login Failed! PLease try again.")';
-			echo '</script>';
-			$_POST['email'] = "";
-			$_POST['password'] = "";
+        $hashedPwdCheck = password_verify($password, $row['password']);
+        if($hashedPwdCheck == false) {
+          echo '<script language="javascript">';
+          echo 'alert("Login Failed! PLease try again.")';
+          echo '</script>';
+          $_POST['email'] = "";
+          $_POST['password'] = "";
         }
+        else if($hashedPwdCheck == true) {
+          session_start();
+          $_SESSION['FIRSTNAME'] = $row['firstName'];
+          $_SESSION['LASTNAME'] = $row['lastName'];
+          $_SESSION['EMAIL'] = $row['email'];
+          $_SESSION['PASSWORD'] = $row['password'];
+          $_SESSION['ID'] = $row['userid'];
 
-        else {
+          header('Location: index.php');
 
-        	if($row = mysqli_fetch_array($result)) {
-
-        		$hashedPwdCheck = password_verify($password, $row['password']);
-        		if($hashedPwdCheck == false) {
-		        	echo '<script language="javascript">';
-					echo 'alert("Login Failed! PLease try again.")';
-					echo '</script>';
-					$_POST['email'] = "";
-					$_POST['password'] = "";
-        		}
-        		else if($hashedPwdCheck == true) {
-        			session_start();
-            		$_SESSION['FIRSTNAME'] = $row['firstName'];
-		            $_SESSION['LASTNAME'] = $row['lastName'];
-		            $_SESSION['EMAIL'] = $row['email'];
-		            $_SESSION['PASSWORD'] = $row['password'];
-		            $_SESSION['ID'] = $row['userid'];
-		            
-		            header('Location: index.php');
-
-        		}
-        	}
         }
+      }
     }
+  }
 }

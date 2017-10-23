@@ -1,31 +1,28 @@
-        <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center">
-            <a href="" class="navbar-brand d-flex w-50 mr-auto">FoodApp</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse" id="collapsingNavbar3">
-                <ul class="navbar-nav mx-auto w-100 justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Carpark</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Food Establishment</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Favourites</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
-                    <li class="nav-item">
-                        <a class="nav-link active">Hi <?php echo $_SESSION['FIRSTNAME']?>,</a>
-                    </li>
-                    <li class="nav-item">
-                        <form action="protected/logout_validation.php" method="POST">
-                            <button class="btn btn-outline-dark my-2 my-sm-0" name="submit" type="submit">Logout</a>
-                        </form>
-                        
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+<nav class="nav">
+  <a href="index.php"><img class="nav-logo ease"src="images/logo.svg"></a>
+  <div class="center">
+    <ul class="nav-left">
+      <li>
+        <a href="#">Carpark</a>
+      </li>
+      <li>
+        <a class="" href="#">Food Establishment</a>
+      </li>
+      <li>
+        <a class="" href="#">Favourites</a>
+      </li>
+    </ul></div>
+  <ul class="nav-right">
+    <li id="nav-profile">
+      <a href="#" class="">Hi <?php echo $_SESSION['FIRSTNAME']?>,</a>
+    </li>
+    <li>
+      <form action="protected/logout_validation.php" method="POST">
+        <button class="button button-red" name="submit" type="submit">Logout</a>
+      </form>
+
+    </li>
+  </ul>
+</nav>
+<div class="nav-push"></div>
+</header>
