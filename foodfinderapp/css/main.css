@@ -1,0 +1,133 @@
+body{font-family: 'Lato', 'FontAwesome', sans-serif;
+  padding-right:0px !important;
+  margin-right:0px !important;
+}
+span, ul, li, div, a{display:block;}
+input, button, submit { border:none; }
+button:focus, input:focus {outline:0 !important;}
+*
+{
+  margin:0; padding:0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.map-section {
+  width: 100%;
+  height: 540px;
+  background-color: #D3D3D3;
+}
+
+.loginsignupfooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  /* Vertically center the text there */
+  line-height: 60px;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+/*GENERAL*/
+.ease{
+  -webkit-transition: 200ms ease;
+  transition: 200ms ease;
+}
+
+.container-responsive{
+  width:100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 100px;
+}
+
+/*FONT*/
+.black-body{
+  font-size:15px;
+  color: #222;
+}
+
+/*PLACEHOLDER*/
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #ccc;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #ccc;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #ccc;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #ccc;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:    #ccc;
+}
+
+/*BUTTON*/
+.button{
+  border-radius: 2px;
+  font-size: 1.4rem;
+  padding: 9px 15px 9px;
+  font-size: 13px;
+  height: 35px;
+  width: 100px;
+
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+}
+
+.button:hover{
+  -webkit-transition: 200ms ease;
+  transition: 200ms ease;
+}
+
+.button-white{
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.button-white:hover{
+  background-color: white;
+  border: 1px solid white;
+  color: #444;
+}
+
+.container-main .modal-loginBtn{
+  margin: 50px 12px 0 0;
+  float: right;
+}
+
+.container-main .modal-registerBtn{
+  margin: 50px 0;
+  float: right;
+}
+
+.button-red{
+  margin-top: 2.5px;
+  background-color: #ff5555;
+  color: white;
+}
+
+.button-red:hover{
+  background-color: #e84343;
+}
+
+#login-button{
+  margin-right: 3px;
+}

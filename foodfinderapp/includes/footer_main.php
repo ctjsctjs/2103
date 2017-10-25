@@ -8,7 +8,7 @@
 
 </body>
 
-<footer class="mainfooter wrapper">
+<footer class="footer">
   <span class="">&copy 2017, SIT ICT 2013 Project, Food Finder App</span>
 </footer>
 </html>

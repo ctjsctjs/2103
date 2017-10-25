@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 // include database connection
 include_once 'databaseconnection.php';
@@ -40,11 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultCheck = mysqli_num_rows($result);
 
     if($resultCheck < 1) {
-      echo '<script language="javascript">';
-      echo 'alert("Login Failed! Please try again.")';
-      echo '</script>';
+      $emailError = "We couldn't find your account. Please try again.";
       $_POST['email'] = "";
       $_POST['password'] = "";
+
     }
 
     else {
@@ -53,11 +52,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $hashedPwdCheck = password_verify($password, $row['password']);
         if($hashedPwdCheck == false) {
-          echo '<script language="javascript">';
-          echo 'alert("Login Failed! PLease try again.")';
-          echo '</script>';
+          $passwordError = "Your password is incorrect. Please try again.";
           $_POST['email'] = "";
           $_POST['password'] = "";
+
         }
         else if($hashedPwdCheck == true) {
           session_start();

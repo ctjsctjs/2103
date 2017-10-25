@@ -1,0 +1,39 @@
+
+/*RESPONSIVE*/
+
+/*LAPTOP*/
+@media screen and (max-width: 1600px){
+  .container-main{
+    height:650px;
+  }
+
+  .main-header{
+    padding-top:250px;
+  }
+}
+
+/*TABLET*/
+@media only screen
+  and (max-width: 1024px) {
+    .container-main{
+      height:600px;
+    }
+
+    .main-header{
+      padding-top:200px;
+    }
+}
+
+/*PHONE*/
+@media only screen
+  and (max-width: 736px) {
+    .container-main{
+      height:500px;
+    }
+
+    .container-responsive{
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+}

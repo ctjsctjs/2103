@@ -1,5 +1,5 @@
 <nav class="nav">
-  <div class="center">
+  <div class="nav-centerlinks">
     <ul class="nav-center">
       <li>
         <a href="#">Carpark</a>
@@ -14,7 +14,6 @@
   </div>
   <div class="container-responsive">
     <a href="index.php"><img class="nav-logo ease"src="images/logo.svg"></a>
-
     <ul class="nav-right">
       <li id="nav-profile">
         <a href="#" class="">Hi <?php echo $_SESSION['FIRSTNAME']?>,</a>

@@ -6,7 +6,7 @@
 
 	</body>
 
-	<footer class="loginsignupfooter">
+	<footer class="footer">
       <div class="container">
         <span class="text-muted">&copy 2017, SIT ICT 2013 Project, Food Finder App</span>
       </div>
