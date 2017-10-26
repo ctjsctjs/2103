@@ -11,7 +11,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-echo "Connected successfully <br/>";
+//echo "Connected successfully <br/>";
 
 $googleKey = 'AIzaSyDwLlB04j3op5bOzPeAQhhygV8bhY8zqWQ';
 $datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';
@@ -34,23 +34,23 @@ if ($result) {
 
             echo "Latitude: " . $lat . "<br/>";
             echo "Longitude: " . $long . "<br/><br/>";
-            
+
             #SQL statement to find all carpark within 500m
             $locateSQL = "SELECT *, ( 6371 *
                 acos(
-                    cos( radians(". $lat .")) * cos( radians( latitude )) * 
+                    cos( radians(". $lat .")) * cos( radians( latitude )) *
                     cos( radians( longitude ) - radians(". $long .")) +
                     sin(radians(". $lat .")) * sin(radians(latitude))
-                    )) 
+                    ))
                 as distance FROM carpark HAVING distance < 0.5 ORDER BY distance";
-            
+
             $locateResult = mysqli_query($conn, $locateSQL);
-            
+
             if ($locateResult) {
                 if (mysqli_num_rows($locateResult) > 0) {
                     while($locateRow = mysqli_fetch_assoc($locateResult)) {
                         echo "carparkID " . $locateRow["carparkId"]. " - distance: " . $locateRow["distance"] . "<br>";
-                        
+
                         /**
                         $opts = array(
                             'http'=>array(
@@ -65,7 +65,7 @@ if ($result) {
                           // Open the file using the HTTP headers set above
                           $file = file_get_contents('http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability', false, $context);
                           print_r($file);**/
-                        
+
                        $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
 
                         $ch      = curl_init( $carparkLotsJson );
@@ -77,11 +77,11 @@ if ($result) {
 
                         $carparkJsonResult = curl_exec( $ch );
                         $carparkJsonResult = json_decode($carparkJsonResult);
-                        
+
                         $lots = $carparkJsonResult->{'value'}[$locateRow["carparkId"]-1]->{'Lots'};
-                        
+
                         echo "Available Lots: ". $lots ."<br><br/>";
-                        
+
                     }
                 }
                  else {

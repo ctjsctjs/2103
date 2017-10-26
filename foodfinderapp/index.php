@@ -1,5 +1,4 @@
 <?php include_once 'includes/header.php' ?>
-<?php include_once 'protected/login_validation.php' ?>
 
 <?php
   if(isset($_SESSION['FIRSTNAME']))
@@ -13,14 +12,19 @@ else
     <a href="index.php">
       <img class="main-logo ease"src="images/logo-white.svg">
     </a>
-    <a class="button button-white modal-registerBtn" href="./signup.php">Register</a>
+    <span class="button button-white modal-registerBtn">Register</span>
     <span class="button button-white modal-loginBtn">Log in</span>
     <p class="main-header">Bringing to you a dining and<br>parking experience like never before</p>
+    <form class="form" role="form" autocomplete="off" action="resultsPage.php" method="POST">
+
     <div class="main-row">
-      <input type="text" class="main-form" placeholder="Enter a food establishment or carpark">
+
+      <input type="text" class="main-form" placeholder="Enter a food establishment or carpark" name="search">
       <button class="main-button"><i class="fa fa-search" aria-hidden="true"></i>
       </button>
     </div>
+  </form>
+
   </div>
 </section>
 <section class="container-news">
@@ -36,18 +40,36 @@ else
 </section>
 <section class="modal">
   <div class="modal-container" id="modal-login">
-    <form class="form" role="form" autocomplete="off" action="index.php" method="POST">
+    <form class="form" role="form" autocomplete="off" action="protected/login_validation.php" method="POST">
       <span class="modal-login-h">Welcome back!</span>
       <span class="modal-register-text">Don't have an account?</span>
       <span class="modal-link" id="modal-registerlink">Register here.</span>
       <input type="text" class="modal-form" name="email" placeholder="Email" value="<?php echo (isset($_POST['email']) ? $_POST['email']:''); ?>">
-      <span class="modal-error"><?php echo $emailError ?></span>
+      <span class="modal-error" id="demo"></span>
       <input type="password" class="modal-form" placeholder="Password" name="password" value="<?php echo (isset($_POST['password']) ? $_POST['password']:''); ?>">
-      <span class="modal-error"><?php echo $passwordError ?></span>
+      <span class="modal-error"></span>
       <button type="submit" class="modal-login-cfm button-red">Login</button>
       <a href="#" class="modal-link" id="modal-forgotpw">Forget Password?</a>
     </form>
   </div>
+  <div class="modal-container" id="modal-register">
+    <form class="form" role="form" autocomplete="off" action="protected/signup_validation.php" method="POST">
+      <span class="modal-login-h">Register</span>
+      <span class="modal-register-text">Have an account?</span>
+      <span class="modal-link" id="modal-registerlink">Login here.</span>
+      <input type="text" class="modal-form" placeholder="First Name" name="firstName" value="<?php echo (isset($_POST['firstName']) ? $_POST['firstName']:''); ?>">
+      <span class="modal-error"></span>
+      <input type="text" class="modal-form" placeholder="Last Name" name="lastName" value="<?php echo (isset($_POST['lastName']) ? $_POST['lastName']:''); ?>">
+      <span class="modal-error"></span>
+      <input type="text" class="modal-form" placeholder="Email" name="email"  value="<?php echo (isset($_POST['email']) ? $_POST['email']:''); ?>">
+      <span class="modal-error"></span>
+      <input type="password" class="modal-form" placeholder="Password" name="password" value="<?php echo (isset($_POST['password']) ? $_POST['password']:''); ?>">
+      <span class="modal-error"></span>
+      <input type="password" class="modal-form" placeholder="Re-enter Password"  name="passwordConfirm" value="<?php echo (isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm']:''); ?>">
+      <span class="modal-error"></span>
+      <button type="submit" class="modal-login-cfm button-red">Register</button>
+    </form>
+</div>
 </section>
 
 <?php include_once 'includes/footer_main.php' ?>

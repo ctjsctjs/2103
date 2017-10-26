@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 // include database connection
 include_once 'databaseconnection.php';
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$valid = False;
 	}
     // else if the first name field contains numbers
-	else if (!ctype_alpha($_POST["firstName"])){ 
+	else if (!ctype_alpha($_POST["firstName"])){
 		$firstnameError = "Please enter letters only.";
 		$_POST["firstName"] = "";
 		$valid = False;
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
     //=====================  email validation ==========================
-	// if the email field is empty    
+	// if the email field is empty
 	if (empty($_POST["email"])){
 		$emailError = "Please enter a valid email address.";
 		$_POST["email"] = "";
@@ -115,11 +115,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$_POST['email'] = '';
 		$_POST["password"] = '';
 		$_POST['passwordConfirm'] = '';
-		header("Location: index.php?message=success");
+		header("Location: ../index.php?message=success");
 
-        /*if(isset($msg)) {   //check if $msg is not empty
-                echo '<div class="statusmsg">'.$msg.'</div>';   //display our message and wrap it with a div with the class "statusmsg"
-            }*/
-        }
-    }	
+        } else {
+					header("Location: ../index.php?message=fail");
+				}
+    }
 ?>

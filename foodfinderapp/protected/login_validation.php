@@ -9,7 +9,6 @@ $emailError = $passwordError = "";
 // set a boolean variable to check if the fields have errors and retrun true if no error was detected
 $valid = True;
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   //=====================  email validation ==========================
@@ -18,6 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $emailError = "Please enter your email.";
     $_POST['email'] = "";
     $valid = False;
+    header("Location: ../index.php?message=fail");
+
   }
 
   //=====================  password validation ==========================
@@ -26,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $passwordError = "Please enter your password.";
     $_POST['password'] = "";
     $valid = False;
+    header("Location: ../index.php?message=fail");
   }
 
   if($valid == True){
@@ -43,18 +45,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $emailError = "We couldn't find your account. Please try again.";
       $_POST['email'] = "";
       $_POST['password'] = "";
+      header("Location: ../index.php?message=fail");
 
     }
 
     else {
 
       if($row = mysqli_fetch_array($result)) {
-
         $hashedPwdCheck = password_verify($password, $row['password']);
         if($hashedPwdCheck == false) {
           $passwordError = "Your password is incorrect. Please try again.";
           $_POST['email'] = "";
           $_POST['password'] = "";
+          header("Location: ../index.php?message=fail");
+
 
         }
         else if($hashedPwdCheck == true) {
@@ -64,8 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $_SESSION['EMAIL'] = $row['email'];
           $_SESSION['PASSWORD'] = $row['password'];
           $_SESSION['ID'] = $row['userid'];
-
-          header('Location: index.php');
+          header("Location: ../index.php?message=success");
 
         }
       }
