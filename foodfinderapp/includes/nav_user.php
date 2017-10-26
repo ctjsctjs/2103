@@ -2,10 +2,10 @@
   <div class="nav-centerlinks">
     <ul class="nav-center">
       <li>
-        <a href="#">Carpark</a>
+        <a href="viewAllCarparks.php">Carpark</a>
       </li>
       <li>
-        <a class="" href="#">Food Establishment</a>
+        <a href="viewAllFood.php">Food Establishment</a>
       </li>
       <li>
         <a class="" href="#">Favourites</a>

@@ -16,17 +16,15 @@ else
     <span class="button button-white modal-loginBtn">Log in</span>
     <p class="main-header">Bringing to you a dining and<br>parking experience like never before</p>
     <form class="form" role="form" autocomplete="off" action="resultsPage.php" method="POST">
-
     <div class="main-row">
-
       <input type="text" class="main-form" placeholder="Enter a food establishment or carpark" name="search">
       <button class="main-button"><i class="fa fa-search" aria-hidden="true"></i>
       </button>
     </div>
   </form>
-
   </div>
 </section>
+
 <section class="container-news">
   <p>The fastest growing startup in based in Singapore!</p>
 </section>
