@@ -10,10 +10,10 @@ else
 <section class="container-main">
   <div class="container-responsive">
     <a href="index.php">
-      <img class="main-logo ease"src="images/logo-white.svg">
+      <img class="main-logo ease public"src="images/logo-white.svg">
     </a>
-    <span class="button button-white modal-registerBtn">Register</span>
-    <span class="button button-white modal-loginBtn">Log in</span>
+    <span class="button button-white modal-registerBtn public">Register</span>
+    <span class="button button-white modal-loginBtn public">Log in</span>
     <p class="main-header">Bringing to you a dining and<br>parking experience like never before</p>
     <form class="form" role="form" autocomplete="off" action="resultsPage.php" method="POST">
     <div class="main-row">

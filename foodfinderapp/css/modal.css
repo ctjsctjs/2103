@@ -51,7 +51,7 @@
 
 .modal-error{
   font-size:13px;
-  color: #ff5555;
+  color: #ff7c7c;
   margin: 5px 0 5px 0;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .modal-form:focus{
-  border: 1px solid #ff5555;
+  border: 1px solid #ff7c7c;
   transition: border linear 0.2s;
   -ms-transition: border linear 0.2s;
   -webkit-transition: border linear 0.2 s;

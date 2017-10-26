@@ -1,18 +1,13 @@
 
 $(document).ready(function () {
 
-  /*
-  $('.modal-error').each(function() {
-    if (this.length) {
-      $(".modal-login").show();
-      $(".modal-container").show();
+  $(function hideButtons(){
+    if($('#nav-profile').length){
+      $(".public").css("display", "none");
     }
-  });*/
-
+  });
 
   var status = "";
-
-
   if(window.location.href.indexOf("fail") > -1) {
       status ="login";
        document.getElementById('demo').innerHTML = "Error."
@@ -20,7 +15,6 @@ $(document).ready(function () {
 
   var errorArray = document.getElementsByClassName('modal-error');
   for (var i = 0; i < errorArray.length; i++){
-    console.log(errorArray[i].innerHTML)
     if (errorArray[i].innerHTML !='') {
       $(".modal").show();
       $("#modal-login").show();
@@ -29,7 +23,6 @@ $(document).ready(function () {
 
   $(".modal-loginBtn").click(function(){
     status = "login";
-    console.log(status);
 
     $(".modal").fadeIn(100);
     $('#modal-login')
@@ -42,7 +35,6 @@ $(document).ready(function () {
 
   $(".modal-registerBtn").click(function(){
     status = "register";
-    console.log(status);
     $(".modal").fadeIn(100);
     $('#modal-register')
       .stop(true, true)
