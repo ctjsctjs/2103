@@ -40,13 +40,25 @@ if ($search == ""){
   $result = mysqli_query($conn, $sql);
   if ($result) {
     if (mysqli_num_rows($result) > 0) {
+      // output data of each row
+      echo "<table border = 1>";
+      echo "<tr><th>Name</th>";
+      echo "<th>Postal Code</th>";
+      echo "<th>Latitude</th>";
+      echo "<th>Longitude</th>";
+      echo "<th>Carparks</th></tr>";
+
       while($row = mysqli_fetch_assoc($result)) {
+        echo "<tr><td>" . $row["name"] . "</td>";
+        echo "<td>" . $row["postalcode"] . "</td>";
         $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key='. $googleKey);
         $json = json_decode($json);
 
         $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
         $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
 
+        echo "<td>" . $lat . "</td>";
+        echo "<td>" . $long . "</td>";
 
         #SQL statement to find all carpark within 500m
         $locateSQL = "SELECT *, ( 6371 *
@@ -89,7 +101,6 @@ if ($search == ""){
                 echo "<td>No carparks found</td></tr>";
               }
             }
-
           }
           echo "</table>";
         } else {

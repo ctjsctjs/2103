@@ -18,8 +18,20 @@ else
     <form class="form" role="form" autocomplete="off" action="resultsPage.php" method="POST">
     <div class="main-row">
       <input type="text" class="main-form" placeholder="Enter a food establishment or carpark" name="search">
-      <button class="main-button"><i class="fa fa-search" aria-hidden="true"></i>
+      <button type ="submit" class="main-button"><i class="fa fa-search" aria-hidden="true"></i>
       </button>
+    </div>
+    <div class="slidecontainer">
+      <input name="radius" type="range" min="0" max="500" value="0" class="slider" id="radius">
+      <p>Value: <span id="radius-output"></span></p>
+    </div>
+    <div class="slidecontainer" id="minimum-lots">
+      <input name="min-Lots" type="range" min="0" max="30" value="0" class="slider" id="myRange">
+      <p>Value: <span id="demo"></span></p>
+    </div>
+    <div class="slidecontainer" id="slidecontainer2 minimum-carparks">
+      <input name="min-carpark" type="range" min="0" max="10" value="0" class="slider" id="myRange">
+      <p>Value: <span id="demo"></span></p>
     </div>
   </form>
   </div>
@@ -69,5 +81,15 @@ else
     </form>
 </div>
 </section>
+
+<script>
+var slider = document.getElementById("radius");
+var output = document.getElementById("radius-output");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>
 
 <?php include_once 'includes/footer_main.php' ?>
