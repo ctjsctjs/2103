@@ -120,12 +120,12 @@ button:focus, input:focus {outline:0 !important;}
 
 .button-red{
   margin-top: 2.5px;
-  background-color: #ff5555;
+  background-color: #ff7c7c;
   color: white;
 }
 
 .button-red:hover{
-  background-color: #e84343;
+  background-color: #ff5555;
 }
 
 #login-button{

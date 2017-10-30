@@ -9,9 +9,15 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
+<<<<<<< HEAD
+    die("Connection failed: " . $conn->connect_error);
+}
+//echo "Connected successfully <br/>";
+=======
   die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully <br/>";
+>>>>>>> d243771d5fe2de892f1488c11cc7a9e81ef3d9ad
 
 $googleKey = 'AIzaSyBUHVlBo1aiN9NZyh1Dzs91msIXblEi0NI';
 $datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';

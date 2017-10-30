@@ -1,4 +1,4 @@
-<nav class="nav">
+<nav class="nav" id="nav-user">
   <div class="nav-centerlinks">
     <ul class="nav-center">
       <li>

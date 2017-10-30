@@ -6,11 +6,12 @@
         include_once 'includes/nav_index.php';
     }
 ?>
+<?php include_once 'includes/searchbar.php' ?>
 
 <script src="js\jquery-3.2.1.min.js"></script>
 <script src="js\carparkJS.js"></script>
 
-<div>
+<div class="container-carpark">
 <?php
 // include database connection
 include_once 'protected/databaseconnection.php';
@@ -31,10 +32,11 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
         $carparkJsonResult = curl_exec($ch);
         $carparkJsonResult = json_decode($carparkJsonResult);
 
-        echo "<table border='1'><th>ID</th><th>Location</th><th>Map</th><th>Lots Available</th>";
+        echo "<ul class='list-carpark'>";
         for ($i = 0; $i < $rowcount; $i++) {
             $row = mysqli_fetch_array($result, MYSQLI_NUM);
-            echo "<tr><td>" . $row[0] . "</td>";
+            echo "<li>";
+            echo "<span>$row[0].</span>" ;
             $lat = $row[2];
             $lng = $row[1];
             //need to get api key to work consistently
@@ -60,15 +62,12 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
                             $temp3 = $jsondata['results']['0']["address_components"]['1']['long_name'];
                         }
                     }
-                    echo "<td>";
                                         /*
                                         echo $temp1 . " ";
                                         echo $temp2 . " ";
                                         echo $temp3;
                                         */
-                                        echo $location;
-                    echo "</td>";
-                    echo "<td>";
+                                        echo "<span>.$location.</span>";
 
                                         //using location name to display map
                                         echo "<iframe width='200' height='200' frameborder='0' src='//www.google.com/maps/embed/v1/place?q=". str_replace(" ", "+", $location) . ",Singapore
@@ -82,8 +81,7 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
                                         */
                                         $lots = $carparkJsonResult->{'value'}[$row[0]-1]->{'Lots'};
                     echo "<td id='lot". $row[0] ."'>";
-                    echo $lots;
-                    echo "</td>";
+                    echo "<span>.$lots.</span>";
                 } else {
                     echo "<td>";
                     echo $jsondata['status'];
@@ -92,9 +90,9 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
                     echo "<td>N.A</td>";
                 }
             }
-            echo "</tr>";
+            echo "</li>";
         }
-        echo "</table>";
+        echo "</ul>";
     }
 }
 ?>
