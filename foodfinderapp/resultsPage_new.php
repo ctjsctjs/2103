@@ -17,24 +17,15 @@ $googleKey = 'AIzaSyBUHVlBo1aiN9NZyh1Dzs91msIXblEi0NI';
 $datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';
 
 $search = $_POST['search'];
-$input_radius = $_POST['radius'];
-$input_lots = $_POST['min-Lots'];
-$input_carpark = $_POST['min-carpark'];
 $advanced_search = false;
 $radius = 0.5;
-$resultArray = array();
-$index=0;
+
 
 if ($search == ""){
   header("Location: index.php?message=search_empty");
 } else {
 
   //If advanced search is true
-  if ($input_radius !=0 || $input_lots !=0 || $input_carpark !=0){
-    $advanced_search = true;
-    $radius = $input_radius/1000;
-    echo $radius. " DISTANCE <br>";
-  }
 
   $sql = "SELECT name, RIGHT(address, 6) as postalcode FROM foodestablishment WHERE name LIKE '%" . $search . "%'";
   $result = mysqli_query($conn, $sql);

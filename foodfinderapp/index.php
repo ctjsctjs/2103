@@ -15,25 +15,14 @@ else
     <span class="button button-white modal-registerBtn">Register</span>
     <span class="button button-white modal-loginBtn">Log in</span>
     <p class="main-header">Bringing to you a dining and<br>parking experience like never before</p>
-    <form class="form" role="form" autocomplete="off" action="resultsPage.php" method="POST">
+    <form class="form" role="form" autocomplete="off" action="resultsPage_new.php" method="POST">
     <div class="main-row">
       <input type="text" class="main-form" placeholder="Enter a food establishment or carpark" name="search">
       <button type ="submit" class="main-button"><i class="fa fa-search" aria-hidden="true"></i>
       </button>
     </div>
-    <div class="slidecontainer">
-      <input name="radius" type="range" min="0" max="500" value="0" class="slider" id="radius">
-      <p>Value: <span id="radius-output"></span></p>
-    </div>
-    <div class="slidecontainer" id="minimum-lots">
-      <input name="min-Lots" type="range" min="0" max="30" value="0" class="slider" id="myRange">
-      <p>Value: <span id="demo"></span></p>
-    </div>
-    <div class="slidecontainer" id="slidecontainer2 minimum-carparks">
-      <input name="min-carpark" type="range" min="0" max="10" value="0" class="slider" id="myRange">
-      <p>Value: <span id="demo"></span></p>
-    </div>
   </form>
+  <a href="advancedSearch_result.php">Advanced Search</a>
   </div>
 </section>
 

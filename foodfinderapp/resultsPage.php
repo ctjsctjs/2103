@@ -22,8 +22,7 @@ $input_lots = $_POST['min-Lots'];
 $input_carpark = $_POST['min-carpark'];
 $advanced_search = false;
 $radius = 0.5;
-$resultArray = array();
-$index=0;
+
 
 if ($search == ""){
   header("Location: index.php?message=search_empty");
@@ -40,7 +39,16 @@ if ($search == ""){
   $result = mysqli_query($conn, $sql);
   if ($result) {
     if (mysqli_num_rows($result) > 0) {
+      // output data of each row
+      echo "<table border = 1>";
+      echo "<tr><th>Name</th>";
+      echo "<th>Postal Code</th>";
+      echo "<th>Latitude</th>";
+      echo "<th>Longitude</th>";
+      echo "<th>Carparks</th></tr>";
+
       while($row = mysqli_fetch_assoc($result)) {
+
         $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key='. $googleKey);
         $json = json_decode($json);
 
@@ -61,6 +69,12 @@ if ($search == ""){
 
             if ($locateResult) {
               if (mysqli_num_rows($locateResult) > 0) {
+                echo "<tr><td>" . $row["name"] . "</td>";
+                echo "<td>" . $row["postalcode"] . "</td>";
+
+                echo "<td>" . $lat . "</td>";
+                echo "<td>" . $long . "</td>";
+
                 echo "<td>";
                 while($locateRow = mysqli_fetch_assoc($locateResult)) {
                   echo "carparkID" . $locateRow["carparkId"]. " - distance: " . $locateRow["distance"] . "<br>";
@@ -89,7 +103,6 @@ if ($search == ""){
                 echo "<td>No carparks found</td></tr>";
               }
             }
-
           }
           echo "</table>";
         } else {
