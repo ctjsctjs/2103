@@ -22,7 +22,6 @@ else
       </button>
     </div>
   </form>
-  <a href="advancedSearch_result.php">Advanced Search</a>
   </div>
 </section>
 

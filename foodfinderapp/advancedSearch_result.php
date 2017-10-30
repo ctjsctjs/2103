@@ -1,63 +1,112 @@
-<?php include_once 'includes/header.php' ?>
+<?php include_once 'includes/footer_main.php' ?>
 
 <?php
-  if(isset($_SESSION['FIRSTNAME']))
-    include_once 'includes/nav_user.php';
-else
-  include_once 'includes/nav_index.php';
-?>
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "foodfinderapp";
 
-<section class="container-main">
-  <div class="container-responsive">
-    <a href="index.php">
-      <img class="main-logo ease"src="images/logo-white.svg">
-    </a>
-    <span class="button button-white modal-registerBtn">Register</span>
-    <span class="button button-white modal-loginBtn">Log in</span>
-    <p class="main-header">Bringing to you a dining and<br>parking experience like never before</p>
-    <form class="form" role="form" autocomplete="off" action="resultsPage.php" method="POST">
-    <div class="main-row">
-      <input type="text" class="main-form" placeholder="Enter a food establishment or carpark" name="search">
-      <button type ="submit" class="main-button"><i class="fa fa-search" aria-hidden="true"></i>
-      </button>
-    </div>
-    <div class="slidecontainer">
-      <input name="radius" type="range" min="0" max="500" value="0" class="slider" id="radius">
-      <p>Value: <span id="radius-output"></span></p>
-    </div>
-    <div class="slidecontainer" id="minimum-lots">
-      <input name="min-Lots" type="range" min="0" max="30" value="0" class="slider" id="myRange">
-      <p>Value: <span id="demo"></span></p>
-    </div>
-    <div class="slidecontainer" id="slidecontainer2 minimum-carparks">
-      <input name="min-carpark" type="range" min="0" max="10" value="0" class="slider" id="myRange">
-      <p>Value: <span id="demo"></span></p>
-    </div>
-  </form>
-  <a href="advancedSearch_result.php">Advanced Search</a>
-  </div>
-</section>
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-<section class="container-news">
-  <p>The fastest growing startup in based in Singapore!</p>
-</section>
-<section class="container-white wrapper">
-  <h1>Hassle Free Food Experience</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh justo, finibus ac semper non, eleifend sed sapien. Suspendisse sit amet felis in sem egestas convallis eget ac erat. Vestibulum nec aliquet tortor. Aliquam aliquam lorem non augue tempor maximus. Duis dignissim mauris quis dui semper tempor.</p>
-</section>
-<section class="container-pink wrapper">
-  <h1>Find out where is the best food</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh justo, finibus ac semper non, eleifend sed sapien. Suspendisse sit amet felis in sem egestas convallis eget ac erat. Vestibulum nec aliquet tortor. Aliquam aliquam lorem non augue tempor maximus. Duis dignissim mauris quis dui semper tempor.
-</section>
-
-<script>
-var slider = document.getElementById("radius");
-var output = document.getElementById("radius-output");
-output.innerHTML = slider.value;
-
-slider.oninput = function() {
-  output.innerHTML = this.value;
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
-</script>
 
-<?php include_once 'includes/footer_main.php' ?>
+//Declareation
+$googleKey = 'AIzaSyBUHVlBo1aiN9NZyh1Dzs91msIXblEi0NI';
+$datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';
+$search = $_POST['search'];
+$input_radius = $_POST['radius']/1000;
+$input_lots = $_POST['minLots'];
+$input_carpark = $_POST['minCarpark'];
+$advanced_search = false;
+$resultList = array();
+$locationVector = array();
+
+//get latitude and longitude in a array using postal code
+function getLocation($postalCode, $key){
+  $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $postalCode . '&key='. $key);
+  $json = json_decode($json);
+  $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+  $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+  return array($lat, $long);
+}
+
+//get carpark lot live number
+function getLots($locateRow, $key){
+  $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
+  $ch = curl_init( $carparkLotsJson );
+  $options = array(
+    CURLOPT_HTTPHEADER => array( "AccountKey: ". $key . ", Accept: application/json" ),
+  );
+  curl_setopt_array( $ch, $options );
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+  $carparkJsonResult = curl_exec( $ch );
+  $carparkJsonResult = json_decode($carparkJsonResult);
+
+  return ($carparkJsonResult->{'value'}[$locateRow["carparkId"]-1]->{'Lots'});
+}
+
+if ($search == ""){
+  header("Location: advancedSearch.php?message=search_empty");
+} else {
+
+  $sql = "SELECT name, RIGHT(address, 6) as postalcode FROM foodestablishment WHERE name LIKE '%" . $search . "%'";
+  $result = mysqli_query($conn, $sql);
+  if ($result) {
+    if (mysqli_num_rows($result) > 0) {
+
+      echo "<table border = 1>";
+      echo "<tr><th>Name</th>";
+      echo "<th>Postal Code</th>";
+      echo "<th>Latitude</th>";
+      echo "<th>Longitude</th>";
+      echo "<th>Carparks</th></tr>";
+
+      while($row = mysqli_fetch_assoc($result)){
+        //reset counter for valid carpark and lot;
+        $validCarparks = 0;
+        $lotCount = 0;
+
+        //Radius filter
+        $locationVector = getLocation($row['postalcode'], $googleKey); //Get Coords
+
+        //Select carparks within radius
+        $locateSQL = "SELECT *, ( 6371 *
+          acos(
+            cos( radians(". $locationVector[0] .")) * cos( radians( latitude )) *
+            cos( radians( longitude ) - radians(". $locationVector[1] .")) +
+            sin(radians(". $locationVector[0] .")) * sin(radians(latitude))
+            ))
+            as distance FROM carpark HAVING distance < ". $input_radius ." ORDER BY distance";
+        $locateResult = mysqli_query($conn, $locateSQL);
+
+        if (mysqli_num_rows($locateResult) >= $input_carpark) { //check carpark meets carpark_lots requirement
+          while($locateRow = mysqli_fetch_assoc($locateResult)) { //for each carpark
+            $lots = getLots($locateRow, $datamallKey); //Get number of lots available
+            if ($lots >= $input_lots){
+              $validCarparks += 1; //check lots meets input_lots requirement
+              $lotCount += $lots;
+            }
+          }
+        }
+        if ($validCarparks >= $input_carpark){//if number of carpark with enough lots meet carpark input
+          echo "<tr><td>" . $row["name"] . "</td>";
+          echo "<td>" . $row["postalcode"] . "</td>";
+          echo "<td>" . $locationVector[0] . "</td>";
+          echo "<td>" . $locationVector[1] . "</td>";
+          echo "<td>";
+          echo $lotCount;
+          echo "</td></tr>";
+        }
+      }
+      echo "</table>";
+    }
+  }
+}
+
+
+
+?>

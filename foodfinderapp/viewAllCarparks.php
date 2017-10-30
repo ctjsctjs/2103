@@ -12,10 +12,11 @@
 <script src="js\carparkJS.js"></script>
 
 <div class="container-carpark">
+  <div class="container-responsive">
 <?php
 // include database connection
 include_once 'protected/databaseconnection.php';
-$query = "SELECT * FROM carpark";
+$query = "SELECT * FROM carpark LIMIT 10";
 if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
     $rowcount = mysqli_num_rows($result);
     if ($rowcount > 0) {
@@ -36,7 +37,6 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
         for ($i = 0; $i < $rowcount; $i++) {
             $row = mysqli_fetch_array($result, MYSQLI_NUM);
             echo "<li>";
-            echo "<span>$row[0].</span>" ;
             $lat = $row[2];
             $lng = $row[1];
             //need to get api key to work consistently
@@ -67,12 +67,9 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
                                         echo $temp2 . " ";
                                         echo $temp3;
                                         */
-                                        echo "<span>.$location.</span>";
+                                        echo "<span class='carpark-location'>".$location."</span>";
 
                                         //using location name to display map
-                                        echo "<iframe width='200' height='200' frameborder='0' src='//www.google.com/maps/embed/v1/place?q=". str_replace(" ", "+", $location) . ",Singapore
-								    &zoom=17
-								    &key=AIzaSyAlgLSolLKRBjHl8T3ED3E6BLsgXuAYYGo' allowfullscreen></iframe>";
 
                                         /*
                                         //using lat lng to display map
@@ -81,7 +78,11 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
                                         */
                                         $lots = $carparkJsonResult->{'value'}[$row[0]-1]->{'Lots'};
                     echo "<td id='lot". $row[0] ."'>";
-                    echo "<span>.$lots.</span>";
+                    echo "<span class='carpark-lots'>".$lots." lots</span>";
+                    echo "<iframe width='250' height='250' frameborder='0' src='//www.google.com/maps/embed/v1/place?q=". str_replace(" ", "+", $location) . ",Singapore
+&zoom=17
+&key=AIzaSyAlgLSolLKRBjHl8T3ED3E6BLsgXuAYYGo' allowfullscreen></iframe>";
+
                 } else {
                     echo "<td>";
                     echo $jsondata['status'];
@@ -96,6 +97,7 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
     }
 }
 ?>
+</div>
 </div>
 <p id="demo"></p>
 <script>

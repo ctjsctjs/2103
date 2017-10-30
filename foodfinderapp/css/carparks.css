@@ -1,18 +1,43 @@
 .container-carpark{
   width:100%;
+  background-color: #fafafa;
+  padding-top: 50px;
 }
 
 .list-carpark{
-max-width:1440px;
-width:100%;
-margin: 0 auto;
-border: 1px solid;
+  max-width:auto;
+  width:100%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .list-carpark li{
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 15px;
-    display: inline-block;
+  position: relative;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  text-align: left;
+  padding: 50px 15px;
+  height: 500px;
+  width: 300px;
+  background-color:white;
+  margin: 0 auto 10px;
+  display:inline-block;
+}
 
+.list-carpark li iframe{
+  position:absolute;
+  bottom: 50px;
+}
+
+.carpark-location{
+  font-size: 40px;
+  font-weight:500;
+  color: #444;
+}
+.carpark-lots{
+  font-size: 30px;
+  font-weight:500;
+  color: #444;
 }

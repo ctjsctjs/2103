@@ -66,7 +66,7 @@ if ($search == ""){
               if (mysqli_num_rows($locateResult) > 0) {
                 echo "<td>";
                 while($locateRow = mysqli_fetch_assoc($locateResult)) {
-                  echo "carparkID" . $locateRow["carparkId"]. " - distance: " . $locateRow["distance"] . "<br>";
+                  echo "carparkID" . $locateRow["carparkId"]. " - distance: " . ($locateRow["distance"]*1000) . " metres <br>";
 
                   $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
 
