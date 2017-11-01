@@ -1,5 +1,16 @@
-<?php include_once 'includes/footer_main.php' ?>
 
+<?php include_once 'includes/header.php' ?>
+<?php
+    if (isset($_SESSION['FIRSTNAME'])) {
+        include_once 'includes/nav_user.php';
+        include_once 'includes/searchbar.php';
+    } else {
+        include_once 'includes/nav_index.php';
+    };
+?>
+
+<div class="container-carpark">
+  <div class="container-responsive">
 <?php
 $servername = "localhost";
 $username = "root";
@@ -110,3 +121,7 @@ if ($search == ""){
 
 
 ?>
+
+</div>
+</div>
+<?php include_once 'includes/footer_main.php' ?>

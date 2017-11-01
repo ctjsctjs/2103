@@ -1,69 +1,74 @@
 
 $(document).ready(function () {
 
+
+    //Error messages
+    var status = "";
+
+  //If there is error, display modal immediately
+  if (!$('#login-err').is(':empty'))  {
+    status ="login";
+    $(".modal").show();
+    $("#modal-login").show();
+  } else if ( !$('#reg-err').is(':empty') ) {
+    status ="register";
+    $(".modal").show();
+    $("#modal-register").show();
+  }
+
+  //hide main menu jumbo buttons when user is logged in
   $(function hideButtons(){
     if($('#nav-profile').length){
       $(".public").css("display", "none");
     }
   });
 
-  var status = "";
-  if(window.location.href.indexOf("fail") > -1) {
-      status ="login";
-       document.getElementById('demo').innerHTML = "Error."
-    }
-
-  var errorArray = document.getElementsByClassName('modal-error');
-  for (var i = 0; i < errorArray.length; i++){
-    if (errorArray[i].innerHTML !='') {
-      $(".modal").show();
-      $("#modal-login").show();
-    }
-  }
-
+  //login modal button
   $(".modal-loginBtn").click(function(){
     status = "login";
-
     $(".modal").fadeIn(100);
     $('#modal-login')
-      .stop(true, true)
-      .animate({
+    .stop(true, true)
+    .animate({
       marginTop: "+=30px",
-      opacity: "toggle"
+      opacity: "show"
     },200);
   });
 
+  //register modal button
   $(".modal-registerBtn").click(function(){
     status = "register";
     $(".modal").fadeIn(100);
     $('#modal-register')
-      .stop(true, true)
-      .animate({
+    .stop(true, true)
+    .animate({
       marginTop: "+=30px",
-      opacity:"toggle"
+      opacity:"show"
     },200);
   });
 
-    $(".modal").click(function(){
-      $(".modal").fadeOut(100);
-      if (status == "login"){
+  //Modal background click to exit button
+  $(".modal").click(function(){
+    $(".modal").fadeOut(100);
+    if (status == "login"){
       $('#modal-login')
-        .stop(true, true)
-        .animate({
+      .stop(true, true)
+      .animate({
         marginTop: "-=30px",
-        opacity: "toggle"
+        opacity: "hide"
       },200);
     }
     else if (status == "register"){
-       $('#modal-register')
-         .stop(true, true)
-         .animate({
-         marginTop: "-=30px",
-         opacity: "toggle"
-       },200);
-     }
+      $('#modal-register')
+      .stop(true, true)
+      .animate({
+        marginTop: "-=30px",
+        opacity: "hide"
+      },200);
+    }
   });
 
+  //Internal modal link
   $("#modal-registerlink").click(function(){
     status = "register";
     $('#modal-login').css({
@@ -74,8 +79,21 @@ $(document).ready(function () {
       marginTop: "+=30px",
       display: "block",
     });
-});
+  });
 
+
+  //Advance Search modal button
+  $(".modal-advSearchBtn").click(function(){
+    $(".modal").fadeIn(100);
+    $('#modal-advSearch')
+    .stop(true, true)
+    .animate({
+      marginTop: "+=30px",
+      opacity:"show"
+    },200);
+  });
+
+  //Prevent background clikc exit from interfering with child div
   $(this).children(".children").toggle();
   $(".modal-container *").click(function(e) {
     e.stopPropagation();

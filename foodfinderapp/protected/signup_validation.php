@@ -12,42 +12,47 @@ $valid = True;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    //=====================  first name validation ==========================
-    // if the first name field is empty
+	//=====================  first name validation ==========================
+	// if the first name field is empty
 	if (empty($_POST["firstName"])){
 		$firstnameError = "Please enter your first name.";
 		$_POST["firstName"] = "";
 		$valid = False;
+		header("Location: ../index.php?message=emptyFName");
 	}
-    // else if the first name field contains numbers
+	// else if the first name field contains numbers
 	else if (!ctype_alpha($_POST["firstName"])){
 		$firstnameError = "Please enter letters only.";
 		$_POST["firstName"] = "";
 		$valid = False;
+		header("Location: ../index.php?message=LNameNumber");
 	}
 
-    //=====================  last name validation ==========================
+	//=====================  last name validation ==========================
 	// if the last name field is empty
 	if (empty($_POST["lastName"])){
 		$lastnameError = "Please enter your last name.";
 		$_POST["lastName"] = "";
 		$valid = False;
+		header("Location: ../index.php?message=emptyFName");
+
 	}
-    // else if the last name field contains numbers
+	// else if the last name field contains numbers
 	else if (!ctype_alpha($_POST["lastName"])){
-		$lastnameError = "Please enter letters only.";
 		$_POST["lastName"] = "";
 		$valid = False;
+		header("Location: ../index.php?message=FNameNumber");
+
 	}
 
-    //=====================  email validation ==========================
+	//=====================  email validation ==========================
 	// if the email field is empty
 	if (empty($_POST["email"])){
 		$emailError = "Please enter a valid email address.";
 		$_POST["email"] = "";
 		$valid = False;
 	}
-    // else if the email field is invalid
+	// else if the email field is invalid
 	else if (!preg_match("/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i" ,$_POST["email"])){
 		$emailError = "The email format is not valid. Please enter again.";
 		$_POST["email"] = "";
@@ -67,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 
-    //=====================  password validation ==========================
+	//=====================  password validation ==========================
 	// if the password field is empty
 	if (empty($_POST["password"])){
 		$passwordError = "Please enter a password.";
@@ -81,14 +86,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$valid = False;
 	}
 
-    //=====================  password confirm validation ==========================
-   // if the confiemed password field is empty
+	//=====================  password confirm validation ==========================
+	// if the confiemed password field is empty
 	if (empty($_POST["passwordConfirm"])){
 		$passwordConError = "Please enter the confirmed password.";
 		$_POST["passwordConfirm"] = "";
 		$valid = False;
 	}
-    // else if the confirmed password is not the same as the password entered above
+	// else if the confirmed password is not the same as the password entered above
 	else if (!($_POST["passwordConfirm"] === $_POST["password"])){
 		$passwordConError = "You did not enter the same password.";
 		$_POST["passwordConfirm"] = "";
@@ -103,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$email = mysqli_real_escape_string($conn, $_POST['email']);
 		$passwordConfirm = mysqli_real_escape_string($conn, $_POST['passwordConfirm']);
 
-        // hash the password
+		// hash the password
 		$hashedPassword = password_hash($passwordConfirm, PASSWORD_DEFAULT);
 
 
@@ -117,8 +122,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$_POST['passwordConfirm'] = '';
 		header("Location: ../index.php?message=success");
 
-        } else {
-					header("Location: ../index.php?message=fail");
-				}
-    }
+	}
+}
 ?>

@@ -53,6 +53,7 @@
   font-size:13px;
   color: #ff7c7c;
   margin: 5px 0 5px 0;
+  text-align:center;
 }
 
 .modal-form{
@@ -109,4 +110,8 @@
 
 #modal-login{
   display: none;
+}
+
+#modal-advSearch{
+  display:none;
 }
