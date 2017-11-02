@@ -41,7 +41,7 @@ button:focus, input:focus {outline:0 !important;}
   width:100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 100px;
+  padding: 0 50px;
 }
 
 /*FONT*/
@@ -107,6 +107,36 @@ button:focus, input:focus {outline:0 !important;}
   border: 1px solid white;
   color: #444;
 }
+
+.main-button{
+  float:right;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.4rem;
+  outline: none;
+  padding: 7px 15px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+  vertical-align: middle;
+  white-space: nowrap;
+  background-color: #ff7c7c;
+  color: white;
+
+  font-size: 25px;
+  height: 70px;
+  width: 70px;
+}
+
+.main-button:hover{
+  background-color: #ff5555;
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+}
+
 
 .container-main .modal-loginBtn{
   margin: 50px 12px 0 0;

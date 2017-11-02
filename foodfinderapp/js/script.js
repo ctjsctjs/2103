@@ -1,27 +1,30 @@
 
 $(document).ready(function () {
 
+  //hide main menu jumbo buttons when user is logged in
+  $(function hideButtons(){
+    if($('#nav-mobile-logout').length){
+      $(".public").css("display", "none");
+    }
+  });
 
-    //Error messages
-    var status = "";
+  //hide main menu jumbo buttons when user is logged in
+  $('#nav-hamburger').click(function(){
+    $(".nav-center").slideToggle(100, "linear");
+  });
+  //Error messages
+  var status = "";
 
   //If there is error, display modal immediately
-  if (!$('#login-err').is(':empty'))  {
+  if (window.location.href.indexOf("login") > -1){
     status ="login";
     $(".modal").show();
     $("#modal-login").show();
-  } else if ( !$('#reg-err').is(':empty') ) {
+  } else if (window.location.href.indexOf("reg") > -1){
     status ="register";
     $(".modal").show();
     $("#modal-register").show();
   }
-
-  //hide main menu jumbo buttons when user is logged in
-  $(function hideButtons(){
-    if($('#nav-profile').length){
-      $(".public").css("display", "none");
-    }
-  });
 
   //login modal button
   $(".modal-loginBtn").click(function(){
@@ -76,6 +79,18 @@ $(document).ready(function () {
       display:"none",
     });
     $('#modal-register').css({
+      marginTop: "+=30px",
+      display: "block",
+    });
+  });
+
+  $("#modal-loginlink").click(function(){
+    status = "login";
+    $('#modal-register').css({
+      marginTop: "-=30px",
+      display:"none",
+    });
+    $('#modal-login').css({
       marginTop: "+=30px",
       display: "block",
     });

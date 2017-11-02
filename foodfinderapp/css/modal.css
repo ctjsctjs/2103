@@ -39,6 +39,7 @@
 }
 
 .modal-link, .modal-link:active, .modal-link:visited {
+  cursor: pointer;
   font-size:13px;
   color: #888;
   text-align:center;
@@ -52,7 +53,7 @@
 .modal-error{
   font-size:13px;
   color: #ff7c7c;
-  margin: 5px 0 5px 0;
+  margin: 5px 0 10px 0;
   text-align:center;
 }
 
@@ -100,7 +101,7 @@
   transition: 100ms ease;
 }
 
-#modal-registerlink{
+#modal-registerlink, #modal-loginlink{
   margin-bottom: 20px;
 }
 

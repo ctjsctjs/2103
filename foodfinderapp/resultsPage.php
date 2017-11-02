@@ -1,119 +1,125 @@
-<?php include_once 'includes/header.php' ?>
 <?php
-if (isset($_SESSION['FIRSTNAME'])) {
-  include_once 'includes/nav_user.php';
-  include_once 'includes/searchbar.php';
-} else {
-  include_once 'includes/nav_index.php';
-}
+include_once 'protected/databaseconnection.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
+<ul class="section-header text-center favourites">
+    <li style="display: inline"><a href="#foodEstablishment"><b>Food Establishment Search Results</b></a></li>
+    <li style="display: inline"> | </li>
+    <li style="display: inline"><a href="#carpark"><b>Carpark Search Results</b></a></li>
+<ul>
 
-<script src="js\jquery-3.2.1.min.js"></script>
-<script src="js\carparkJS.js"></script>
+<a name="foodEstablishment">Food Establishment Search Results<br><?php
 
-<div class="container-carpark">
-  <div class="container-responsive">
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "foodfinderapp";
+    $sql = "SELECT foodEstablishmentId, name, RIGHT(address, 6) as postalcode FROM foodestablishment WHERE name LIKE '%" . $_POST["search"] . "%'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            echo "<table border = 1>";
+            echo "<tr><th>Food Establishment Name</th>";
+            echo "<th>Carparks Nearby</th></tr>";
+            
+            while($row = mysqli_fetch_assoc($result)) {
+                
+                echo '<tr><td><a href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">' . $row["name"] . '</a></td>';
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+                $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key=AIzaSyDbEqIHfTZwLD9cgm9-elubEhOCm7_C3VE');
+                $json = json_decode($json);
 
-    // Check connection
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
+                $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+                $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+                
+                #SQL statement to find all carpark within 500m
+                $locateSQL = "SELECT *, ( 6371 *
+                    acos(
+                        cos( radians(". $lat .")) * cos( radians( latitude )) * 
+                        cos( radians( longitude ) - radians(". $long .")) +
+                        sin(radians(". $lat .")) * sin(radians(latitude))
+                        )) 
+                    as distance FROM carpark HAVING distance < 0.5 ORDER BY distance";
+                
+                $locateResult = mysqli_query($conn, $locateSQL) or die(mysqli_connect_error());
+                
+                if ($locateResult) {
+                    if (mysqli_num_rows($locateResult) > 0) {
+                        echo "<td><br>";
+                        while($locateRow = mysqli_fetch_assoc($locateResult)) {
+
+                            echo "Carpark name:" . $locateRow["development"]. "<br>";
+                            echo "Distance from food establishment: " . sprintf('%0.2f', $locateRow["distance"])*1000 . "m<br>";
+                            
+                            $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
+
+                            $ch = curl_init($carparkLotsJson );
+                            $options = array(CURLOPT_HTTPHEADER=>array("AccountKey: SFHPvNC5RP+jFTzftMxxFQ==, Accept: application/json" ),);
+                            curl_setopt_array( $ch, $options );
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+                            $carparkJsonResult = curl_exec( $ch );
+                            $carparkJsonResult = json_decode($carparkJsonResult);
+                            
+                            $lots = $carparkJsonResult->{'value'}[$locateRow["carparkId"]-1]->{'Lots'};
+                            
+                            echo "Lots Available: ". $lots ."<br><br>";
+                        }
+                        echo "</td></tr>";
+                    }
+                    else {
+                        echo "<td>No Carparks Nearby</td></tr>";
+                    }
+                }               
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
     }
 
-    $googleKey = 'AIzaSyBUHVlBo1aiN9NZyh1Dzs91msIXblEi0NI';
-    $datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';
+?></a>
 
-    $search = $_POST['search'];
-    $advanced_search = false;
-    $radius = 0.5;
+<br><br><br>
 
+<a name="carpark">Carpark Search Results<br><?php
+        
+    $sql1 = "SELECT * FROM carpark WHERE area LIKE '%" . $_POST["search"] . "%' OR development LIKE '%" . $_POST["search"] . "%'";
+    $result1 = mysqli_query($conn, $sql1) or die(mysqli_connect_error());
+    if ($result1) {
+        if (mysqli_num_rows($result1) > 0) {
+            // output data of each row
+            echo "<table border = 1>";
+            echo "<tr><th>Carpark Name</th>";
+            echo "<th>Food Establishments Nearby</th></tr>";
+            
+            while($row1 = mysqli_fetch_assoc($result1)) {
+                echo '<tr><td><br><a href="carpark.php?carparkId='.$row1["carparkId"].'">' . $row1["development"] . '</a><br>';
 
-    if ($search == ""){
-      header("Location: index.php?message=search_empty");
-    } else {
+                $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
 
-      //If advanced search is true
+                $ch = curl_init($carparkLotsJson );
+                $options = array(CURLOPT_HTTPHEADER=>array("AccountKey: SFHPvNC5RP+jFTzftMxxFQ==, Accept: application/json" ),);
+                curl_setopt_array( $ch, $options );
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
-      $sql = "SELECT name, RIGHT(address, 6) as postalcode FROM foodestablishment WHERE name LIKE '%" . $search . "%'";
-      $result = mysqli_query($conn, $sql);
-      if ($result) {
-        if (mysqli_num_rows($result) > 0) {
-          // output data of each row
-          echo "<div class='list-carpark'>";
+                $carparkJsonResult = curl_exec( $ch );
+                $carparkJsonResult = json_decode($carparkJsonResult);
+                
+                $lots = $carparkJsonResult->{'value'}[$row1["carparkId"]-1]->{'Lots'};
+                
+                echo "Lots Available: ". $lots ."<br><br></td>";
 
-          while($row = mysqli_fetch_assoc($result)) {
-            echo "<li>";
-            echo "<span>" . $row["name"] . "</span>";
-            echo "<span>" . $row["postalcode"] . "</span>";
-            $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key='. $googleKey);
-            $json = json_decode($json);
+                echo "<td>";
 
-            $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
-            $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+                echo "i will try to do the food establishments nearby but not confirm can complete it.";
 
-            echo "<span>" . $lat . "</span>";
-            echo "<span>" . $long . "</span>";
-
-            #SQL statement to find all carpark within 500m
-            $locateSQL = "SELECT *, ( 6371 *
-              acos(
-                cos( radians(". $lat .")) * cos( radians( latitude )) *
-                cos( radians( longitude ) - radians(". $long .")) +
-                sin(radians(". $lat .")) * sin(radians(latitude))
-                ))
-                as distance FROM carpark HAVING distance < ". $radius ." ORDER BY distance";
-
-                $locateResult = mysqli_query($conn, $locateSQL);
-
-                if ($locateResult) {
-                  if (mysqli_num_rows($locateResult) > 0) {
-                    echo "<span>";
-                    while($locateRow = mysqli_fetch_assoc($locateResult)) {
-                      echo "carparkID" . $locateRow["carparkId"]. " - distance: " . ($locateRow["distance"]*1000) . " metres <br>";
-
-                      $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
-
-                      $ch      = curl_init( $carparkLotsJson );
-                      $options = array(
-                        CURLOPT_HTTPHEADER     => array( "AccountKey: ". $datamallKey . ", Accept: application/json" ),
-                      );
-                      curl_setopt_array( $ch, $options );
-                      curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-
-                      $carparkJsonResult = curl_exec( $ch );
-                      $carparkJsonResult = json_decode($carparkJsonResult);
-
-                      $lots = $carparkJsonResult->{'value'}[$locateRow["carparkId"]-1]->{'Lots'};
-
-                      echo "Available Lots: ". $lots ."<br><br>";
-
-
-                    }
-                    echo "</span>";
-                    echo "</li>";
-                  }
-                  else {
-                    echo "<span>No carparks found</span>";
-                  }
-                }
-              }
-              echo "</div>";
-            } else {
-              echo "0 results";
+                echo"</td></tr>";                                
             }
-          }
+            echo "</table>";
+        } 
+        else {
+            echo "0 results";
         }
-
-
-        ?>
-      </div>
-    </div>
-    <?php include_once 'includes/footer_main.php' ?>
+    }
+}
+?></a>

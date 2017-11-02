@@ -20,7 +20,7 @@
 
 .main-header{
   text-align: left;
-  color: #5e5050;
+  color: #444;
   font-size: 40px;
   font-weight: 500;
   margin: 0 0 20px;
@@ -56,35 +56,6 @@
   -webkit-transition: border linear 0.2 s;
 }
 
-.main-button{
-  float:right;
-  border-radius: 2px;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.4rem;
-  outline: none;
-  padding: 7px 15px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  -webkit-transition: 100ms ease;
-  transition: 100ms ease;
-  vertical-align: middle;
-  white-space: nowrap;
-  background-color: #ff7c7c;
-  color: white;
-
-  font-size: 25px;
-  height: 70px;
-  width: 70px;
-}
-
-.main-button:hover{
-  background-color: #ff5555;
-  -webkit-transition: 100ms ease;
-  transition: 100ms ease;
-}
-
 .container-news{
   position:relative;
   width: 100%;
@@ -101,9 +72,8 @@
 
 .container-white{
   width: 100%;
-  height: 450px;
   background-color:white;
-  padding: 50px;
+  padding: 150px 50px;
   text-align: center;
 }
 
@@ -111,21 +81,20 @@
   font-size: 30px;
   font-weight: 700;
   color: #ff7c7c;
-  margin: 100px auto 0;
+  margin: 0 auto;
 }
 
 .container-white p{
   max-width: 600px;
   font-size: 16px;
   text-align: center;
-  margin: 30px auto;
+  margin: 30px auto 0;
 }
 
 .container-pink{
   width: 100%;
-  height: 450px;
   background-color:#ff7c7c;
-  padding: 50px;
+  padding: 150px 50px;
   text-align: center;
 }
 
@@ -133,14 +102,14 @@
   font-size: 30px;
   font-weight: 700;
   color: white;
-  margin: 100px auto 0;
+  margin: 0 auto;
 }
 
 .container-pink p{
   max-width: 600px;
   font-size: 16px;
   text-align: center;
-  margin: 30px auto;
+  margin: 30px auto 0;
   color:white;
 }
 

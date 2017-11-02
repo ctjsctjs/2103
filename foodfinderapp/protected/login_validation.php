@@ -7,14 +7,14 @@ include_once 'databaseconnection.php';
 
 // set a boolean variable to check if the fields have errors and retrun true if no error was detected
 $valid = True;
-$error = "";
+$url = '../index.php?';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   //=====================  email validation ==========================
   // if the email field is empty
   if (empty($_POST["email"])){
-    $error = "emptyEmail";
+    $url .= '&loginEmail=empty';
     $_POST['email'] = "";
     $valid = False;
   }
@@ -22,11 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   //=====================  password validation ==========================
   // if the password field is empty
   if (empty($_POST["password"])){
-    if ($error != ""){
-      $error = "emptyBoth";
-    } else{
-      $error = "emptyPw";
-    }
+    $url .= '&loginPw=empty';
     $_POST['password'] = "";
     $valid = False;
   }
@@ -41,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultCheck = mysqli_num_rows($result);
 
     if($resultCheck < 1) {
-      $error = "invalidAcc";
+      $url .= '&loginEmail=invalid';
       $emailError = "We couldn't find your account. Please try again.";
       $_POST['email'] = "";
       $_POST['password'] = "";
@@ -52,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if($row = mysqli_fetch_array($result)) {
         $hashedPwdCheck = password_verify($password, $row['password']);
         if($hashedPwdCheck == false) {
-          $error = "invalidPw";
+          $url .= '&loginPw=invalid';
           $passwordError = "Your password is incorrect. Please try again.";
           $_POST['email'] = "";
           $_POST['password'] = "";
@@ -68,25 +64,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
     }
   }
-  if ($error != ""){
-    switch ($error) {
-      case "emptyEmail":
-      header("Location: ../index.php?message=loginEmptyEmail");
-      break;
-      case "emptyPw":
-      header("Location: ../index.php?message=loginEmptyPw");
-      break;
-      case "emptyBoth":
-      header("Location: ../index.php?message=loginEmptyBoth");
-      break;
-      case "invalidAcc":
-      header("Location: ../index.php?message=loginInvalidAcc");
-      break;
-      case "invalidPw":
-      header("Location: ../index.php?message=loginInvalidPw");
-      break;
-      case "loginSuccess":
-      header("Location: ../index.php?message=loginSuccess");
-    }
-  }
+  header("Location: $url");
 }
