@@ -14,79 +14,79 @@
 
 /*TABLET*/
 @media only screen
-  and (max-width: 1024px) {
-    .container-main{
-      height:600px;
-    }
+and (max-width: 1024px) {
+  .container-main{
+    height:600px;
+  }
 
-    .main-header{
-      padding-top:200px;
-    }
+  .main-header{
+    padding-top:200px;
+  }
+
+  /*NAV MOBILE*/
+
+  #nav-hamburger{
+    display:block;
+  }
+
+  .nav-logout{
+    display:none;
+  }
+
+  .nav-center{
+    position:relative;
+    margin-top:50px;
+    display:none;
+    box-shadow: 0 0px 5px 0 rgba(0,0,0,0.2);
+  }
+
+  .nav-center li{
+    display:block;
+    padding: 20px 14px;
+    height:60px;
+    background-color:white;
+    -webkit-transition: 200ms ease;
+    transition: 200ms ease;
+  }
+
+  .nav-center li:hover{
+    background-color:#fafafa;
+    -webkit-transition: 200ms ease;
+    transition: 200ms ease;
+  }
+
+  #nav-mobile-logout{
+    display:block;
+  }
 }
 
 /*PHONE*/
 @media only screen
-  and (max-width: 736px) {
-    .container-main{
-      height:500px;
-    }
+and (max-width: 736px) {
+  .container-main{
+    height:500px;
+  }
 
-    .container-responsive{
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+  .container-responsive{
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
 
-    .main-header{
-      text-align: center;
+  .main-header{
+    text-align: center;
     font-size: 20px;
-    }
+  }
 
-    .main-logo{
-      height:40px;
+  .main-logo{
+    height:40px;
 
-    }
-    /*BUTTON*/
+  }
+  /*BUTTON*/
 
-    .button{
-      width:auto;
-      font-size:11px;
-      padding-top:11px;
-    }
-
-
-    /*NAV MOBILE*/
-
-    #nav-hamburger{
-      display:block;
-    }
-
-    .nav-logout{
-      display:none;
-    }
-
-    .nav-center{
-      position:relative;
-      margin-top:50px;
-      display:none;
-    }
-
-    .nav-center li{
-      display:block;
-      padding: 20px 14px;
-      height:60px;
-      background-color:white;
-      -webkit-transition: 200ms ease;
-      transition: 200ms ease;
-    }
-
-    .nav-center li:hover{
-      background-color:#fafafa;
-      -webkit-transition: 200ms ease;
-      transition: 200ms ease;
-    }
-
-    #nav-mobile-logout{
-      display:block;
-    }
+  .button{
+    width:auto;
+    font-size:11px;
+    padding-top:11px;
+  }
 }

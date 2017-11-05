@@ -12,7 +12,8 @@ $(document).ready(function () {
   $('#nav-hamburger').click(function(){
     $(".nav-center").slideToggle(100, "linear");
   });
-  //Error messages
+
+  //status of modal
   var status = "";
 
   //If there is error, display modal immediately
@@ -95,7 +96,6 @@ $(document).ready(function () {
       display: "block",
     });
   });
-
 
   //Advance Search modal button
   $(".modal-advSearchBtn").click(function(){
