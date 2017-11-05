@@ -5,6 +5,8 @@
   position:relative;
   background: url("../images/bg2.jpg") no-repeat center center;
   background-size: cover;
+  background-attachment: fixed;
+
   margin-top:-60px;
 }
 
@@ -70,65 +72,86 @@
   color: white;
 }
 
-.container-white{
+.container{
+  position: relative;
   width: 100%;
-  background-color:white;
-  padding: 150px 50px;
-  text-align: center;
+  padding: 200px 50px;
+  text-align: left;
 }
 
-.container-white h1{
-  font-size: 30px;
-  font-weight: 700;
-  color: #ff7c7c;
-  margin: 0 auto;
-}
-
-.container-white p{
+.container p{
   max-width: 600px;
-  font-size: 16px;
-  text-align: center;
-  margin: 30px auto 0;
+  font-size: 18px;
+  text-align: left;
+  margin-top: 30px;
+  line-height:1.5;
 }
 
-.container-pink{
-  width: 100%;
-  background-color:#ff7c7c;
-  padding: 150px 50px;
-  text-align: center;
-}
-
-.container-pink h1{
-  font-size: 30px;
+.container h1{
+  font-size: 40px;
   font-weight: 700;
   color: white;
   margin: 0 auto;
 }
 
-.container-pink p{
-  max-width: 600px;
-  font-size: 16px;
-  text-align: center;
-  margin: 30px auto 0;
+.white{
+  background-color:white;
+}
+
+.white h1{
+  color: #ff7c7c;
+}
+
+.container-img{
+  color: #ff7c7c;
+  bottom:0;
+  float:right;
+  max-width:800px;
+  position:relative;
+  bottom:-62px;
+
+}
+
+.grey{
+  background-color:#435b6c;
+}
+
+.grey h1{
+  color:white;
+}
+
+.grey p{
+  color:white;
+}
+
+.pink{
+  background-color:#ff7c7c;
+}
+
+.pink h1{
+  color:white;
+}
+
+.pink p{
   color:white;
 }
 
 .container-register-right{
-    float:right;
-    width: 50%;
-    height: 100%;
-    background-color:#ff7c7c;
-    padding: 50px;
-    text-align: center;
+  float:right;
+  width: 50%;
+  height: 100%;
+  background-color:#ff7c7c;
+  padding: 50px;
+  text-align: center;
 }
 
 .container-register-left{
-    float:left;
-    width: 50%;
-    height: 100%;
+  float:left;
+  width: 50%;
+  height: 100%;
 
-    background: url("../images/register-img.jpg") no-repeat;
-    background-size:cover;
+  background: url("../images/register-img.jpg") no-repeat;
+  background-size:cover;
 }
 
 .register-wrapper{
@@ -157,15 +180,16 @@
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
+
 
 
 /*RESULTS*/

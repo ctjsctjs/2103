@@ -28,13 +28,39 @@ include_once 'includes/nav_index.php';
 <section class="container-news">
   <p>The fastest growing startup in based in Singapore!</p>
 </section>
-<section class="container-white wrapper">
-  <h1>Hassle Free Food Experience</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh justo, finibus ac semper non, eleifend sed sapien. Suspendisse sit amet felis in sem egestas convallis eget ac erat. Vestibulum nec aliquet tortor. Aliquam aliquam lorem non augue tempor maximus. Duis dignissim mauris quis dui semper tempor.</p>
-</section>
-<section class="container-pink wrapper">
-  <h1>Find out where is the best food</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nibh justo, finibus ac semper non, eleifend sed sapien. Suspendisse sit amet felis in sem egestas convallis eget ac erat. Vestibulum nec aliquet tortor. Aliquam aliquam lorem non augue tempor maximus. Duis dignissim mauris quis dui semper tempor.
+<section class="container white wrapper">
+  <div class="container-responsive">
+    <h1>Worry Free Food Experience</h1>
+    <p>Tired of waiting in the car instead of enjoying your delicious food?
+      Fret not, FoodPark is here to eliminate your parking problems. FoodPark
+      is a web application that tracks real-time data of available parking lots near
+      various food establishments, allowing you to locate the nearest available
+      parking location.</p>
+      <img class="container-img" src="images/car.svg">
+    </div>
+  </section>
+  <section class="container grey wrapper">
+    <div class="container-responsive">
+      <h1>Search for the best in Singapore</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        In nibh justo, finibus ac semper non, eleifend sed sapien.
+        Suspendisse sit amet felis in sem egestas convallis eget ac erat.
+        Vestibulum nec aliquet tortor. Aliquam aliquam lorem non augue
+        tempor maximus. Duis dignissim mauris quis dui semper tempor.
+      </p>
+      <img class="container-img" src="images/food.svg">
+    </div>
+  </section>
+  <section class="container pink wrapper">
+    <div class="container-responsive">
+      <h1>Search for the best in Singapore</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        In nibh justo, finibus ac semper non, eleifend sed sapien.
+        Suspendisse sit amet felis in sem egestas convallis eget ac erat.
+        Vestibulum nec aliquet tortor. Aliquam aliquam lorem non augue
+        tempor maximus. Duis dignissim mauris quis dui semper tempor.
+      </p>
+    </div>
   </section>
   <section class="modal">
     <div class="modal-container" id="modal-login">

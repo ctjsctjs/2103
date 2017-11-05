@@ -5,12 +5,11 @@
 }
 
 .list-carpark{
-  max-width:auto;
   width:100%;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  justify-content: space-between;
 }
 
 .list-carpark li{
@@ -21,10 +20,10 @@
   line-height: 1;
   padding: 50px 25px;
   height: 500px;
-  width: 300px;
+  width:300px;
   background-color:white;
-  margin: 0 auto 10px;
   display:inline-block;
+  margin-bottom:10px;
 }
 
 .list-carpark li iframe{

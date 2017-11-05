@@ -39,7 +39,7 @@ button:focus, input:focus {outline:0 !important;}
 
 .container-responsive{
   width:100%;
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 50px;
 }
@@ -113,8 +113,6 @@ button:focus, input:focus {outline:0 !important;}
   border-radius: 2px;
   cursor: pointer;
   display: inline-block;
-  font-size: 1.4rem;
-  outline: none;
   padding: 7px 15px;
   position: relative;
   text-align: center;
