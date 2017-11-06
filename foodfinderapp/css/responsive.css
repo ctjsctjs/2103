@@ -77,8 +77,17 @@ and (max-width: 1024px) {
 and (max-width: 736px) {
 
   .list-carpark li{
-    margin: 0 auto;
+    width:100%;
+    height:auto;
   }
+
+  .list-carpark li iframe{
+    width:100%;
+    position:relative;
+    margin-top:10px;
+    bottom: 0;
+  }
+
   .container-main{
     height:500px;
   }
@@ -135,4 +144,21 @@ and (max-width: 736px) {
     font-size:14px;
     text-align: center;
   }
+
+  /*SEARCHBAR*/
+
+  .search-row{
+    width:100%;
+  }
+
+  .search-form{
+    width: calc(100% - 50px);
+  }
+
+  .page-title{
+    width:100%;
+    text-align: center;
+    margin-bottom:20px;
+  }
+
 }

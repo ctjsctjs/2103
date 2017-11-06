@@ -8,6 +8,7 @@
   background-attachment: fixed;
 
   margin-top:-60px;
+  z-index:2;
 }
 
 .main-logo{
@@ -64,6 +65,7 @@
   background-color:#ff7c7c;
   padding: 14px 20px 14px;
   text-align: center;
+  z-index:2;
 }
 
 .container-news p{

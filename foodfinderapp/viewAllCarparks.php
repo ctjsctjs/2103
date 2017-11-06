@@ -79,7 +79,7 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
                                         $lots = $carparkJsonResult->{'value'}[$row[0]-1]->{'Lots'};
                     echo "<td id='lot". $row[0] ."'>";
                     echo "<span class='carpark-lots lots-color'>".$lots." lots</span>";
-                    echo "<iframe width='250' height='250' frameborder='0' src='//www.google.com/maps/embed/v1/place?q=". str_replace(" ", "+", $location) . ",Singapore
+                    echo "<iframe frameborder='0' src='//www.google.com/maps/embed/v1/place?q=". str_replace(" ", "+", $location) . ",Singapore
 &zoom=17
 &key=AIzaSyAlgLSolLKRBjHl8T3ED3E6BLsgXuAYYGo' allowfullscreen></iframe>";
 
