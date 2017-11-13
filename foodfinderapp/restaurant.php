@@ -1,8 +1,18 @@
 <?php include_once 'includes/header.php' ?>
 <?php include_once 'protected/databaseconnection.php' ?>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgOEetVt0oeA8HdyUmOAdW8O1e0qpB7Q"></script>
-
-
+<!-- Style for Rating Star (Nizam) -->
+<style>
+body{width:610;}
+.demo-table {width: 196px;border-spacing: initial;margin: 20px 0px;word-break: break-word;table-layout: auto;line-height:1.8em;color:#333;}
+.demo-table th {background: #999;padding: 5px;text-align: left;color:#FFF;}
+.demo-table td {border-bottom: #f0f0f0 1px solid;background-color: #ffffff;padding: 5px;}
+.demo-table td div.feed_title{text-decoration: none;color:#00d4ff;font-weight:bold;}
+.demo-table ul{margin:0;padding:0;}
+.demo-table li{cursor:pointer;list-style-type: none;display: inline-block;color: #F0F0F0;text-shadow: 0 0 1px #666666;font-size:20px;}
+.demo-table .highlight, .demo-table .selected {color:#F4B30A;text-shadow: 0 0 1px #F48F0A;}
+</style>
+<!-->
 <?php
 	if(isset($_SESSION['FIRSTNAME']))
 		include_once 'includes/nav_user.php';
@@ -11,9 +21,13 @@
 
 	if(isset($_GET['foodEstablishmentId'])) {
 		
-		$selectedFoodEstablishment = "SELECT name, address, RIGHT(address, 6) as postalcode FROM foodestablishment WHERE foodEstablishmentId = '".$_GET['foodEstablishmentId']."'";
+                // Editted SQL statement (Nizam)
+            $foodID = $_GET['foodEstablishmentId'];
+		$selectedFoodEstablishment = "SELECT name, address, RIGHT(address, 6) as postalcode,CAST(AVG(review.AvgRating) as decimal(18,1)), COUNT(review.AvgRating) FROM foodestablishment INNER JOIN review ON foodestablishment.foodestablishmentId = review.foodEstablishmentId WHERE foodestablishment.foodEstablishmentId = '".$_GET['foodEstablishmentId']."'";
 		$result = mysqli_query($conn, $selectedFoodEstablishment) or die(mysqli_connect_error());
 		$row = mysqli_fetch_array($result);
+                $rating = $row[3];
+                $numofreview = $row[4];
 
 		$json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key=AIzaSyDbEqIHfTZwLD9cgm9-elubEhOCm7_C3VE');
         $json = json_decode($json);
@@ -71,15 +85,75 @@
 		 	<div class="col-lg-8 text-center">
 		 		<h2><b><?php echo $row["name"]; ?></b></h2>
 		 	 	<p class="lead"><?php echo $row["address"]; ?></p>
-		 	 	<button type="button" class="btn btn-default btn-lg active">Save to Favourites</button>
-		 	 	<button type="button" class="btn btn-default btn-lg active">Rate</button>
-		 	 	<br><br>
-		 	 	<p style="text-align:left">0 people has reviewed this place</p>
-		 	 	<p style="text-align:left">Quality: &#9734;&#9734;&#9734;&#9734;&#9734;</p>
-		 	 	<p style="text-align:left">Cleaniness: &#9734;&#9734;&#9734;&#9734;&#9734;</p>
-		 	 	<p style="text-align:left">Comfort: &#9734;&#9734;&#9734;&#9734;&#9734;</p>
-		 	 	<p style="text-align:left">Ambience: &#9734;&#9734;&#9734;&#9734;&#9734;</p>
-		 	 	<p style="text-align:left">Service: &#9734;&#9734;&#9734;&#9734;&#9734;</p>
+<form method="post" action="restaurant.php?foodEstablishmentId=1" id="form" name="form">
+<input type="button" value="Save to Favourites" id="view" name="view"/>
+<input type="button" value="Rate" id="rate" name="rate"/>
+		 	 	
+</form>
+<?php 
+if($_POST && isset($_POST['view']))
+   {
+      $insert = "INSERT INTO favouritefood(foodestablishmentid, userid, status) 
+                  VALUES  ($foodID, 2, 'Y')";
+      if ($conn->query($insert) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+   }
+   
+?>
+                                <br><br>
+		 	 	<p style="text-align:left"><?php echo $numofreview?> people has reviewed this place</p>
+		 	 	<table class="demo-table">
+<tbody>
+
+
+   
+<div id="tutorial-<?php echo $_GET['foodEstablishmentId']; ?>">
+    <?php $property=array("Quality","Cleaniness","Comfort","Ambience","Service"); ?>
+    <?php
+                                $reviewquery = "SELECT ROUND(AVG(quality)) AS quality, ROUND(AVG(clean)) AS clean,ROUND(AVG(comfort)) AS comfort,ROUND(AVG(ambience)) AS ambience,ROUND(AVG(service)) AS service FROM review WHERE foodestablishmentID = '".$_GET['foodEstablishmentId']."'";
+                 $listreview = mysqli_query($conn, $reviewquery);
+                 $property=array("Quality","Cleaniness","Comfort","Ambience","Service");
+                 if ($listreview) {
+
+                while ($row = mysqli_fetch_row($listreview)) {
+                    $count = 0;
+                   
+                     for($p = 0; $p < 5;$p++ ){
+                            echo '<tr><td>'.$property[$p].'</td>';
+                                echo '<td><input type="hidden" name="rating" id="rating" value="'.$rating.'"/>';
+                                echo '<ul onMouseOut="resetRating'.$_GET['foodEstablishmentId'].'">';
+
+  for($i=1;$i<=5;$i++) {
+  $selected = "";
+  if(!empty($row[$p]) && $i<=$row[$p]) {
+	$selected = "selected";
+  }
+  
+  echo '<li class="'.$selected.'" onmouseover="highlightStar(this,'.$_GET['foodEstablishmentId'].')" onmouseout="removeHighlight('.$_GET['foodEstablishmentId'].')" onClick="addRating(this,'.$_GET['foodEstablishmentId'].')">&#9733;</li>';
+                                
+                            }
+                            echo '</ul>';
+                            echo '</td></tr>';
+                            }
+                 }
+                 
+  }
+  
+  ?>
+                    
+    
+    
+
+</div>
+
+
+
+</tbody>
+</table>
+
 
 		 	</div>
 		 	<div class="col-lg-4">
