@@ -27,9 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   ?>
 
   <div class="container-results">
-    <div class="container-responsive">
-      <button class="button button-red" id="toggle-res-food">Food Establishment</button>
-      <button class="button button-red" id="toggle-res-carpark">Carpark</button>
+    <div class="container-responsive" id="container-narrow">
+      <div class="results-btn-row">
+        <button class="button button-red" id="toggle-res-food">Food Establishment</button>
+        <button class="button button-red" id="toggle-res-carpark">Carpark</button>
+      </div>
 
       <!--<a name="foodEstablishment">Food Establishment Search Results<br>-->
       <?php
@@ -42,10 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           echo '<div class="results-container" id="res-food-cont">';
 
           while($row = mysqli_fetch_assoc($result)) {
-            echo '<div class="results-row">';
+            echo '<div class="res-row-food">';
             echo '<a class="results-header" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">' . $row["name"] . '</a>';
 
-            $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key=AIzaSyDbEqIHfTZwLD9cgm9-elubEhOCm7_C3VE');
+            $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key=AIzaSyCaChmDfarbbuKdy_U5P5xY-NtYwvnCbbo');
             $json = json_decode($json);
 
             $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
@@ -78,30 +80,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       /*EACH BLOCK OF CARPARK*/
                       echo "<div class='res-blocks'>";
                       echo "<span class='res-lots'>". $lots ."</span>";
-                      echo "<span class='res-name'> Carpark: " . $locateRow["development"]. "</span>";
-                      echo "<span class='res-dist'> Distance: " . sprintf(' %0.2f', $locateRow["distance"])*1000 . "m</span>";
+                      echo "<span class='res-name'>" . $locateRow["development"]. "</span>";
+                      echo "<span class='res-dist'>" . sprintf(' %0.2f', $locateRow["distance"])*1000 . "m</span>";
                       echo "</div>";
                       /*END OF CARPARK BLOCK*/
                     }
                     echo "</div>";
                   }
                   else {
-                    echo "<span class='res-empty'>No Carparks Nearby</span>";
+                    echo "<span class='res-empty'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Carparks Nearby</span>";
                   }
                 }
                 echo "</div>";
               }
               echo "</div>";
             } else {
-              echo "0 results";
+              echo '<div class="results-container" id="res-food-cont">';
+              echo "<span class='empty-result'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Results are found. Please try another keyword.</span>";
+              echo "</div>";
             }
           }
 
-          ?></a>
+          ?>
 
-          <br><br><br>
-
-          <a name="carpark">Carpark Search Results<br><?php
+          <?php
 
           $sql1 = "SELECT * FROM carpark WHERE area LIKE '%" . $_POST["search"] . "%' OR development LIKE '%" . $_POST["search"] . "%'";
           $result1 = mysqli_query($conn, $sql1) or die(mysqli_connect_error());
@@ -111,35 +113,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               echo '<div class="results-container" id="res-carpark-cont">';
 
               while($row1 = mysqli_fetch_assoc($result1)) {
-                echo '<div class="results-row">';
-                echo '<a href="carpark.php?carparkId='.$row1["carparkId"].'">' . $row1["development"] . '</a>';
-
                 $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
-
                 $ch = curl_init($carparkLotsJson );
                 $options = array(CURLOPT_HTTPHEADER=>array("AccountKey: SFHPvNC5RP+jFTzftMxxFQ==, Accept: application/json" ),);
                 curl_setopt_array( $ch, $options );
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-
                 $carparkJsonResult = curl_exec( $ch );
                 $carparkJsonResult = json_decode($carparkJsonResult);
-
                 $lots = $carparkJsonResult->{'value'}[$row1["carparkId"]-1]->{'Lots'};
 
-                echo "<div class='res-blocks'>";
-                echo "<span class='res-lots'>Lots Available: ". $lots ."</span>";
-                echo "</div>";
+                echo '<a href=carpark.php?carparkId='.$row1["carparkId"].'" class="res-row-carpark">';
+                echo '<div class="res-name" >' . $row1["development"] . '</div>';
+                echo "<span class='res-lots'>". $lots ."</span>";
+                echo "</a>";
 
               }
               echo "</div>";
-
             }
             else {
-              echo "0 results";
+              echo '<div class="results-container" id="res-carpark-cont">';
+              echo "<span class='empty-result'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Results are found. Please try another keyword.</span>";
+              echo "</div>";
             }
           }
         }
-        ?></a>
+        ?>
       </div>
     </div>
 
@@ -163,12 +161,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       });
 
       $('#toggle-res-carpark').click(function() {
-        $(".res-carpark-cont").show();
+        $("#res-carpark-cont").show();
         $("#res-food-cont").hide();
       });
 
       $('#toggle-res-food').click(function() {
-        $(".res-carpark-cont").hide();
+        $("#res-carpark-cont").hide();
         $("#res-food-cont").show();
       });
     });
