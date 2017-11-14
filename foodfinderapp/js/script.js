@@ -99,13 +99,7 @@ $(document).ready(function () {
 
   //Advance Search modal button
   $(".modal-advSearchBtn").click(function(){
-    $(".modal").fadeIn(100);
-    $('#modal-advSearch')
-    .stop(true, true)
-    .animate({
-      marginTop: "+=30px",
-      opacity:"show"
-    },200);
+    $(".adv-search-cont").slideToggle(200, "swing");
   });
 
   //Prevent background clikc exit from interfering with child div

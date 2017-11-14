@@ -9,8 +9,7 @@ include_once 'includes/nav_index.php';
 <section class="container-searchbar">
   <div class="container-responsive">
     <span class="page-title">Search Results</span>
-
-    <form class="form" role="form" autocomplete="off" action="resultsPage.php" method="POST">
+    <form role="form" autocomplete="off" action="resultsPage.php" method="POST">
       <div class="search-row">
         <input type="text" class="search-form" placeholder="Enter a food establishment or carpark" name="search">
         <button type ="submit" class="search-button"><i class="fa fa-search" aria-hidden="true"></i>
@@ -67,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($locateResult) {
                   if (mysqli_num_rows($locateResult) > 0) {
                     echo "<div class='res-food'>";
+                    echo "<span class='res-food-subheader'>Carparks Nearby</span>";
                     while($locateRow = mysqli_fetch_assoc($locateResult)) {
                       $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
                       $ch = curl_init($carparkLotsJson );

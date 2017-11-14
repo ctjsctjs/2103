@@ -15,7 +15,7 @@ include_once 'includes/nav_index.php';
     <span class="button button-white modal-registerBtn public">Register</span>
     <span class="button button-white modal-loginBtn public">Log in</span>
     <p class="main-header">Bringing to you a dining and<br>parking experience like never before</p>
-    <form class="form" role="form" autocomplete="off" action="resultsPage.php" method="POST">
+    <form role="form" autocomplete="off" action="resultsPage.php" method="POST">
       <div class="main-row">
         <input type="text" class="main-form" placeholder="Enter a food establishment or carpark" name="search">
         <button type ="submit" class="main-button"><i class="fa fa-search" aria-hidden="true"></i>

@@ -53,12 +53,20 @@
   transition: 200ms ease;
 }
 
+.res-food-subheader{
+  font-size:13px;
+  width:100%;
+  border-bottom: 1px solid #efefef;
+  padding: 10px 0;
+  margin-bottom:20px;
+  color: #888;
+}
+
 .res-blocks{
   cursor: pointer;
   display:inline-block;
   padding: 20px;
   width: 100%;
-  border-left: 3px solid #444;
   overflow: auto;
   margin-bottom: 10px;
   overflow: hidden;
@@ -66,6 +74,8 @@
   transition: 100ms ease;
   position: relative;
   border-radius: 2px;
+  border: 1px solid #efefef;
+  border-left: 3px solid #444;
 }
 
 .res-blocks:hover{
