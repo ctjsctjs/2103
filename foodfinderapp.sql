@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2017 at 02:07 PM
+-- Generation Time: Nov 14, 2017 at 04:27 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `foodfinderapp`
+-- Database: `foodfinderapp2`
 --
 
 -- --------------------------------------------------------
@@ -40,45 +40,46 @@ CREATE TABLE `carpark` (
   `carparkId` int(11) NOT NULL,
   `longitude` float NOT NULL,
   `latitude` float NOT NULL,
-  `area` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `area` varchar(50) NOT NULL,
+  `development` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `carpark`
 --
 
-INSERT INTO `carpark` (`carparkId`, `longitude`, `latitude`, `area`) VALUES
-(1, 103.857, 1.29375, 'Marina'),
-(2, 103.857, 1.29115, 'Marina'),
-(3, 103.856, 1.29011, 'Marina'),
-(4, 103.86, 1.29251, 'Marina'),
-(5, 103.863, 1.28944, 'Marina'),
-(6, 103.823, 1.26421, 'Harbfront'),
-(7, 103.831, 1.25017, 'Harbfront'),
-(8, 103.82, 1.26426, 'Harbfront'),
-(9, 103.822, 1.26426, 'Harbfront'),
-(10, 103.834, 1.3071, 'Orchard'),
-(11, 103.833, 1.30491, 'Orchard'),
-(12, 103.835, 1.30236, 'Orchard'),
-(13, 103.836, 1.30216, 'Orchard'),
-(14, 103.84, 1.302, 'Orchard'),
-(15, 103.839, 1.30084, 'Orchard'),
-(16, 103.841, 1.30135, 'Orchard'),
-(17, 103.842, 1.3006, 'Orchard'),
-(18, 103.845, 1.30103, 'Orchard'),
-(19, 103.848, 1.2995, 'Orchard'),
-(20, 103.832, 1.30403, 'Orchard'),
-(21, 103.833, 1.30366, 'Orchard'),
-(22, 103.837, 1.30255, 'Orchard'),
-(23, 103.82, 1.25667, 'Harbfront'),
-(24, 103.84, 1.30072, 'Orchard'),
-(25, 103.858, 1.28225, 'Marina'),
-(26, 103.743, 1.3343, 'JurongLakeDistrict'),
-(27, 103.841, 1.30228, 'Orchard'),
-(28, 103.747, 1.33485, 'JurongLakeDistrict'),
-(29, 103.74, 1.33341, 'JurongLakeDistrict'),
-(30, 103.836, 1.3038, 'Orchard'),
-(31, 103.852, 1.29027, 'Marina');
+INSERT INTO `carpark` (`carparkId`, `longitude`, `latitude`, `area`, `development`) VALUES
+(1, 103.857, 1.29375, 'Marina', 'Suntec City'),
+(2, 103.857, 1.29115, 'Marina', 'Marina Square'),
+(3, 103.856, 1.29011, 'Marina', 'The Esplanade'),
+(4, 103.86, 1.29251, 'Marina', 'Millenia Singapore'),
+(5, 103.863, 1.28944, 'Marina', 'Singapore Flyer'),
+(6, 103.823, 1.26421, 'Harbfront', 'VivoCity P3'),
+(7, 103.831, 1.25017, 'Harbfront', 'Sentosa'),
+(8, 103.82, 1.26426, 'Harbfront', 'Harbourfront Centre'),
+(9, 103.822, 1.26426, 'Harbfront', 'VivoCity P2'),
+(10, 103.834, 1.3071, 'Orchard', 'Far East Plaza'),
+(11, 103.833, 1.30491, 'Orchard', 'Tang Plaza'),
+(12, 103.835, 1.30236, 'Orchard', 'Ngee Ann City'),
+(13, 103.836, 1.30216, 'Orchard', 'Mandarin Hotel'),
+(14, 103.84, 1.302, 'Orchard', 'Centrepoint'),
+(15, 103.839, 1.30084, 'Orchard', '313@Somerset'),
+(16, 103.841, 1.30135, 'Orchard', 'Orchard Point'),
+(17, 103.842, 1.3006, 'Orchard', 'Concorde Hotel'),
+(18, 103.845, 1.30103, 'Orchard', 'Plaza Singapura'),
+(19, 103.848, 1.2995, 'Orchard', 'The Cathay'),
+(20, 103.832, 1.30403, 'Orchard', 'ION Orchard'),
+(21, 103.833, 1.30366, 'Orchard', 'Wisma Atria'),
+(22, 103.837, 1.30255, 'Orchard', 'The Heeren'),
+(23, 103.82, 1.25667, 'Harbfront', 'Resorts World Sentosa'),
+(24, 103.84, 1.30072, 'Orchard', 'Orchard Central'),
+(25, 103.858, 1.28225, 'Marina', 'Marina Bay Sands'),
+(26, 103.743, 1.3343, 'JurongLakeDistrict', 'Westgate'),
+(27, 103.841, 1.30228, 'Orchard', 'Holiday Inn'),
+(28, 103.747, 1.33485, 'JurongLakeDistrict', 'IMM Building'),
+(29, 103.74, 1.33341, 'JurongLakeDistrict', 'JCube'),
+(30, 103.836, 1.3038, 'Orchard', 'Paragon'),
+(31, 103.852, 1.29027, 'Marina', 'National Gallery');
 
 -- --------------------------------------------------------
 
@@ -110,7 +111,7 @@ CREATE TABLE `favouritefood` (
 --
 
 INSERT INTO `favouritefood` (`favFoodID`, `foodestablishmentId`, `userID`, `status`) VALUES
-(1, 1, 2, 1);
+(1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -23104,7 +23105,7 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`reviewId`, `quality`, `clean`, `comfort`, `ambience`, `service`, `AvgRating`, `userId`, `foodEstablishmentId`) VALUES
-(1, 4, 3, 2, 1, 3, '2.60', 2, 1);
+(1, 4, 3, 2, 1, 3, '2.60', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -23117,16 +23118,21 @@ CREATE TABLE `user` (
   `firstName` varchar(100) NOT NULL,
   `lastName` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
-  `password` varchar(200) NOT NULL
+  `password` varchar(200) NOT NULL,
+  `hash` varchar(100) NOT NULL,
+  `accountActivated` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userId`, `firstName`, `lastName`, `email`, `password`) VALUES
-(1, 'Clement', 'Admin ', 'abc@email.com', '$2y$10$mIudNdh29hrwKURi.jxf8.UHJynVN1Hcrh4xcsX.RN.BXg2.o1Hny'),
-(2, 'Shahrul', 'Nizam ', 'passion.dream@hotmail.com', '$2y$10$Xk7R2v7/80mdse8PKqD6m.FaeeiFj3oybedysJV/KA.9k8bNJDjui');
+INSERT INTO `user` (`userId`, `firstName`, `lastName`, `email`, `password`, `hash`, `accountActivated`) VALUES
+(1, 'Clement', 'Admin ', 'abc@email.com', '$2y$10$mIudNdh29hrwKURi.jxf8.UHJynVN1Hcrh4xcsX.RN.BXg2.o1Hny', '', 1),
+(2, 'Aaron', 'Tan ', 'def@email.com', '$2y$10$ioice7vXouAiIzkGQZ52q.rLv2HPbCO8soyKif1CND9E7Vhzbersa', '', 1),
+(3, 'Abel', 'Lim ', 'melvintan94@gmail.com', '$2y$10$jOoqxZul4gMP1eQlXhDTaeHTMKi7wum82fXJOlP5KFLXeQwZDZg7O', '', 0),
+(4, 's', 's', 'magnificentbluez@hotmail.com', '$2y$10$EjVEg0TAMJjouuPZ54H22efNbqDmZXrMr7l3MgQE/ORhPSJRnCd2m', '6766aa2750c19aad2fa1b32f36ed4aee', 1),
+(5, 'Peter', 'Tan', 'jtysjtys@gmail.com', '$2y$10$O6pe9D8hXwV24dIaz4rxJO4sGrNFai9DFAHyvjYusxMGWDeMRXhOO', 'd14220ee66aeec73c49038385428ec4c', 1);
 
 --
 -- Indexes for dumped tables
@@ -23233,7 +23239,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --

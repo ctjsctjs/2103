@@ -12,7 +12,10 @@
 <div class="container-carpark">
     <h2>Favourite Food Place</h2>
   <div class="container-responsive">
-<?php $query = "SELECT favouritefood.favFoodID,foodestablishment.name,foodestablishment.address FROM `favouritefood` INNER JOIN foodestablishment on favouritefood.foodestablishmentId = foodestablishment.foodEstablishmentId WHERE favouritefood.userID = ".$_SESSION['ID'];
+      <!-- QUERY NEED TO CHANGE AT WHERE STATEMENT -->
+      <!-- SESSION["ID"] can't retrieve, for now temporary put "1" -->
+      <!-- NIZAM -->
+<?php $query = "SELECT favouritefood.favFoodID,foodestablishment.name,foodestablishment.address FROM `favouritefood` INNER JOIN foodestablishment on favouritefood.foodestablishmentId = foodestablishment.foodEstablishmentId WHERE favouritefood.userID = 1";
 echo $_SESSION['ID'];
 if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
     $rowcount = mysqli_num_rows($result);
