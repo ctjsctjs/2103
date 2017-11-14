@@ -1,0 +1,82 @@
+/*RESULTS*/
+.container-results{
+  min-height:100vh;
+  width:100%;
+  background-color: #fafafa;
+  padding-top: 50px;
+}
+
+.results-row{
+  padding:50px;
+  background-color: white;
+  margin-bottom: 10px;
+  border: 1px solid #ff7c7c;
+}
+
+.results-header{
+  font-size: 30px;
+  font-weight:700;
+  color: #ff7c7c;
+  text-decoration: none;
+  margin-bottom: 30px;
+}
+
+.res-blocks{
+  cursor: pointer;
+  display:inline-block;
+  padding: 20px;
+  background-color: #fafafa;
+  width: 100%;
+  border-left: 3px solid #444;
+  overflow: auto;
+  margin-bottom: 10px;
+  overflow: hidden;
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+}
+
+.res-blocks:hover{
+  border-left: 10px solid #efefef;
+  -webkit-transition: 100ms ease;
+  transition: 200ms ease;
+}
+
+.res-lots{
+  font-size:35px;
+  float:left;
+  margin-right:20px;
+}
+
+.res-lots-red{
+  color:#ff3535;
+}
+
+.res-lots-orange{
+  color:#ffa963;
+}
+
+.res-lots-green{
+  color:#61ff56;
+}
+
+.res-block-green{
+  border-left: 5px solid #61ff56;
+}
+
+.res-block-orange{
+  border-left: 5px solid #ffa963;
+}
+
+.res-block-red{
+  border-left: 5px solid #ff3535;
+}
+
+.res-name{
+  font-size:16px;
+  font-weight:700;
+  color:#444;
+}
+
+.res-carpark-cont{
+  display:none;
+}

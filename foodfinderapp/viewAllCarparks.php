@@ -13,6 +13,7 @@
 
 <div class="container-carpark">
   <div class="container-responsive">
+    <div class="loader"></div>
 <?php
 // include database connection
 include_once 'protected/databaseconnection.php';
@@ -105,5 +106,10 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
 setInterval(function () {
 		updateLots();
 }, 60000);
+
+$( document ).ready(function() {
+  $('.list-carpark').show();
+  $('.loader').hide();
+});
 </script>
 <?php include_once 'includes/footer_main.php' ?>

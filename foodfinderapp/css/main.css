@@ -76,7 +76,7 @@ button:focus, input:focus {outline:0 !important;}
   padding: 9px 15px 9px;
   font-size: 13px;
   height: 35px;
-  width: 100px;
+  min-width: 100px;
 
   position: relative;
   text-align: center;
@@ -158,4 +158,35 @@ button:focus, input:focus {outline:0 !important;}
 
 #login-button{
   margin-right: 3px;
+}
+
+
+.loader {
+  z-index: 1;
+  margin:50px auto;
+  border: 10px solid #eee;
+  border-radius: 50%;
+  border-top: 10px solid #ff7c7c;;
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 0.5s ease infinite;
+  animation: spin 0.5s ease infinite;
+}
+
+.loader-small{
+  width:40px;
+  height:40px;
+  border: 5px solid #eee;
+  border-top: 5px solid #ff7c7c;
+}
+
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

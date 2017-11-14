@@ -161,4 +161,12 @@ and (max-width: 736px) {
     margin-bottom:20px;
   }
 
+  /*RESULTS*/
+  .results-row{
+    padding:20px !important;
+  }
+
+  .results-header{
+    font-size:20px !important;
+  }
 }
