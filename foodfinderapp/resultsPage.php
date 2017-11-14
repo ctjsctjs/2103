@@ -26,7 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   ?>
 
   <div class="container-results">
-    <div class="container-responsive" id="container-narrow">
+    <div class="loader"></div>
+
+    <div class="container-responsive" id="container-narrow" style="display:none;">
       <div class="results-btn-row">
         <button class="button button-red" id="toggle-res-food">Food Establishment</button>
         <button class="button button-red" id="toggle-res-carpark">Carpark</button>
@@ -169,5 +171,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $("#res-carpark-cont").hide();
         $("#res-food-cont").show();
       });
+
+      $('.container-responsive').show();
+      $('.loader').hide();
     });
     </script>

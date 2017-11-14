@@ -64,7 +64,7 @@ include_once 'includes/nav_index.php';
   </section>
   <section class="modal">
     <div class="modal-container" id="modal-login">
-      <form class="form" role="form" autocomplete="off" action="protected/login_validation.php" method="POST">
+      <form role="form" autocomplete="off" action="protected/login_validation.php" method="POST">
         <span class="modal-login-h">Welcome back!</span>
         <span class="modal-register-text">Don't have an account?</span>
         <span class="modal-link" id="modal-registerlink">Register here.</span>
