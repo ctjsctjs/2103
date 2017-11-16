@@ -44,18 +44,13 @@ function pageJump() {
 }
 
 function listResult(x, y) {
-  document.getElementById("feListing").innerHTML = "<table border='1' id='feListingTable'><th>ID</th><th>Establishment Name</th><th>Address</th><th>Map</th>";
+  document.getElementById("feListing").innerHTML = "<div class='results-container'  id='feListingTable'>";
   for (var i = x; i < y; i++) {
     var spaceReplaced = feArray[i][1].split(" ").join("+");
     var symbolReplaced = spaceReplaced.split("&").join("and");
-    document.getElementById("feListingTable").innerHTML += "<tr><td>" + feArray[i][0] + "</td><td>" + feArray[i][1] + "\
-    </td><td>" + feArray[i][2] + "</td><td>\
-    <iframe width='200' height='200' frameborder='0' src='//www.google.com/maps/embed/v1/place?q=" + symbolReplaced + ",Singapore\
-    &zoom=17\
-    &key=AIzaSyAlgLSolLKRBjHl8T3ED3E6BLsgXuAYYGo' allowfullscreen>\
-     </iframe></td></tr>";
+    document.getElementById("feListingTable").innerHTML += "<div class='res-row-food'>" + feArray[i][0] + "</br>" + feArray[i][1] + "</br>" + feArray[i][2] + "</div>";
   }
-  document.getElementById("feListing").innerHTML += "</table>";
+  document.getElementById("feListing").innerHTML += "</div>";
 }
 
 function initialLoad() {

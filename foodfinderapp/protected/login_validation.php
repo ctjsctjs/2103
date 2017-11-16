@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $_SESSION['LASTNAME'] = $row['lastName'];
           $_SESSION['EMAIL'] = $row['email'];
           $_SESSION['PASSWORD'] = $row['password'];
-          $_SESSION['ID'] = $row['userid'];
+          $_SESSION['ID'] = $row['userId'];
         }
       }
     }

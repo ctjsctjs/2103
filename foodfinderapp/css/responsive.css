@@ -169,4 +169,13 @@ and (max-width: 736px) {
   .results-header{
     font-size:20px !important;
   }
+
+  .res-blocks{
+    width:100%;
+  }
+
+  .res-lots{
+    font-size:20px;
+    margin-top:5px;
+  }
 }

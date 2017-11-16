@@ -5,6 +5,7 @@ if(isset($_SESSION['FIRSTNAME']))
 include_once 'includes/nav_user.php';
 else
 include_once 'includes/nav_index.php';
+
 ?>
 <section class="container-searchbar">
   <div class="container-responsive">

@@ -15,7 +15,7 @@
       <!-- QUERY NEED TO CHANGE AT WHERE STATEMENT -->
       <!-- SESSION["ID"] can't retrieve, for now temporary put "1" -->
       <!-- NIZAM -->
-<?php $query = "SELECT favouritefood.favFoodID,foodestablishment.name,foodestablishment.address FROM `favouritefood` INNER JOIN foodestablishment on favouritefood.foodestablishmentId = foodestablishment.foodEstablishmentId WHERE favouritefood.userID = 1";
+<?php $query = "SELECT favouritefood.favFoodID,foodestablishment.name,foodestablishment.address FROM `favouritefood` INNER JOIN foodestablishment on favouritefood.foodestablishmentId = foodestablishment.foodEstablishmentId WHERE favouritefood.userID = ".$SESSION["ID"];
 echo $_SESSION['ID'];
 if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
     $rowcount = mysqli_num_rows($result);
@@ -26,7 +26,7 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
             echo "<li id='lot'><td><span class='carpark-location'>".$row[1]."</span><span class='carpark-lots lots-color'>".$row[2]."</span><span>"
                     . "<button class='button'>View</button>"
                     . "<button class='button button-red'>Delete</button></td></li>";
-        
+
     }
     }
     else {
@@ -38,7 +38,7 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
   </div>
     <h2>Favourite Carpark</h2>
     <div class="container-responsive">
-        
+
         INSERT CARPARK
     </div>
 </div>
@@ -49,7 +49,7 @@ if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
 				<li style="display: inline"><a href="#foodEstablishment"><b>Food Establishment</b></a></li>
 				<li style="display: inline"> | </li>
 				<li style="display: inline"><a href="#carpark"><b>Carpark</b></a></li>
-			<ul>	
+			<ul>
 		</div>
 	</div>
 <section>-->

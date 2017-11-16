@@ -65,8 +65,8 @@
 .res-blocks{
   cursor: pointer;
   display:inline-block;
+  margin-right:10px;
   padding: 20px;
-  width: 100%;
   overflow: auto;
   margin-bottom: 10px;
   overflow: hidden;
@@ -76,6 +76,8 @@
   border-radius: 2px;
   border: 1px solid #efefef;
   border-left: 3px solid #444;
+  background-color:#fafafa;
+  width:calc(50% - 10px);
 }
 
 .res-blocks:hover{
@@ -86,8 +88,7 @@
 
 .res-lots{
   font-size:35px;
-  position:absolute;
-  top:17px;
+  float:left;
 }
 
 .res-lots-carpark{
@@ -123,16 +124,20 @@
   font-size:16px;
   font-weight:700;
   color:#444;
-  margin-left:100px;
+  margin-left:80px;
 }
 
 .res-dist{
   color: #888;
-  margin-left:100px;
+  margin-left:80px;
   font-size:13px;
 }
 
 #res-carpark-cont{
+  display:none;
+}
+
+#res-allFood{
   display:none;
 }
 
@@ -146,3 +151,40 @@
   text-align: center;
   color:#ff7c7c;
 }
+
+
+.res-row{
+  padding:60px 20px 60px;
+  background-color: white;
+  margin-bottom: 10px;
+  border: 1px solid #efefef;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.res-row h{
+  color: #ff7c7c;
+  font-size:25px;
+  font-weight:700;
+}
+
+.res-row .span-text{
+  margin:20px auto;
+  max-width:400px;
+  font-size:13px;
+  color: #888;
+}
+
+.span-text{
+  font-size:13px;
+  color: #888;
+  text-align: center;
+}
+
+.demo-table {max-width: 200px;border-spacing: initial;margin: 20px auto;word-break: break-word;table-layout: auto;line-height:1.8em;color:#333;}
+.demo-table th {background: #999;padding: 5px;text-align: left;color:#FFF;}
+.demo-table td {border-bottom: #f0f0f0 1px solid;background-color: #ffffff;padding: 5px;}
+.demo-table td div.feed_title{text-decoration: none;color:#00d4ff;font-weight:bold;}
+.demo-table ul{margin:0;padding:0;}
+.demo-table li{cursor:pointer;list-style-type: none;display: inline-block;color: #F0F0F0;text-shadow: 0 0 1px #666666;font-size:20px;}
+.demo-table .highlight, .demo-table .selected {color:#F4B30A;text-shadow: 0 0 1px #F48F0A;}
