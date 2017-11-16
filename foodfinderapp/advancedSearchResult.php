@@ -8,9 +8,10 @@ if (isset($_SESSION['FIRSTNAME'])) {
   include_once 'includes/nav_index.php';
 };
 ?>
+<div class="container-results">
 
-<div class="container-carpark">
   <div class="container-responsive">
+
     <?php
     $servername = "localhost";
     $username = "root";
@@ -64,17 +65,12 @@ if (isset($_SESSION['FIRSTNAME'])) {
       header("Location: advancedSearch.php?message=search_empty");
     } else {
 
-      $sql = "SELECT name, RIGHT(address, 6) as postalcode FROM foodestablishment WHERE name LIKE '%" . $search . "%'";
+      $sql = "SELECT name,foodEstablishmentId, RIGHT(address, 6) as postalcode FROM foodestablishment WHERE name LIKE '%" . $search . "%'";
       $result = mysqli_query($conn, $sql);
       if ($result) {
         if (mysqli_num_rows($result) > 0) {
 
-          echo "<table border = 1>";
-          echo "<tr><th>Name</th>";
-          echo "<th>Postal Code</th>";
-          echo "<th>Latitude</th>";
-          echo "<th>Longitude</th>";
-          echo "<th>Carparks</th></tr>";
+          echo '<div class="results-container" id="res-food-cont">';
 
           while($row = mysqli_fetch_assoc($result)){
             //reset counter for valid carpark and lot;
@@ -104,16 +100,34 @@ if (isset($_SESSION['FIRSTNAME'])) {
                   }
                 }
                 if ($validCarparks >= $input_carpark){//if number of carpark with enough lots meet carpark input
+                  echo '<div class="res-row-food res-advanced">';
+                  echo '<div class="res-food-img">';
+                  echo '<img src="images/img_1.jpg">';
+                  echo '</div>';
+                  echo "<div class='res-food'>";
+                  echo '<a class="results-header hide-overflow" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">' . $row["name"] . '</a>';
+                  echo "<span class='res-food-subheader'>Advanced Results</span>";
+                  echo "<div class='res-blocks'>";
+                  echo "<span class='res-lots'>". $lotCount ."</span>";
+                  echo "<span class='res-name hide-overflow'>Total Available Lots</span>";
+                  echo "<span class='res-dist'>" .$validCarparks. " Valid Carparks</span>";
+                  echo "</div>";
+                  echo "</div>";
+                  echo "<a class='res-more' href='restaurant.php?foodEstablishmentId=".$row['foodEstablishmentId']."'>View more <i class='fa fa-caret-right' aria-hidden='true'></i></a>";
+                  echo "</div>";
+
+
+                  /*
                   echo "<tr><td>" . $row["name"] . "</td>";
                   echo "<td>" . $row["postalcode"] . "</td>";
                   echo "<td>" . $locationVector[0] . "</td>";
                   echo "<td>" . $locationVector[1] . "</td>";
                   echo "<td>";
                   echo $lotCount;
-                  echo "</td></tr>";
+                  echo "</td></tr>";*/
                 }
               }
-              echo "</table>";
+              echo "</div>";
             }
           }
         }

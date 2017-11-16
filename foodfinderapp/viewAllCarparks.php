@@ -17,7 +17,7 @@ if (isset($_SESSION['FIRSTNAME'])) {
     <?php
     // include database connection
     include_once 'protected/databaseconnection.php';
-    $query = "SELECT * FROM carpark LIMIT 10";
+    $query = "SELECT * FROM carpark";
     if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
       $rowcount = mysqli_num_rows($result);
       if ($rowcount > 0) {
@@ -76,9 +76,10 @@ if (isset($_SESSION['FIRSTNAME'])) {
               echo "</td>";
               */
               $lots = $carparkJsonResult->{'value'}[$row[0]-1]->{'Lots'};
+              $location =  $carparkJsonResult->{'value'}[$row[0]-1]->{'Development'};
               echo '<a href=carpark.php?carparkId='.$row[0].'" class="res-row-carpark">';
-              echo '<div class="res-name" >' .$rowcount[4]. '</div>';
-              echo "<span class='res-lots'>". $lots ."</span>";
+              echo "<span class='res-lots res-lots-carpark'>". $lots ."</span>";
+              echo '<div class="res-name" >' .$location. '</div>';
               echo "</a>";
 
             }
@@ -104,4 +105,6 @@ $( document ).ready(function() {
   $('.loader').hide();
 });
 </script>
+<script type="text/javascript" src="js/lot-color.js"></script>
+
 <?php include_once 'includes/footer_main.php' ?>

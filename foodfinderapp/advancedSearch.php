@@ -22,13 +22,13 @@ include_once 'includes/nav_index.php';
 <div class="container-results">
   <div class="container-responsive" id="container-narrow">
     <div class="adv-search-inner">
-      <form role="form" autocomplete="off" action="advancedSearch_result.php" method="POST">
+      <form role="form" autocomplete="off" action="advancedSearchResult.php" method="POST">
         <input type="text" class="form slider-form" placeholder="Enter a food establishment" name="search">
         <div class="slider-wrappper">
 
           <div class="slidecontainer">
             <span class='res-slider-subheader' id="radius-output"></span>
-            <input name="radius" type="range" min="50" max="500" value="50" class="slider" id="radius">
+            <input name="radius" type="range" min="1" max="500" value="1" class="slider" id="radius">
           </div>
 
           <div class="slidecontainer" id="slidecontainer2 minimum-carparks">

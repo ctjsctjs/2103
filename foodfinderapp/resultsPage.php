@@ -29,11 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="container-results">
     <div class="loader"></div>
 
-    <div class="container-responsive" id="container-narrow" style="display:none;">
+    <div class="container-responsive" style="display:none;">
       <div class="results-btn-row">
         <button class="button button-red" id="toggle-res-food">Food Establishment</button>
         <button class="button button-red" id="toggle-res-carpark">Carpark</button>
       </div>
+
+      <hr class="divider" id="result-divider">
 
       <!--<a name="foodEstablishment">Food Establishment Search Results<br>-->
       <?php
@@ -47,7 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           while($row = mysqli_fetch_assoc($result)) {
             echo '<div class="res-row-food">';
-            echo '<a class="results-header" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">' . $row["name"] . '</a>';
+            echo '<div class="res-food-img">';
+            echo '<img src="images/img_1.jpg">';
+            echo '</div>';
 
             $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key=AIzaSyCaChmDfarbbuKdy_U5P5xY-NtYwvnCbbo');
             $json = json_decode($json);
@@ -62,13 +66,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 cos( radians( longitude ) - radians(". $long .")) +
                 sin(radians(". $lat .")) * sin(radians(latitude))
                 ))
-                as distance FROM carpark HAVING distance < 0.5 ORDER BY distance";
+                as distance FROM carpark HAVING distance < 0.5 ORDER BY distance LIMIT 3";
 
                 $locateResult = mysqli_query($conn, $locateSQL) or die(mysqli_connect_error());
 
                 if ($locateResult) {
+                  echo "<div class='res-food'>";
+                  echo '<a class="results-header hide-overflow" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">' . $row["name"] . '</a>';
                   if (mysqli_num_rows($locateResult) > 0) {
-                    echo "<div class='res-food'>";
                     echo "<span class='res-food-subheader'>Carparks Nearby</span>";
                     while($locateRow = mysqli_fetch_assoc($locateResult)) {
                       $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
@@ -83,16 +88,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       /*EACH BLOCK OF CARPARK*/
                       echo "<div class='res-blocks'>";
                       echo "<span class='res-lots'>". $lots ."</span>";
-                      echo "<span class='res-name'>" . $locateRow["development"]. "</span>";
+                      echo "<span class='res-name hide-overflow'>" . $locateRow["development"]. "</span>";
                       echo "<span class='res-dist'>" . sprintf(' %0.2f', $locateRow["distance"])*1000 . "m</span>";
                       echo "</div>";
                       /*END OF CARPARK BLOCK*/
                     }
-                    echo "</div>";
                   }
                   else {
                     echo "<span class='res-empty'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Carparks Nearby</span>";
                   }
+                  echo "<a class='res-more' href='restaurant.php?foodEstablishmentId=".$row['foodEstablishmentId']."'>View more <i class='fa fa-caret-right' aria-hidden='true'></i></a>";
+                  echo "</div>";
                 }
                 echo "</div>";
               }
@@ -126,8 +132,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $lots = $carparkJsonResult->{'value'}[$row1["carparkId"]-1]->{'Lots'};
 
                 echo '<a href=carpark.php?carparkId='.$row1["carparkId"].'" class="res-row-carpark">';
+                echo "<span class='res-lots res-lots-carpark'>". $lots ."</span>";
                 echo '<div class="res-name" >' . $row1["development"] . '</div>';
-                echo "<span class='res-lots'>". $lots ."</span>";
                 echo "</a>";
 
               }
@@ -145,35 +151,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
 
-
     <?php include_once 'includes/footer_main.php' ?>
-
+    <script type="text/javascript" src="js/lot-color.js"></script>
     <script>
     $( document ).ready(function() {
-      $('.res-lots').each(function () {
-        if ($(this).text() >= 30) {
-          $(this).addClass("res-lots-green");
-          $(this).parent().addClass("res-block-green");
-        }else if ($(this).text() > 0) {
-          $(this).addClass("res-lots-orange");
-          $(this).parent().addClass("res-block-orange");
-        } else {
-          $(this).addClass("res-lots-red");
-          $(this).parent().addClass("res-block-red");
-        }
-      });
-
-      $('#toggle-res-carpark').click(function() {
-        $("#res-carpark-cont").show();
-        $("#res-food-cont").hide();
-      });
-
-      $('#toggle-res-food').click(function() {
-        $("#res-carpark-cont").hide();
-        $("#res-food-cont").show();
-      });
-
       $('.container-responsive').show();
       $('.loader').hide();
     });
+
+    $('#toggle-res-carpark').click(function() {
+      $("#res-carpark-cont").show();
+      $("#res-food-cont").hide();
+    });
+
+    $('#toggle-res-food').click(function() {
+      $("#res-carpark-cont").hide();
+      $("#res-food-cont").show();
+    });
+
     </script>

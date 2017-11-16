@@ -4,6 +4,7 @@
   width:100%;
   background-color: #fafafa;
   padding: 50px 0;
+  overflow: auto;
 }
 
 .results-btn-row{
@@ -12,11 +13,41 @@
 }
 
 .res-row-food{
-  padding:30px;
   background-color: white;
-  margin-bottom: 10px;
-  border: 1px solid #efefef;
-  border-radius: 2px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: calc((100% - 40px) / 3);
+  float:left;
+  height: 500px;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(25,25,25,0.2);
+}
+
+.res-advanced{
+  height:400px;
+}
+.res-food{
+  padding:20px;
+}
+
+#result-divider{
+  margin: 50px 0;
+}
+
+.res-food-img{
+  top:0;
+  background-color: grey;
+  height:150px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.res-food-img img{
+  width:100%;
+}
+
+.res-row-food:nth-child(3n+1), .res-row-food:nth-child(3n+2){
+  margin-right:20px;
 }
 
 .res-row-carpark{
@@ -38,13 +69,34 @@
 }
 
 .results-header{
-  font-size: 20px;
+  font-size: 16px;
   font-weight:700;
   color: #444;
   text-decoration: none;
   margin-bottom: 30px;
   -webkit-transition: 200ms ease;
   transition: 200ms ease;
+  text-align: center;
+}
+
+.res-more{
+  position: absolute;
+  bottom:20px;
+  right:20px;
+  font-size:12px;
+  text-decoration: none;
+  font-weight: 700;
+  color:#ff7c7c;
+}
+
+.res-more:hover{
+  color:#ff5555;
+}
+
+.hide-overflow{
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .results-header:hover{
@@ -65,8 +117,8 @@
 .res-blocks{
   cursor: pointer;
   display:inline-block;
+  padding:5px;
   margin-right:10px;
-  padding: 20px;
   overflow: auto;
   margin-bottom: 10px;
   overflow: hidden;
@@ -74,10 +126,8 @@
   transition: 100ms ease;
   position: relative;
   border-radius: 2px;
-  border: 1px solid #efefef;
   border-left: 3px solid #444;
-  background-color:#fafafa;
-  width:calc(50% - 10px);
+  width:100%;
 }
 
 .res-blocks:hover{
@@ -87,13 +137,15 @@
 }
 
 .res-lots{
-  font-size:35px;
+  font-size:20px;
   float:left;
+  margin: 5px 10px 5px 0;
 }
 
 .res-lots-carpark{
-  font-size:35px;
+  font-size:20px;
   float:left;
+  margin: -3px 10px 10px 0;
 }
 
 .res-lots-red{
@@ -121,16 +173,21 @@
 }
 
 .res-name{
-  font-size:16px;
+  font-size:14px;
   font-weight:700;
   color:#444;
-  margin-left:80px;
+}
+
+.res-name-light{
+  font-size:13px;
+  font-weight:500;
+  color:#888;
+  margin-top:10px;
 }
 
 .res-dist{
   color: #888;
-  margin-left:80px;
-  font-size:13px;
+  font-size:12px;
 }
 
 #res-carpark-cont{
@@ -144,6 +201,7 @@
 .res-empty{
   font-size: 13px;
   color: #ff7c7c;
+  text-align: center;
 }
 
 .empty-result{

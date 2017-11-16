@@ -109,9 +109,6 @@ if(isset($_GET['foodEstablishmentId'])) {
           <span class="span-text"><?php echo $numofreview?> people has reviewed this place</span>
           <table class="demo-table">
             <tbody>
-
-
-
               <div id="tutorial-<?php echo $_GET['foodEstablishmentId']; ?>">
                 <?php $property=array("Quality","Cleaniness","Comfort","Ambience","Service"); ?>
                 <?php
@@ -150,76 +147,65 @@ if(isset($_GET['foodEstablishmentId'])) {
           </div>
         </tbody>
       </table>
-
     </div>
+    <?php
+    for($i=0; $i < count($carparkNameArray); $i++) {
+      echo '<a href=carpark.php?carparkId=1" class="res-row-carpark">';
+      echo "<span class='res-lots res-lots-carpark'>".$carparkJsonResult->{'value'}[$carparkIdsArray[$i]-1]->{'Lots'}."</span>";
+      echo '<div class="res-name" >' .$carparkNameArray[$i]. '</div>';
+      echo '<div class="res-dist" >' .$carparkDistanceArray[$i]. 'm</div>';
+      echo "</a>";
+    }
+    ?>
 
     <div class="col-lg-4">
       <div id="foodCarparkMap" style="height:400px; weight:400px"></div>
     </div>
-    <section class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="section-header text-center">
-            <h2>Carparks Nearby</h2>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <ul>
-          <?php
-          for($i=0; $i < count($carparkNameArray); $i++) {
-            echo "<li>Carpark Name: ".$carparkNameArray[$i]."</li>";
-            echo "<ul><li>Distance from food establishment: ".$carparkDistanceArray[$i]."m</li>";
-            echo "<li>Lots Available: ".$carparkJsonResult->{'value'}[$carparkIdsArray[$i]-1]->{'Lots'}."</li></ul>";
-          }
-          ?>
-        </ul>
-      </div>
-    </section>
+  </div>
+</div>
+<?php include_once 'includes/footer_main.php' ?>
 
-    <?php include_once 'includes/footer_main.php' ?>
+<script>
 
-    <script>
+function foodEstablishmentMap() {
 
-    function foodEstablishmentMap() {
+  maps = new google.maps.Map(document.getElementById('foodCarparkMap'), {
+    zoom: 16,
+    center: {lat: <?php echo $lat ?>, lng: <?php echo $long ?>}
+  });
 
-      maps = new google.maps.Map(document.getElementById('foodCarparkMap'), {
-        zoom: 16,
-        center: {lat: <?php echo $lat ?>, lng: <?php echo $long ?>}
-      });
+  addRestaurantMarker({lat: <?php echo $lat ?>, lng: <?php echo $long ?>}, 'restaurant Name');
 
-      addRestaurantMarker({lat: <?php echo $lat ?>, lng: <?php echo $long ?>}, 'restaurant Name');
+  <?php
+  $max2 = sizeof($carparkLatArray);
+  for($j=0; $j < $max2; $j++) {
+    ?>
+    addCarparkMarker({lat: <?php echo $carparkLatArray[$j] ?>, lng: <?php echo $carparkLongArray[$j] ?>});
+    <?php
+  }
+  ?>
 
-      <?php
-      $max2 = sizeof($carparkLatArray);
-      for($j=0; $j < $max2; $j++) {
-        ?>
-        addCarparkMarker({lat: <?php echo $carparkLatArray[$j] ?>, lng: <?php echo $carparkLongArray[$j] ?>});
-        <?php
-      }
-      ?>
-
-      //Add carpark marker function
-      function addCarparkMarker(coords, carparkDetails) {
-        var marker = new google.maps.Marker({
-          position:coords,
-          map:maps,
-          icon: "img/carpark.png"
-        });
+  //Add carpark marker function
+  function addCarparkMarker(coords, carparkDetails) {
+    var marker = new google.maps.Marker({
+      position:coords,
+      map:maps,
+      icon: "img/carpark.png"
+    });
 
 
-      }
+  }
 
-      //Add restaurant marker function
-      function addRestaurantMarker(coords, restuarantDetails) {
-        var marker = new google.maps.Marker({
-          position:coords,
-          map:maps,
-          icon: "img/restaurant.png"
-        });
-      }
+  //Add restaurant marker function
+  function addRestaurantMarker(coords, restuarantDetails) {
+    var marker = new google.maps.Marker({
+      position:coords,
+      map:maps,
+      icon: "img/restaurant.png"
+    });
+  }
 
-    }
+}
 
-    google.maps.event.addDomListener(window, 'load', foodEstablishmentMap);
-    </script>
+google.maps.event.addDomListener(window, 'load', foodEstablishmentMap);
+</script>

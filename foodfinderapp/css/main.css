@@ -1,6 +1,6 @@
 body{font-family: 'Lato', 'FontAwesome', sans-serif;
-  padding-right:0px !important;
-  margin-right:0px !important;
+padding-right:0px !important;
+margin-right:0px !important;
 }
 span, ul, li, div, a{display:block;}
 input, button, submit { border:none; }
@@ -32,6 +32,13 @@ button:focus, input:focus {outline:0 !important;}
 }
 
 /*GENERAL*/
+
+.divider{
+  border: 0;
+  height: 0;
+  border-top: 1px solid #efefef;
+}
+
 .ease{
   -webkit-transition: 200ms ease;
   transition: 200ms ease;
@@ -56,21 +63,21 @@ button:focus, input:focus {outline:0 !important;}
 
 /*PLACEHOLDER*/
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    #ccc;
+  color:    #ccc;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    #ccc;
-   opacity:  1;
+  color:    #ccc;
+  opacity:  1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    #ccc;
-   opacity:  1;
+  color:    #ccc;
+  opacity:  1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    #ccc;
+  color:    #ccc;
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
-   color:    #ccc;
+  color:    #ccc;
 }
 
 /*BUTTON*/
