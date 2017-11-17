@@ -84,136 +84,146 @@ if(isset($_GET['foodEstablishmentId'])) {
     }
     ?>
 
-    <div class="container-carpark">
+    <div class="container-results">
       <div class="container-responsive">
-        <div class="res-wrapper">
-          <div class="res-wrapper-header">
-            <h><?php echo $row["name"]; ?></h>
+
+        <div class="res-left-col">
+          <div class="res-wrapper">
+            <div class="res-wrapper-header">
+              <h><?php echo $row["name"]; ?></h>
+            </div>
+            <div class="food-img" style="background-image: url(images/<?php echo $row['image'] ?>)">
+            </div>
           </div>
-          <div class="food-img" style="background-image: url(images/<?php echo $row['image'] ?>)">
-          </div>
-          <div class="res-row">
-            <span class="span-text"><?php echo $row["address"]; ?></span>
-            <?php echo "<form method='post' action='restaurant.php?foodEstablishmentId=".$foodID."' id='form' name='form'>"
-            . "<input type='hidden' name='saveFood' value='save".$foodID."'>"
-            . "<button class='button'>Save</button>"
-            . "<a href='foodReview.php?foodEstablishmentId=".$foodID."' class='button button-red'>Rate</a></td></li>"
-            . "</form>";
+          <div class="res-body">
+            <span class="res-add"><?php echo $row["address"]; ?></span>
+            <table class="demo-table">
+              <tbody>
+                <div id="tutorial-<?php echo $_GET['foodEstablishmentId']; ?>">
+                  <?php $property=array("Quality","Cleaniness","Comfort","Ambience","Service"); ?>
+                  <?php
+                  $reviewquery = "SELECT ROUND(AVG(quality)) AS quality, ROUND(AVG(clean)) AS clean,ROUND(AVG(comfort)) AS comfort,ROUND(AVG(ambience)) AS ambience,ROUND(AVG(service)) AS service FROM review WHERE foodestablishmentID = '".$_GET['foodEstablishmentId']."'";
+                  $listreview = mysqli_query($conn, $reviewquery);
+                  $property=array("Quality","Cleaniness","Comfort","Ambience","Service");
+                  if ($listreview) {
+                    while ($row = mysqli_fetch_row($listreview)) {
+                      $count = 0;
 
-            ?>
-          </form>
-          <?php
-          $userID = $_SESSION['ID'];
-          if (isset($_POST['saveFood']) == 'save'.$foodID){
-            $insert = "INSERT INTO favouritefood(foodestablishmentid, userid, status)
-            VALUES  ($foodID,$userID , '1')";
-            if ($conn->query($insert) === TRUE) {
-              echo "Added to favourites";
-            } else {
-              echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-          }
-          ?>
-          <span class="span-text"><?php echo $numofreview?> people has reviewed this place</span>
-          <table class="demo-table">
-            <tbody>
-              <div id="tutorial-<?php echo $_GET['foodEstablishmentId']; ?>">
-                <?php $property=array("Quality","Cleaniness","Comfort","Ambience","Service"); ?>
-                <?php
-                $reviewquery = "SELECT ROUND(AVG(quality)) AS quality, ROUND(AVG(clean)) AS clean,ROUND(AVG(comfort)) AS comfort,ROUND(AVG(ambience)) AS ambience,ROUND(AVG(service)) AS service FROM review WHERE foodestablishmentID = '".$_GET['foodEstablishmentId']."'";
-                $listreview = mysqli_query($conn, $reviewquery);
-                $property=array("Quality","Cleaniness","Comfort","Ambience","Service");
-                if ($listreview) {
-
-                  while ($row = mysqli_fetch_row($listreview)) {
-                    $count = 0;
-
-                    for($p = 0; $p < 5;$p++ ){
-                      echo '<tr><td>'.$property[$p].'</td>';
-                      echo '<td><input type="hidden" name="rating" id="rating" value="'.$rating.'"/>';
-                      echo '<ul>';
-
-                      for($i=1;$i<=5;$i++) {
-                        $selected = "";
-                        if(!empty($row[$p]) && $i<=$row[$p]) {
-                          $selected = "selected";
+                      for($p = 0; $p < 5;$p++ ){
+                        echo '<tr><td>'.$property[$p].'</td>';
+                        echo '<td><input type="hidden" name="rating" id="rating" value="'.$rating.'"/>';
+                        echo '<ul>';
+                        for($i=1;$i<=5;$i++) {
+                          $selected = "";
+                          if(!empty($row[$p]) && $i<=$row[$p]) {
+                            $selected = "selected";
+                          }
+                          echo '<li class="'.$selected.'">&#9733;</li>';
                         }
-
-                        echo '<li class="'.$selected.'">&#9733;</li>';
-
+                        echo '</ul>';
+                        echo '</td></tr>';
                       }
-                      echo '</ul>';
-                      echo '</td></tr>';
                     }
                   }
 
-                }
-
-                ?>
+                  ?>
+                </div>
               </div>
-            </div>
-          </div>
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+          <span class="res-no-review"><?php echo $numofreview?> reviews</span>
+
+        </div>
+      </div>
+
+      <div class="res-right-col">
+        <?php
+        $userID = $_SESSION['ID'];
+        if (isset($_POST['saveFood']) == 'save'.$foodID){
+          $insert = "INSERT INTO favouritefood(foodestablishmentid, userid, status)
+          VALUES  ($foodID,$userID , '1')";
+          if ($conn->query($insert) === TRUE) {
+            echo "<span class='res-saved'><i class='fa fa-check' aria-hidden='true'></i> Added to favourites</span>";
+          } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+          }
+        }
+        echo "<form method='post' action='restaurant.php?foodEstablishmentId=".$foodID."' id='form' name='form'>"
+        . "<input type='hidden' name='saveFood' value='save".$foodID."'>"
+        . "<button class='button button-red button-wide' id='btn-save'>Save</button>"
+        . "<a href='foodReview.php?foodEstablishmentId=".$foodID."' class='button button-red button-wide'>Rate</a>"
+        . "</form>";
+        ?>
+      </div>
+
+      <div class="res-right-col"><div id="foodCarparkMap"></div></div>
+
+      <div class="res-right-col">
+        <span class='res-food-subheader'>Carparks nearby</span>
+        <?php
+        if (count($carparkNameArray) > 0) {
+
+          for($i=0; $i < count($carparkNameArray); $i++) {
+            echo '<a href=carpark.php?carparkId=1" class="res-blocks">';
+            echo "<span class='res-lots'>".$carparkJsonResult->{'value'}[$carparkIdsArray[$i]-1]->{'Lots'}."</span>";
+            echo '<div class="res-name" >' .$carparkNameArray[$i]. '</div>';
+            echo '<div class="res-dist" >' .$carparkDistanceArray[$i]. 'm</div>';
+            echo "</a>";
+          }
+        }
+        else{
+          echo "<span class='res-empty'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Carparks Nearby</span>";
+        }
+
+        ?>
+      </div>
     </div>
+  </div>
+
+  <?php include_once 'includes/footer_main.php' ?>
+  <script type="text/javascript" src="js/lot-color.js"></script>
+
+  <script>
+
+  function foodEstablishmentMap() {
+
+    maps = new google.maps.Map(document.getElementById('foodCarparkMap'), {
+      zoom: 16,
+      center: {lat: <?php echo $lat ?>, lng: <?php echo $long ?>}
+    });
+
+    addRestaurantMarker({lat: <?php echo $lat ?>, lng: <?php echo $long ?>}, 'restaurant Name');
+
     <?php
-    for($i=0; $i < count($carparkNameArray); $i++) {
-      echo '<a href=carpark.php?carparkId=1" class="res-row-carpark">';
-      echo "<span class='res-lots res-lots-carpark'>".$carparkJsonResult->{'value'}[$carparkIdsArray[$i]-1]->{'Lots'}."</span>";
-      echo '<div class="res-name" >' .$carparkNameArray[$i]. '</div>';
-      echo '<div class="res-dist" >' .$carparkDistanceArray[$i]. 'm</div>';
-      echo "</a>";
+    $max2 = sizeof($carparkLatArray);
+    for($j=0; $j < $max2; $j++) {
+      ?>
+      addCarparkMarker({lat: <?php echo $carparkLatArray[$j] ?>, lng: <?php echo $carparkLongArray[$j] ?>});
+      <?php
     }
     ?>
 
-    <div class="col-lg-4">
-      <div id="foodCarparkMap" style="height:400px; weight:400px"></div>
-    </div>
-  </div>
-</div>
-<?php include_once 'includes/footer_main.php' ?>
+    //Add carpark marker function
+    function addCarparkMarker(coords, carparkDetails) {
+      var marker = new google.maps.Marker({
+        position:coords,
+        map:maps,
+        icon: "images/carpark.png"
+      });
 
-<script>
 
-function foodEstablishmentMap() {
+    }
 
-  maps = new google.maps.Map(document.getElementById('foodCarparkMap'), {
-    zoom: 16,
-    center: {lat: <?php echo $lat ?>, lng: <?php echo $long ?>}
-  });
-
-  addRestaurantMarker({lat: <?php echo $lat ?>, lng: <?php echo $long ?>}, 'restaurant Name');
-
-  <?php
-  $max2 = sizeof($carparkLatArray);
-  for($j=0; $j < $max2; $j++) {
-    ?>
-    addCarparkMarker({lat: <?php echo $carparkLatArray[$j] ?>, lng: <?php echo $carparkLongArray[$j] ?>});
-    <?php
-  }
-  ?>
-
-  //Add carpark marker function
-  function addCarparkMarker(coords, carparkDetails) {
-    var marker = new google.maps.Marker({
-      position:coords,
-      map:maps,
-      icon: "images/carpark.png"
-    });
-
+    //Add restaurant marker function
+    function addRestaurantMarker(coords, restuarantDetails) {
+      var marker = new google.maps.Marker({
+        position:coords,
+        map:maps,
+        icon: "images/restaurant.png"
+      });
+    }
 
   }
 
-  //Add restaurant marker function
-  function addRestaurantMarker(coords, restuarantDetails) {
-    var marker = new google.maps.Marker({
-      position:coords,
-      map:maps,
-      icon: "images/restaurant.png"
-    });
-  }
-
-}
-
-google.maps.event.addDomListener(window, 'load', foodEstablishmentMap);
+  google.maps.event.addDomListener(window, 'load', foodEstablishmentMap);
 </script>

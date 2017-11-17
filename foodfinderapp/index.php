@@ -22,25 +22,21 @@ include_once 'includes/nav_index.php';
         <button type ="submit" class="main-button"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
     </form>
-    <?php if(isset($_SESSION['FIRSTNAME'])) {
 
+    <?php if(isset($_SESSION['FIRSTNAME'])) {
       $getTopThreeSearches = "SELECT DISTINCT termSearch FROM foodSearch ORDER BY termSearch DESC";
       $result = mysqli_query($conn,  $getTopThreeSearches) or die(mysqli_connect_error());
     }
-
     ?>
     <div class="row">
       <p>Top 3 searches</p>
       <ul>
         <?php for($a=0; $a<3; $a++) {
           while($row = mysqli_fetch_assoc($result)) { ?>
-
             <li><?php echo $row['termSearch'] ?></li>
-
           <?php }?>
         </ul>
       </div>
-
     <?php } ?>
   </div>
 </section>

@@ -44,6 +44,13 @@ button:focus, input:focus {outline:0 !important;}
   transition: 200ms ease;
 }
 
+.container{
+  width:100%;
+  background-color: #fafafa;
+  padding-top: 50px;
+  overflow: auto;
+}
+
 .container-responsive{
   width:100%;
   max-width: 1200px;
@@ -80,6 +87,10 @@ button:focus, input:focus {outline:0 !important;}
   color:    #ccc;
 }
 
+.overflow{
+  overflow: auto;
+}
+
 /*BUTTON*/
 .button{
   border-radius: 2px;
@@ -101,6 +112,7 @@ button:focus, input:focus {outline:0 !important;}
   -webkit-transition: 100ms ease;
   transition: 100ms ease;
 }
+
 
 .button:hover{
   -webkit-transition: 200ms ease;
@@ -167,6 +179,34 @@ button:focus, input:focus {outline:0 !important;}
   background-color: #ff5555;
 }
 
+.button-link{
+  border-radius: 2px;
+  font-size: 1.4rem;
+  font-size: 15px;
+  font-weight: 700;
+  color: #888;
+  border-bottom: 3px solid transparent;
+  margin: 10px;
+  padding: 5px 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+}
+
+.button-link:hover, .button-link:active, .button-link.active{
+  border-bottom: 3px solid #ff5555;
+  color: #ff5555;
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+}
 
 .form{
   width: 100%;

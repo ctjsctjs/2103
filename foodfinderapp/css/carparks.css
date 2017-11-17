@@ -2,6 +2,7 @@
   width:100%;
   background-color: #fafafa;
   padding-top: 50px;
+  overflow: auto;
 }
 
 .list-carpark{

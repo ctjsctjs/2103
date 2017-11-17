@@ -1,6 +1,6 @@
 
 <?php
-include_once 'includes/header.php'
+include_once 'includes/header.php';
 
 if (isset($_SESSION['FIRSTNAME'])) {
   include_once 'includes/nav_user.php';

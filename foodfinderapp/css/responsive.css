@@ -76,7 +76,7 @@ and (max-width: 1024px) {
   }
 
   .res-row-food{
-    height:500px;
+    height:350px;
   }
 }
 
@@ -194,6 +194,15 @@ and (max-width: 736px) {
 
   .res-row-food:nth-child(even){
     margin-left:20px;
+  }
+
+  .res-left-col{
+    width:100%;
+    margin-right:0;
+  }
+
+  .res-right-col{
+    width:100%;
   }
 }
 
