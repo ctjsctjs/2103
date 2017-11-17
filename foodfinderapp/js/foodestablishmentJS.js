@@ -49,7 +49,7 @@ function listResult(x, y) {
     var spaceReplaced = feArray[i][1].split(" ").join("+");
     var symbolReplaced = spaceReplaced.split("&").join("and");
     //document.getElementById("feListingTable").innerHTML += "<div class='res-row-food'>" + feArray[i][0] + "</br>" + feArray[i][1] + "</br>" + feArray[i][2] + "</div>";
-    document.getElementById("feListingTable").innerHTML += "<a class='res-row-carpark' href=carpark.php?carparkId=" + feArray[i][0] + ">" +
+    document.getElementById("feListingTable").innerHTML += "<a class='res-row-carpark' href=restaurant.php?foodEstablishmentId=" + feArray[i][0] + ">" +
     '<div class="res-name">' + feArray[i][1] + "</div>" + '<div class="res-name-light">' + feArray[i][2] + "</div>" + "</a>";
   }
   document.getElementById("feListing").innerHTML += "</div>";

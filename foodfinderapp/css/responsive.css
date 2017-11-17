@@ -70,6 +70,14 @@ and (max-width: 1024px) {
     margin-right: auto;
     max-width:1000px;
   }
+
+  .res-food-img{
+    height:130px;
+  }
+
+  .res-row-food{
+    height:500px;
+  }
 }
 
 /*PHONE*/
@@ -166,10 +174,6 @@ and (max-width: 736px) {
     padding:20px !important;
   }
 
-  .results-header{
-    font-size:20px !important;
-  }
-
   .res-blocks{
     width:100%;
   }
@@ -177,5 +181,35 @@ and (max-width: 736px) {
   .res-lots{
     font-size:20px;
     margin-top:5px;
+  }
+
+  .res-row-food{
+    width: calc((100% - 20px)/2);
+    float:left;
+  }
+
+  .res-row-food:nth-child(3n+1), .res-row-food:nth-child(3n+2){
+    margin-right:0;
+  }
+
+  .res-row-food:nth-child(even){
+    margin-left:20px;
+  }
+}
+
+
+/*PHONE*/
+@media only screen
+and (max-width: 480px) {
+  .res-row-food{
+    width: 100%;
+  }
+
+  .res-row-food:nth-child(3n+1), .res-row-food:nth-child(3n+2){
+    margin-right:0;
+  }
+
+  .res-row-food:nth-child(even){
+    margin-left:0px;
   }
 }

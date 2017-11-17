@@ -24,87 +24,95 @@ if(isset($_GET['foodEstablishmentId'])) {
     </div>
   </section>
 
-  <div class="container-carpark">
-    <div class="container-responsive">
-      <?php
+  <?php
 
-      // Editted SQL statement (Nizam)
-      $foodID = $_GET['foodEstablishmentId'];
-      $selectedFoodEstablishment = "SELECT name, address, RIGHT(address, 6) as postalcode,CAST(AVG(review.AvgRating) as decimal(18,1)), COUNT(review.AvgRating) FROM foodestablishment INNER JOIN review ON foodestablishment.foodestablishmentId = review.foodEstablishmentId WHERE foodestablishment.foodEstablishmentId = '".$_GET['foodEstablishmentId']."'";
-      $result = mysqli_query($conn, $selectedFoodEstablishment) or die(mysqli_connect_error());
-      $row = mysqli_fetch_array($result);
-      $rating = $row[3];
-      $numofreview = $row[4];
+  // Editted SQL statement (Nizam)
+  $foodID = $_GET['foodEstablishmentId'];
+  $selectedFoodEstablishment = "SELECT name, address,image, RIGHT(address, 6) as postalcode,CAST(AVG(review.AvgRating) as decimal(18,1)), COUNT(review.AvgRating) FROM foodestablishment INNER JOIN review ON foodestablishment.foodestablishmentId = review.foodEstablishmentId WHERE foodestablishment.foodEstablishmentId = '".$_GET['foodEstablishmentId']."'";
+  $result = mysqli_query($conn, $selectedFoodEstablishment) or die(mysqli_connect_error());
+  $row = mysqli_fetch_array($result);
+  $rating = $row[3];
+  $numofreview = $row[4];
 
-      $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key=AIzaSyDbEqIHfTZwLD9cgm9-elubEhOCm7_C3VE');
-      $json = json_decode($json);
+  $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key=AIzaSyDbEqIHfTZwLD9cgm9-elubEhOCm7_C3VE');
+  $json = json_decode($json);
 
-      $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
-      $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+  $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+  $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
 
-      #SQL statement to find all carpark within 500m
-      $locateSQL = "SELECT *, ( 6371 *
-        acos(
-          cos( radians(". $lat .")) * cos( radians( latitude )) *
-          cos( radians( longitude ) - radians(". $long .")) +
-          sin(radians(". $lat .")) * sin(radians(latitude))
-          ))
-          as distance FROM carpark HAVING distance < 0.5 ORDER BY distance";
+  #SQL statement to find all carpark within 500m
+  $locateSQL = "SELECT *, ( 6371 *
+    acos(
+      cos( radians(". $lat .")) * cos( radians( latitude )) *
+      cos( radians( longitude ) - radians(". $long .")) +
+      sin(radians(". $lat .")) * sin(radians(latitude))
+      ))
+      as distance FROM carpark HAVING distance < 0.5 ORDER BY distance";
 
-          $locateResult = mysqli_query($conn, $locateSQL) or die(mysqli_connect_error());
+      $locateResult = mysqli_query($conn, $locateSQL) or die(mysqli_connect_error());
 
-          // create arrays to store carpark name and distance
-          $carparkIdsArray = [];
-          $carparkNameArray = [];
-          $carparkLatArray = [];
-          $carparkLongArray = [];
-          $carparkDistanceArray = [];
+      // create arrays to store carpark name and distance
+      $carparkIdsArray = [];
+      $carparkNameArray = [];
+      $carparkLatArray = [];
+      $carparkLongArray = [];
+      $carparkDistanceArray = [];
 
-          if ($locateResult) {
-            if (mysqli_num_rows($locateResult) > 0) {
-              while($locateRow = mysqli_fetch_assoc($locateResult)) {
-                array_push($carparkIdsArray, $locateRow["carparkId"]);
-                array_push($carparkNameArray, $locateRow["development"]);
-                array_push($carparkLatArray, $locateRow["latitude"]);
-                array_push($carparkLongArray, $locateRow["longitude"]);
-                array_push($carparkDistanceArray, sprintf('%0.2f', $locateRow["distance"])*1000);
+      if ($locateResult) {
+        if (mysqli_num_rows($locateResult) > 0) {
+          while($locateRow = mysqli_fetch_assoc($locateResult)) {
+            array_push($carparkIdsArray, $locateRow["carparkId"]);
+            array_push($carparkNameArray, $locateRow["development"]);
+            array_push($carparkLatArray, $locateRow["latitude"]);
+            array_push($carparkLongArray, $locateRow["longitude"]);
+            array_push($carparkDistanceArray, sprintf('%0.2f', $locateRow["distance"])*1000);
 
-              }
-            }
           }
-          $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
-
-          $ch      = curl_init( $carparkLotsJson );
-          $options = array(
-            CURLOPT_HTTPHEADER     => array( "AccountKey: SFHPvNC5RP+jFTzftMxxFQ==, Accept: application/json" ),
-          );
-          curl_setopt_array( $ch, $options );
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-
-          $carparkJsonResult = curl_exec( $ch );
-          $carparkJsonResult = json_decode($carparkJsonResult);
         }
-        ?>
+      }
+      $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
 
-        <div class="res-row">
-          <h><?php echo $row["name"]; ?></h>
-          <span class="span-text"><?php echo $row["address"]; ?></span>
-          <form method="post" action="restaurant.php?foodEstablishmentId=1" id="form" name="form">
-            <input type="button" class="button button-red" value="Save to Favourites" id="view" name="view"/>
-            <input type="button"class="button button-red" value="Rate" id="rate" name="rate"/>
+      $ch      = curl_init( $carparkLotsJson );
+      $options = array(
+        CURLOPT_HTTPHEADER     => array( "AccountKey: SFHPvNC5RP+jFTzftMxxFQ==, Accept: application/json" ),
+      );
+      curl_setopt_array( $ch, $options );
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+      $carparkJsonResult = curl_exec( $ch );
+      $carparkJsonResult = json_decode($carparkJsonResult);
+    }
+    ?>
+
+    <div class="container-carpark">
+      <div class="container-responsive">
+        <div class="res-wrapper">
+          <div class="res-wrapper-header">
+            <h><?php echo $row["name"]; ?></h>
+          </div>
+          <div class="food-img" style="background-image: url(images/<?php echo $row['image'] ?>)">
+          </div>
+          <div class="res-row">
+            <span class="span-text"><?php echo $row["address"]; ?></span>
+            <?php echo "<form method='post' action='restaurant.php?foodEstablishmentId=".$foodID."' id='form' name='form'>"
+            . "<input type='hidden' name='saveFood' value='save".$foodID."'>"
+            . "<button class='button'>Save</button>"
+            . "<a href='foodReview.php?foodEstablishmentId=".$foodID."' class='button button-red'>Rate</a></td></li>"
+            . "</form>";
+
+            ?>
           </form>
           <?php
-          if($_POST && isset($_POST['view']))
-          {
+          $userID = $_SESSION['ID'];
+          if (isset($_POST['saveFood']) == 'save'.$foodID){
             $insert = "INSERT INTO favouritefood(foodestablishmentid, userid, status)
-            VALUES  ($foodID, 2, 'Y')";
+            VALUES  ($foodID,$userID , '1')";
             if ($conn->query($insert) === TRUE) {
-              echo "New record created successfully";
+              echo "Added to favourites";
             } else {
               echo "Error: " . $sql . "<br>" . $conn->error;
             }
           }
-
           ?>
           <span class="span-text"><?php echo $numofreview?> people has reviewed this place</span>
           <table class="demo-table">
@@ -123,7 +131,7 @@ if(isset($_GET['foodEstablishmentId'])) {
                     for($p = 0; $p < 5;$p++ ){
                       echo '<tr><td>'.$property[$p].'</td>';
                       echo '<td><input type="hidden" name="rating" id="rating" value="'.$rating.'"/>';
-                      echo '<ul onMouseOut="resetRating'.$_GET['foodEstablishmentId'].'">';
+                      echo '<ul>';
 
                       for($i=1;$i<=5;$i++) {
                         $selected = "";
@@ -131,7 +139,7 @@ if(isset($_GET['foodEstablishmentId'])) {
                           $selected = "selected";
                         }
 
-                        echo '<li class="'.$selected.'" onmouseover="highlightStar(this,'.$_GET['foodEstablishmentId'].')" onmouseout="removeHighlight('.$_GET['foodEstablishmentId'].')" onClick="addRating(this,'.$_GET['foodEstablishmentId'].')">&#9733;</li>';
+                        echo '<li class="'.$selected.'">&#9733;</li>';
 
                       }
                       echo '</ul>';
@@ -190,7 +198,7 @@ function foodEstablishmentMap() {
     var marker = new google.maps.Marker({
       position:coords,
       map:maps,
-      icon: "img/carpark.png"
+      icon: "images/carpark.png"
     });
 
 
@@ -201,7 +209,7 @@ function foodEstablishmentMap() {
     var marker = new google.maps.Marker({
       position:coords,
       map:maps,
-      icon: "img/restaurant.png"
+      icon: "images/restaurant.png"
     });
   }
 

@@ -22,3 +22,13 @@ function updateLots() {
   xmlhttp.open("GET", "availabilityUpdate.php", true);
   xmlhttp.send();
 }
+
+//set to update the lots every 60 seconds
+setInterval(function () {
+  updateLots();
+}, 60000);
+
+$( document ).ready(function() {
+  $('#res-carpark-cont').show();
+  $('.loader').hide();
+});

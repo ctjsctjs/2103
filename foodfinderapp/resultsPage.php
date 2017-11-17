@@ -24,36 +24,40 @@ include_once 'includes/nav_index.php';
 include_once 'protected/databaseconnection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  $term = $_POST['search'];
+  $userId = $_SESSION['ID'];
+  if(isset($_SESSION['FIRSTNAME'])) {
+    $insertFoodSearch = "INSERT INTO foodsearch(termSearch, userId, foodEstablishmentId)VALUES('$term', '$userId', '')";
+    mysqli_query($conn, $insertFoodSearch) or die(mysqli_connect_error());
+  }
   ?>
 
   <div class="container-results">
     <div class="loader"></div>
-
     <div class="container-responsive" style="display:none;">
       <div class="results-btn-row">
         <button class="button button-red" id="toggle-res-food">Food Establishment</button>
         <button class="button button-red" id="toggle-res-carpark">Carpark</button>
       </div>
-
       <hr class="divider" id="result-divider">
 
-      <!--<a name="foodEstablishment">Food Establishment Search Results<br>-->
       <?php
+      //FOOD ESTABLISHMENT SEARCH ALGO
 
-      $sql = "SELECT foodEstablishmentId, name, RIGHT(address, 6) as postalcode FROM foodestablishment WHERE name LIKE '%" . $_POST["search"] . "%'";
+      $sql = "SELECT foodEstablishmentId, image, name, RIGHT(address, 6) as postalcode FROM foodestablishment WHERE name LIKE '%" . $_POST["search"] . "%'";
       $result = mysqli_query($conn, $sql);
       if ($result) {
         if (mysqli_num_rows($result) > 0) {
           // output data of each row
           echo '<div class="results-container" id="res-food-cont">';
-
           while($row = mysqli_fetch_assoc($result)) {
             echo '<div class="res-row-food">';
             echo '<div class="res-food-img">';
-            echo '<img src="images/img_1.jpg">';
+            echo '<img src=images/'. $row['image'] .'>';
             echo '</div>';
 
-            $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key=AIzaSyCaChmDfarbbuKdy_U5P5xY-NtYwvnCbbo');
+            $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key=AIzaSyBUHVlBo1aiN9NZyh1Dzs91msIXblEi0NI');
             $json = json_decode($json);
 
             $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
@@ -86,11 +90,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       $lots = $carparkJsonResult->{'value'}[$locateRow["carparkId"]-1]->{'Lots'};
 
                       /*EACH BLOCK OF CARPARK*/
-                      echo "<div class='res-blocks'>";
+                      echo '<a href=carpark.php?carparkId='.$locateRow["carparkId"].'" class="res-blocks">';
                       echo "<span class='res-lots'>". $lots ."</span>";
                       echo "<span class='res-name hide-overflow'>" . $locateRow["development"]. "</span>";
                       echo "<span class='res-dist'>" . sprintf(' %0.2f', $locateRow["distance"])*1000 . "m</span>";
-                      echo "</div>";
+                      echo "</a>";
                       /*END OF CARPARK BLOCK*/
                     }
                   }
@@ -110,9 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
           }
 
-          ?>
-
-          <?php
+          //CARPARK SEARCH ALGO
 
           $sql1 = "SELECT * FROM carpark WHERE area LIKE '%" . $_POST["search"] . "%' OR development LIKE '%" . $_POST["search"] . "%'";
           $result1 = mysqli_query($conn, $sql1) or die(mysqli_connect_error());
@@ -122,6 +124,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               echo '<div class="results-container" id="res-carpark-cont">';
 
               while($row1 = mysqli_fetch_assoc($result1)) {
+
+                $term = $_POST['search'];
+                $userId = $_SESSION['ID'];
+                $carparkId1 = $row1['carparkId'];
+
+                if(isset($_SESSION['FIRSTNAME'])) {
+                  $insertCarparkSearch = "INSERT INTO carparksearch(termSearch, userId, carparkId)VALUES('$term', '$userId', ' $carparkId1')";
+
+                  mysqli_query($conn, $insertCarparkSearch) or die(mysqli_connect_error());
+                }
+
                 $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
                 $ch = curl_init($carparkLotsJson );
                 $options = array(CURLOPT_HTTPHEADER=>array("AccountKey: SFHPvNC5RP+jFTzftMxxFQ==, Accept: application/json" ),);
@@ -150,23 +163,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
 
-
     <?php include_once 'includes/footer_main.php' ?>
     <script type="text/javascript" src="js/lot-color.js"></script>
-    <script>
-    $( document ).ready(function() {
-      $('.container-responsive').show();
-      $('.loader').hide();
-    });
-
-    $('#toggle-res-carpark').click(function() {
-      $("#res-carpark-cont").show();
-      $("#res-food-cont").hide();
-    });
-
-    $('#toggle-res-food').click(function() {
-      $("#res-carpark-cont").hide();
-      $("#res-food-cont").show();
-    });
-
-    </script>
+    <script type="text/javascript" src="js/resultsPage.js"></script>
