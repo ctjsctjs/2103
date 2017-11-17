@@ -49,7 +49,7 @@ if (isset($_SESSION['FIRSTNAME'])) {
           $lng = $row[1];
           $lots = $carparkJsonResult->{'value'}[$row[0]-1]->{'Lots'};
           $location =  $carparkJsonResult->{'value'}[$row[0]-1]->{'Development'};
-          echo '<a href=carpark.php?carparkId='.$row[0].'" class="res-row-carpark">';
+          echo '<a href=carpark.php?carparkId='.$row[0].' class="res-row-carpark">';
           echo "<span class='res-lots res-lots-carpark'>". $lots ."</span>";
           echo '<div class="res-name" >' .$location. '</div>';
           echo "</a>";

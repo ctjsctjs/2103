@@ -9,8 +9,3 @@ document.getElementById("feCurrentPageNo")
     document.getElementById("pageJump").click();
   }
 });
-
-$( document ).ready(function() {
-  $('.loader').hide();
-  $('#res-allFood').show();
-});

@@ -8,22 +8,6 @@ include_once 'includes/nav_index.php';
 
 if(isset($_GET['foodEstablishmentId'])) {
   ?>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgOEetVt0oeA8HdyUmOAdW8O1e0qpB7Q"></script>
-
-
-  <section class="container-searchbar">
-    <div class="container-responsive">
-      <span class="page-title">Food Establishment</span>
-      <form  role="form" autocomplete="off" action="resultsPage.php" method="POST">
-        <div class="search-row">
-          <input type="text" class="search-form" placeholder="Enter a food establishment or carpark" name="search">
-          <button type ="submit" class="search-button"><i class="fa fa-search" aria-hidden="true"></i>
-          </button>
-        </div>
-      </form>
-    </div>
-  </section>
-
   <?php
 
   // Editted SQL statement (Nizam)
@@ -83,17 +67,27 @@ if(isset($_GET['foodEstablishmentId'])) {
       $carparkJsonResult = json_decode($carparkJsonResult);
     }
     ?>
+    <section class="container-searchbar">
+      <div class="container-responsive">
+        <span class="page-title">Food Establishment</span>
+        <form  role="form" autocomplete="off" action="resultsPage.php" method="POST">
+          <div class="search-row">
+            <input type="text" class="search-form" placeholder="Enter a food establishment or carpark" name="search">
+            <button type ="submit" class="search-button"><i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
 
     <div class="container-results">
       <div class="container-responsive">
-
         <div class="res-left-col">
           <div class="res-wrapper">
             <div class="res-wrapper-header">
               <h><?php echo $row["name"]; ?></h>
             </div>
-            <div class="food-img" style="background-image: url(images/<?php echo $row['image'] ?>)">
-            </div>
+            <div class="food-img" style="background-image: url(images/<?php echo $row['image'] ?>)"></div>
           </div>
           <div class="res-body">
             <span class="res-add"><?php echo $row["address"]; ?></span>
@@ -125,14 +119,12 @@ if(isset($_GET['foodEstablishmentId'])) {
                       }
                     }
                   }
-
                   ?>
                 </div>
               </div>
             </tbody>
           </table>
           <span class="res-no-review"><?php echo $numofreview?> reviews</span>
-
         </div>
       </div>
 
@@ -182,6 +174,7 @@ if(isset($_GET['foodEstablishmentId'])) {
 
   <?php include_once 'includes/footer_main.php' ?>
   <script type="text/javascript" src="js/lot-color.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLgOEetVt0oeA8HdyUmOAdW8O1e0qpB7Q"></script>
 
   <script>
 

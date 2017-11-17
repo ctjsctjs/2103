@@ -15,8 +15,8 @@ $storedResult = array();
 
 if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error())) {
   $rowcount = mysqli_num_rows($result); ?>
-  <span class ="results-total "id='feTotalResults'>Total results found: <?php echo $rowcount; ?></span>
-</div>
+
+<span class= "results-total">Total results found: <span class="inline-text" id='feTotalResults'><?php echo $rowcount; ?></span></span>
 <div id = 'feListing'>
 </div>
 <?php
@@ -35,5 +35,5 @@ for ($i = 0; $i < $rowcount; $i++) {
 <script>
 var feArray = <?php echo json_encode($storedResult);?>;
 calculateTotalPage();
-listResult(0,25);
+listResult(0,12);
 </script>

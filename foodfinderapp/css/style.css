@@ -181,6 +181,21 @@
   -webkit-transition: border linear 0.2 s;
 }
 
+.page-row{
+  width: 100%;
+  text-align: center;
+  margin: 50px 0;
+}
+
+.container-featured{
+  background-color: #fafafa;
+  overflow: auto;
+  padding:100px 0;
+}
+
+.container-featured ul{
+}
+
 table {
   border-collapse: collapse;
   width: 100%;

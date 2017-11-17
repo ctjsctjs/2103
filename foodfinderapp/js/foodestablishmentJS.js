@@ -1,45 +1,48 @@
+/*INSTANCES PER PAGE*/
+var pageNo = 12;
+
 function calculateTotalPage() {
   var totalRows = document.getElementById("feTotalResults").innerHTML;
-  var totalPage = Math.ceil(totalRows / 25);
+  var totalPage = Math.ceil(totalRows/pageNo);
   document.getElementById("feTotalPageNo").innerHTML = totalPage;
 }
 
 function prevPage() {
-  var currentPage = document.getElementById("feCurrentPageNo").value;
+  var currentPage = document.getElementById("feCurrentPageNo").innerHTML;
   var endCount;
   var startCount;
   if (currentPage > 1) {
     currentPage--;
-    endCount = currentPage * 25;
-    startCount = endCount - 25;
+    endCount = currentPage * pageNo;
+    startCount = endCount - pageNo;
   } else {
     startCount = 0;
-    endCount = 25;
+    endCount = pageNo;
   }
-  document.getElementById("feCurrentPageNo").value = currentPage;
+  document.getElementById("feCurrentPageNo").innerHTML = currentPage;
   listResult(startCount, endCount);
 }
 
 function nextPage() {
-  var currentPage = document.getElementById("feCurrentPageNo").value;
+  var currentPage = document.getElementById("feCurrentPageNo").innerHTML;
   var totalPage = document.getElementById("feTotalPageNo").innerHTML;
-  var startCount = currentPage * 25;
+  var startCount = currentPage * pageNo;
   var endCount;
   if (currentPage < totalPage) {
     currentPage++;
-    endCount = currentPage * 25;
+    endCount = currentPage * pageNo;
     while (endCount > feArray.length) {
       endCount--;
     }
-    document.getElementById("feCurrentPageNo").value = currentPage;
+    document.getElementById("feCurrentPageNo").innerHTML = currentPage;
     listResult(startCount, endCount);
   }
 }
 
 function pageJump() {
-  var currentPage = document.getElementById("feCurrentPageNo").value;
-  var startCount = (currentPage - 1) * 25;
-  var endCount = currentPage * 25;
+  var currentPage = document.getElementById("feCurrentPageNo").innerHTML;
+  var startCount = (currentPage - 1) * pageNo;
+  var endCount = currentPage * pageNo;
   listResult(startCount, endCount);
 }
 
@@ -49,10 +52,21 @@ function listResult(x, y) {
     var spaceReplaced = feArray[i][1].split(" ").join("+");
     var symbolReplaced = spaceReplaced.split("&").join("and");
     //document.getElementById("feListingTable").innerHTML += "<div class='res-row-food'>" + feArray[i][0] + "</br>" + feArray[i][1] + "</br>" + feArray[i][2] + "</div>";
-    document.getElementById("feListingTable").innerHTML += "<a class='res-row-carpark' href=restaurant.php?foodEstablishmentId=" + feArray[i][0] + ">" +
-    '<div class="res-name">' + feArray[i][1] + "</div>" + '<div class="res-name-light">' + feArray[i][2] + "</div>" + "</a>";
+    document.getElementById("feListingTable").innerHTML += '<li class="res-row-food">'
+    + '<a class="res-food-img" href="restaurant.php?foodEstablishmentId='+ feArray[i][0] +'">'
+    + '<img src=images/'+ feArray[i][4] + ">"
+    + '</a>'
+    + "<div class='res-food'>"
+    + '<a class="results-header hide-overflow" href="restaurant.php?foodEstablishmentId='+ feArray[i][0] +'">' + feArray[i][1] + '</a>'
+    + '<span class="res-food-subheader">Address</span>'
+    + '<span class="res-add-small">'  + feArray[i][2] + '</span>'
+    + "<a class='res-more' href='restaurant.php?foodEstablishmentId="+ feArray[i][0] +"'>View more <i class='fa fa-caret-right' aria-hidden='true'></i></a>"
+    + '</li>';
   }
   document.getElementById("feListing").innerHTML += "</div>";
+  $('.loader').hide();
+  $('#feResults').show();
+  $('#res-pageNo').show();
 }
 
 function initialLoad() {

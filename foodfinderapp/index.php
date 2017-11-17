@@ -29,8 +29,7 @@ include_once 'includes/nav_index.php';
     }
     ?>
     <div class="row">
-      <p>Top 3 searches</p>
-      <ul>
+      <ul style="display:none;">
         <?php for($a=0; $a<3; $a++) {
           while($row = mysqli_fetch_assoc($result)) { ?>
             <li><?php echo $row['termSearch'] ?></li>
@@ -43,6 +42,12 @@ include_once 'includes/nav_index.php';
 
 <section class="container-news">
   <p>The fastest growing startup in based in Singapore!</p>
+</section>
+<section class="container-featured">
+  <div class=" container-responsive">
+    <h1>Verified by you</h1>
+    <?php include_once 'includes/featured.php' ?>
+  </div>
 </section>
 <section class="container white wrapper">
   <div class="container-responsive">

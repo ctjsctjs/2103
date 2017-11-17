@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $lots = $carparkJsonResult->{'value'}[$locateRow["carparkId"]-1]->{'Lots'};
 
                     /*EACH BLOCK OF CARPARK*/
-                    echo '<a href=carpark.php?carparkId='.$locateRow["carparkId"].'" class="res-blocks">';
+                    echo '<a href=carpark.php?carparkId='.$locateRow["carparkId"].' class="res-blocks">';
                     echo "<span class='res-lots'>". $lots ."</span>";
                     echo "<span class='res-name hide-overflow'>" . $locateRow["development"]. "</span>";
                     echo "<span class='res-dist'>" . sprintf(' %0.2f', $locateRow["distance"])*1000 . "m</span>";
