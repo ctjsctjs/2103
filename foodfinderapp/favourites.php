@@ -42,14 +42,26 @@ include_once 'includes/nav_index.php';
 				if (isset($_POST['deleteFavorite']))
 				{
 					$orderID = $_POST['deleteFavorite'];
-					$deleteQuery = "DELETE from favouritefood WHERE favfoodID = ".$orderID;
-
-					if ($conn->query($deleteQuery) === TRUE) {
+					$deleteFoodQuery = "DELETE from favouritefood WHERE favFoodID = ".$orderID;
+                                        
+					if ($conn->query($deleteFoodQuery) === TRUE) {
 						echo "<span class='res-deleted load label-food'><i class='fa fa-check' aria-hidden='true'></i> Record deleted successfully</span>";
 					} else {
 						echo "Error deleting record: " . $conn->error;
 					}
 				}
+                                if (isset($_POST['deleteCarpark']))
+				{
+					$carparkID = $_POST['deleteCarpark'];
+					$deleteCarparkQuery = "DELETE from favouritecarpark WHERE favcarparkid = ".$carparkID;
+                                        
+					if ($conn->query($deleteCarparkQuery) === TRUE) {
+						echo "<span class='res-deleted load label-food'><i class='fa fa-check' aria-hidden='true'></i> Record deleted successfully</span>";
+					} else {
+						echo "Error deleting record: " . $conn->error;
+					}
+				}
+                                
 			}
 			echo '<ul class="results-container load" id="res-food-cont">';
 			if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
@@ -106,7 +118,7 @@ include_once 'includes/nav_index.php';
 			?>
 
 		<?php
-		$query = "SELECT favouriteCarpark.carparkId,carpark.carparkId,carpark.development,carpark.area, carpark.image FROM `favouriteCarpark` INNER JOIN carpark on favouriteCarpark.carparkId = carpark.carparkId WHERE favouriteCarpark.userID = ".$_SESSION['ID'];
+		$query = "SELECT favouriteCarpark.favCarparkID,favouriteCarpark.carparkId,carpark.carparkId,carpark.development,carpark.area, carpark.image FROM `favouriteCarpark` INNER JOIN carpark on favouriteCarpark.carparkId = carpark.carparkId WHERE favouriteCarpark.userID = ".$_SESSION['ID'];
 		if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
 			echo '<ul id="res-carpark-cont">';
 			$rowcount = mysqli_num_rows($result);
@@ -116,21 +128,21 @@ include_once 'includes/nav_index.php';
 
 
 					echo '<li class="res-row-food">'
-          .'<a class="res-food-img" href=carpark.php?carparkId='.$row[0].'>'
-          .'<img src=http://ctjsctjs.com/'. $row[4] .'>'
+          .'<a class="res-food-img" href=carpark.php?carparkId='.$row[1].'>'
+          .'<img src=http://ctjsctjs.com/'. $row[5] .'>'
           .'</a>'
 					."<form class='view-delete-form' role='form' method='POST' action='favourites.php'>"
-					. "<input type='hidden' name='deleteFavorite' value='".$row[0]."'>"
-					. "<button class='delete-fav'><i class='fa fa-times' aria-hidden='true'></i></button>"
+					. "<input type='hidden' name='deleteCarpark' value='".$row[0]."'>"
+					. "<button class='delete-carpark'><i class='fa fa-times' aria-hidden='true'></i></button>"
 					. "</form>"
           ."<div class='res-food'>"
-          .'<a class="results-header hide-overflow" href=carpark.php?carparkId='.$row[0].'>' .$row[2]. '</a>'
+          .'<a class="results-header hide-overflow" href=carpark.php?carparkId='.$row[1].'>' .$row[3]. '</a>'
           ."<span class='res-food-subheader'>Lots Available</span>"
-          .'<a href=carpark.php?carparkId='.$row[0].' class="res-blocks">'
-          ."<span class='res-lots'>".$row[0]."</span>"
-          ."<span class='res-name res-single hide-overflow'>".$row[2]."</span>"
+          .'<a href=carpark.php?carparkId='.$row[1].' class="res-blocks">'
+          ."<span class='res-lots'>".$row[1]."</span>"
+          ."<span class='res-name res-single hide-overflow'>".$row[3]."</span>"
           ."</a>"
-          . "<a class='res-more' href=carpark.php?carparkId=".$row[0].">View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>"
+          . "<a class='res-more' href=carpark.php?carparkId=".$row[1].">View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>"
           ."</li>";
 				}
 			}
@@ -139,6 +151,9 @@ include_once 'includes/nav_index.php';
 			}
 			echo "</ul>";
 		}
+                
+                
+                               
 		?>
 	</div>
 
