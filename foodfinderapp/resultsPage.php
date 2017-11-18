@@ -27,8 +27,8 @@ include_once 'includes/nav_index.php';
       <a class="button-link" id="toggle-res-carpark">Carpark</a>
     </div>
     <hr class="divider" id="result-divider">
+    <div class="loader"></div>
     <div class="results-container">
-      <div class="loader"></div>
 
       <?php
       include_once 'protected/databaseconnection.php';
