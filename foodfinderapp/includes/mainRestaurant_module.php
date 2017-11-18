@@ -4,7 +4,7 @@
     <div class="res-wrapper-header">
       <h><?php echo $row["name"]; ?></h>
     </div>
-    <div class="food-img" style="background-image: url(images/<?php echo $row['image'] ?>)"></div>
+    <div class="food-img" style="background-image: url(http://ctjsctjs.com/<?php echo $row['image'] ?>)"></div>
   </div>
   <div class="res-body">
     <span class="res-add"><?php echo $row["address"]; ?></span>

@@ -59,7 +59,7 @@ include_once 'includes/nav_index.php';
 						$row = mysqli_fetch_array($result, MYSQLI_NUM);
 						echo '<li class="res-row-food">';
 						echo '<a class="res-food-img" href="restaurant.php?foodEstablishmentId='.$row[4].'">';
-						echo '<img src=images/'. $row[3] .'>';
+						echo '<img src=http://ctjsctjs.com/'. $row[3] .'>';
 						echo '</a>';
 						echo "<form class='view-delete-form' role='form' method='POST' action='favourites.php'>"
 						. "<input type='hidden' name='deleteFavorite' value='".$row[0]."'>"
@@ -117,7 +117,7 @@ include_once 'includes/nav_index.php';
 
 					echo '<li class="res-row-food">'
           .'<a class="res-food-img" href=carpark.php?carparkId='.$row[0].'>'
-          .'<img src=images/'. $row[4] .'>'
+          .'<img src=http://ctjsctjs.com/'. $row[4] .'>'
           .'</a>'
 					."<form class='view-delete-form' role='form' method='POST' action='favourites.php'>"
 					. "<input type='hidden' name='deleteFavorite' value='".$row[0]."'>"

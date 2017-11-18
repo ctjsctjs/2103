@@ -10,3 +10,4 @@
   </nav>
   <div class="nav-push"></div>
 </header>
+<?php include_once 'includes/modal.php' ?>

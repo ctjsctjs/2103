@@ -52,7 +52,7 @@ if (isset($_SESSION['FIRSTNAME'])) {
             $location =  $carparkJsonResult->{'value'}[$row[0]-1]->{'Development'};
             echo '<li class="res-row-food">'
             .'<a class="res-food-img" href=carpark.php?carparkId='.$row[0].'>'
-            .'<img src=images/'. $row[5] .'>'
+            .'<img src=http://ctjsctjs.com/'. $row[5] .'>'
             .'</a>'
             ."<div class='res-food'>"
             .'<a class="results-header hide-overflow" href=carpark.php?carparkId='.$row[0].'>' .$location. '</a>'

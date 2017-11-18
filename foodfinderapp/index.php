@@ -60,5 +60,4 @@ include_once 'includes/nav_index.php';
       </div>
     </section>
 
-    <?php include_once 'includes/modal.php' ?>
     <?php include_once 'includes/footer_main.php' ?>

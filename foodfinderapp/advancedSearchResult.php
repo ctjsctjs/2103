@@ -85,7 +85,7 @@ if (isset($_SESSION['FIRSTNAME'])) {
                 if ($validCarparks >= $input_carpark){
                   echo '<div class="res-row-food res-advanced">';
                   echo '<div class="res-food-img">';
-                  echo '<img src=images/'. $row['image'] .'>';
+                  echo '<img src=http://ctjsctjs.com/'. $row['image'] .'>';
                   echo '</div>';
                   echo "<div class='res-food'>";
                   echo '<a class="results-header hide-overflow" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">' . $row["name"] . '</a>';

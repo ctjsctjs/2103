@@ -53,7 +53,7 @@ $lots = $carparkJsonResult->{'value'}[$carparkID-1]->{'Lots'};
 					<div class="res-wrapper-header">
 						<h><?php echo $row["development"]; ?></h>
 					</div>
-					<div class="carpark-img" style="background-image: url(images/<?php echo $row['image'] ?>)"></div>
+					<div class="carpark-img" style="background-image: url(http://ctjsctjs.com/<?php echo $row['image'] ?>)"></div>
 				</div>
 				<div class="res-body">
 					<span class="res-add"><?php echo $json1->{'results'}[0]->{'formatted_address'}; ?></span>

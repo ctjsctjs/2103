@@ -45,7 +45,7 @@ include_once 'includes/nav_index.php';
             /*EACH FOOD INSTANCE*/
             echo '<li class="res-row-food">'
             .'<a class="res-food-img" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">'
-            .'<img src=images/'. $row['image'] .'>'
+            .'<img src=http://ctjsctjs.com/'. $row['image'] .'>'
             .'</a>'
             ."<div class='res-food'>"
             .'<a class="results-header hide-overflow" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">' . $row["name"] . '</a>'
@@ -107,7 +107,7 @@ include_once 'includes/nav_index.php';
 
             echo '<li class="res-row-food">'
             .'<a class="res-food-img" href=carpark.php?carparkId='.$row1["carparkId"].'>'
-            .'<img src=images/'.$row1["image"].'>'
+            .'<src=http://ctjsctjs.com/'.$row1["image"].'>'
             .'</a>'
             ."<div class='res-food'>"
             .'<a class="results-header hide-overflow" href=carpark.php?carparkId='.$row1["carparkId"].'>' . $row1["development"] . '</a>'
