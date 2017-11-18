@@ -1,5 +1,6 @@
-/*INSTANCES PER PAGE*/
 var pageNo = 12;
+var currentPage = 1;
+var totalPage;
 
 function calculateTotalPage() {
   var totalRows = document.getElementById("feTotalResults").innerHTML;
@@ -8,7 +9,6 @@ function calculateTotalPage() {
 }
 
 function prevPage() {
-  var currentPage = document.getElementById("feCurrentPageNo").innerHTML;
   var endCount;
   var startCount;
   if (currentPage > 1) {
@@ -24,10 +24,12 @@ function prevPage() {
 }
 
 function nextPage() {
-  var currentPage = document.getElementById("feCurrentPageNo").innerHTML;
   var totalPage = document.getElementById("feTotalPageNo").innerHTML;
   var startCount = currentPage * pageNo;
   var endCount;
+  console.log(currentPage)
+  console.log(totalPage)
+
   if (currentPage < totalPage) {
     currentPage++;
     endCount = currentPage * pageNo;
@@ -40,14 +42,13 @@ function nextPage() {
 }
 
 function pageJump() {
-  var currentPage = document.getElementById("feCurrentPageNo").innerHTML;
   var startCount = (currentPage - 1) * pageNo;
   var endCount = currentPage * pageNo;
   listResult(startCount, endCount);
 }
 
 function listResult(x, y) {
-  document.getElementById("feListing").innerHTML = "<div class='results-container'  id='feListingTable'>";
+  document.getElementById("feListing").innerHTML = "<ul class='results-container'  id='feListingTable'>";
   for (var i = x; i < y; i++) {
     var spaceReplaced = feArray[i][1].split(" ").join("+");
     var symbolReplaced = spaceReplaced.split("&").join("and");
@@ -63,7 +64,7 @@ function listResult(x, y) {
     + "<a class='res-more' href='restaurant.php?foodEstablishmentId="+ feArray[i][0] +"'>View more <i class='fa fa-caret-right' aria-hidden='true'></i></a>"
     + '</li>';
   }
-  document.getElementById("feListing").innerHTML += "</div>";
+  document.getElementById("feListing").innerHTML += "</ul>";
   $('.loader').hide();
   $('#feResults').show();
   $('#res-pageNo').show();

@@ -23,38 +23,10 @@ if (isset($_SESSION['FIRSTNAME'])) {
 <div class="container-results">
   <div class="container-responsive">
     <?php
-    //get latitude and longitude in a array using postal code
-    function getLocation($postalCode, $key){
-      $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $postalCode . '&key='. $key);
-      $json = json_decode($json);
-      $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
-      $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
-
-      return array($lat, $long);
-    }
-
-    //get carpark lot live number
-    function getLots($locateRow, $key){
-      $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
-      $ch = curl_init( $carparkLotsJson );
-      $options = array(
-        CURLOPT_HTTPHEADER => array( "AccountKey: ". $key . ", Accept: application/json" ),
-      );
-      curl_setopt_array( $ch, $options );
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-      $carparkJsonResult = curl_exec( $ch );
-      $carparkJsonResult = json_decode($carparkJsonResult);
-
-      return ($carparkJsonResult->{'value'}[$locateRow["carparkId"]-1]->{'Lots'});
-    }
+    include_once 'protected/databaseconnection.php';
+    include_once 'protected/functions.php';
 
     //Declare variables
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "foodfinderapp";
-    $googleKey = 'AIzaSyBUHVlBo1aiN9NZyh1Dzs91msIXblEi0NI';
-    $datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';
     $search = $_POST['search'];
     $input_radius = $_POST['radius']/1000;
     $input_lots = $_POST['minLots'];
@@ -62,9 +34,6 @@ if (isset($_SESSION['FIRSTNAME'])) {
     $advanced_search = false;
     $resultList = array();
     $locationVector = array();
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Check connection
     if ($conn->connect_error) {

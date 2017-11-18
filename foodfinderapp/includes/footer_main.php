@@ -7,6 +7,18 @@
 </body>
 
 <footer class="footer">
-  <span class="">&copy 2017, SIT ICT 2013 Project, Food Finder App</span>
+  <div class="container-responsive">
+    <ul>
+      <li>&copy FoodPark 2017</li>
+      <li><a href="privacy.php">Privacy</a></li>
+      <li><a href="term.php">Terms</a></li>
+      <li><a href='https://github.com/ctjsctjs/2103'>Github</a></li>
+      <li><a href="">Contact</a></li>
+      <li class="float-right"><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+      <li class="float-right"><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+      <li class="float-right"><a href=""><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+      <li class="float-right"><a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+    </ul>
+  </div>
 </footer>
 </html>

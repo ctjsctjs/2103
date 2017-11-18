@@ -83,22 +83,38 @@
 
 .container p{
   max-width: 600px;
-  font-size: 18px;
+  font-size: 16px;
   text-align: left;
   margin-top: 30px;
-  line-height:1.5;
+  line-height:1.8;
+  color: #444;
 }
 
 .container h1{
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 700;
   color: white;
   margin: 0 auto;
 }
 
+.header-verified{
+  color: #444;
+  text-align: center;
+  font-size:24px;
+  margin-bottom: 20px;
+}
+
+.text-verified{
+  text-align: center;
+  font-size:14px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
 .white{
   background-color:white;
 }
+
 
 .white h1{
   color: #ff7c7c;
@@ -111,20 +127,45 @@
   max-width:800px;
   position:relative;
   bottom:-62px;
+}
 
+.container-img-search{
+  bottom:0;
+  position: absolute;
+  height:300px;
+}
+
+.light{
+  background-color:#fafafa;
 }
 
 .grey{
-  background-color:#435b6c;
+  background-color:#ff7c7c;
+  overflow-x: auto;
 }
 
 .grey h1{
   color:white;
+  text-align: right;
 }
 
 .grey p{
   color:white;
+  text-align: right;
+  width:100%;
+  margin-left:auto;
 }
+
+#advSearch-link{
+  float:right;
+  margin-top:40px;
+  z-index:11;
+}
+
+#foodEst-link{
+  margin-top:40px;
+}
+
 
 .pink{
   background-color:#ff7c7c;
@@ -193,8 +234,6 @@
   padding:100px 0;
 }
 
-.container-featured ul{
-}
 
 table {
   border-collapse: collapse;

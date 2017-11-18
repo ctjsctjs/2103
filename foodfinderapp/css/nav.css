@@ -76,9 +76,9 @@
 
 nav ul li a, nav ul li a:visited{
   text-decoration: none;
-  color:#999;
-  font-weight:500;
-  font-size:14px;
+  color:#aaa;
+  font-weight:700;
+  font-size:13px;
   -webkit-transition: 100ms ease;
   transition: 100ms ease;
 }
@@ -86,8 +86,7 @@ nav ul li a, nav ul li a:visited{
 nav ul li a:hover, nav ul li a:active{
   text-decoration: none;
   color:#444;
-  font-weight:500;
-  font-size:14px;
+  font-size:13px;
   -webkit-transition: 100ms ease;
   transition: 100ms ease;
 }
@@ -120,6 +119,26 @@ nav .modal-registerBtn{
 #nav-mobile-logout{
   display:none;
 }
+
+#nav-mobile-logout form button{
+  background:transparent;
+  text-decoration: none;
+  color:#aaa;
+  font-weight:700;
+  font-size:13px;
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+  cursor: pointer;
+}
+
+#nav-mobile-logout form button:hover{
+  text-decoration: none;
+  color:#444;
+  font-size:13px;
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+}
+
 
 .modal-advSearchBtn{
   cursor: pointer;

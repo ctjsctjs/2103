@@ -23,41 +23,52 @@ if (isset($_SESSION['FIRSTNAME'])) {
 </section>
 <div class="container-carpark">
   <div class="container-responsive">
-    <div class="loader"></div>
-    <?php
-    $query = "SELECT * FROM carpark";
-    if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
-      $rowcount = mysqli_num_rows($result);
-      if ($rowcount > 0) {
-        $datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';
-        $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
+    <div class="container-results">
+      <div class="loader"></div>
+      <?php
+      $query = "SELECT * FROM carpark";
+      if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
+        $rowcount = mysqli_num_rows($result);
+        if ($rowcount > 0) {
+          $datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';
+          $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
 
-        $ch      = curl_init($carparkLotsJson);
-        $options = array(
-          CURLOPT_HTTPHEADER     => array( "AccountKey: ". $datamallKey . ", Accept: application/json" ),
-        );
-        curl_setopt_array($ch, $options);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          $ch      = curl_init($carparkLotsJson);
+          $options = array(
+            CURLOPT_HTTPHEADER     => array( "AccountKey: ". $datamallKey . ", Accept: application/json" ),
+          );
+          curl_setopt_array($ch, $options);
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $carparkJsonResult = curl_exec($ch);
-        $carparkJsonResult = json_decode($carparkJsonResult);
+          $carparkJsonResult = curl_exec($ch);
+          $carparkJsonResult = json_decode($carparkJsonResult);
 
-        echo '<div class="results-container" id="res-carpark-cont">';
-        for ($i = 0; $i < $rowcount; $i++) {
-          $row = mysqli_fetch_array($result, MYSQLI_NUM);
-          $lat = $row[2];
-          $lng = $row[1];
-          $lots = $carparkJsonResult->{'value'}[$row[0]-1]->{'Lots'};
-          $location =  $carparkJsonResult->{'value'}[$row[0]-1]->{'Development'};
-          echo '<a href=carpark.php?carparkId='.$row[0].' class="res-row-carpark">';
-          echo "<span class='res-lots res-lots-carpark'>". $lots ."</span>";
-          echo '<div class="res-name" >' .$location. '</div>';
-          echo "</a>";
+          echo '<ul class="results-container" id="res-carpark-cont">';
+          for ($i = 0; $i < $rowcount; $i++) {
+            $row = mysqli_fetch_array($result, MYSQLI_NUM);
+            $lat = $row[2];
+            $lng = $row[1];
+            $lots = $carparkJsonResult->{'value'}[$row[0]-1]->{'Lots'};
+            $location =  $carparkJsonResult->{'value'}[$row[0]-1]->{'Development'};
+            echo '<li class="res-row-food">'
+            .'<a class="res-food-img" href=carpark.php?carparkId='.$row[0].'>'
+            .'<img src=images/'. $row[5] .'>'
+            .'</a>'
+            ."<div class='res-food'>"
+            .'<a class="results-header hide-overflow" href=carpark.php?carparkId='.$row[0].'>' .$location. '</a>'
+            ."<span class='res-food-subheader'>Lots Available</span>"
+            .'<a href=carpark.php?carparkId='.$row[0].' class="res-blocks">'
+            ."<span class='res-lots'>". $lots ."</span>"
+            ."<span class='res-name res-single hide-overflow'>".$location."</span>"
+            ."</a>"
+            . "<a class='res-more' href=carpark.php?carparkId=".$row[0].">View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>"
+            ."</li>";
+          }
         }
+        echo '<ul>';
       }
-      echo "</div>";
-    }
-    ?>
+      ?>
+    </div>
   </div>
 </div>
 <p id="demo"></p>

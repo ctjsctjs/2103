@@ -33,8 +33,9 @@
     </form>
   </div>
   <div class="modal-container" id="modal-register">
-    <form class="form" role="form" autocomplete="off" action="protected/signup_validation.php" method="POST">
+    <form role="form" autocomplete="off" action="protected/signup_validation.php" method="POST">
       <span class="modal-login-h">Register</span>
+      <span class="modal-register-text">Already have an account?</span>
       <span class="modal-link" id="modal-loginlink">Login here.</span>
       <input type="text" class="modal-form" placeholder="First Name" name="firstName" value="<?php echo (isset($_POST['firstName']) ? $_POST['firstName']:''); ?>">
       <span class="modal-error reg-err">

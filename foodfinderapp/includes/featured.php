@@ -15,7 +15,7 @@ if ($result) {
       echo '</a>';
       echo "<div class='res-food'>";
       echo '<a class="results-header hide-overflow" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">' . $row["name"] . '</a>';
-      echo "<span class='res-food-subheader'>Nearest Carpark</span>";
+      echo "<span class='res-food-subheader'>Rating</span>";
       echo "<a class='res-more' href='restaurant.php?foodEstablishmentId=".$row['foodEstablishmentId']."'>View more <i class='fa fa-caret-right' aria-hidden='true'></i></a>";
       echo "</div>";
     }

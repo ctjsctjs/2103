@@ -23,20 +23,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="css/results.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
     <link rel="stylesheet" type="text/css" href="css/advSearch.css">
-
-
-
-
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-    <!-- <link rel="stylesheet" href="css/animate.css">
-<link rel="stylesheet" href="css/responsive.css"> -->
-
-    <script src="https://oss.maxcdn.com/html5shiv/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
   </head>
 

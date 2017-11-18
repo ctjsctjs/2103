@@ -35,7 +35,7 @@ if (isset($_SESSION['FIRSTNAME'])) {
       <div class="page-row" id="res-pageNo" style="display:none;">
         <a onclick="prevPage()" class="page-arrow"><i class="fa fa-caret-left" aria-hidden="true"></i></a>
         <span class="inline-text" id='feCurrentPageNo'>1</span>
-        <span class="inline-text" id='feCurrentPageNo'> of </span>
+        <span class="inline-text"> of </span>
         <span class="inline-text" id='feTotalPageNo'></span>
         <a onclick="nextPage()" class="page-arrow"><i class="fa fa-caret-right" aria-hidden="true"></i></a>
       </div>

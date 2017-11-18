@@ -22,21 +22,6 @@ include_once 'includes/nav_index.php';
         <button type ="submit" class="main-button"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
     </form>
-
-    <?php if(isset($_SESSION['FIRSTNAME'])) {
-      $getTopThreeSearches = "SELECT DISTINCT termSearch FROM foodSearch ORDER BY termSearch DESC";
-      $result = mysqli_query($conn,  $getTopThreeSearches) or die(mysqli_connect_error());
-    }
-    ?>
-    <div class="row">
-      <ul style="display:none;">
-        <?php for($a=0; $a<3; $a++) {
-          while($row = mysqli_fetch_assoc($result)) { ?>
-            <li><?php echo $row['termSearch'] ?></li>
-          <?php }?>
-        </ul>
-      </div>
-    <?php } ?>
   </div>
 </section>
 
@@ -45,7 +30,9 @@ include_once 'includes/nav_index.php';
 </section>
 <section class="container-featured">
   <div class=" container-responsive">
-    <h1>Verified by you</h1>
+    <h1 class="header-verified">Verified by you</h1>
+    <span class="text-verified"> Check out the highest rated food places rating by the community </span>
+    <hr class="divider" id="result-divider">
     <?php include_once 'includes/featured.php' ?>
   </div>
 </section>
@@ -57,32 +44,21 @@ include_once 'includes/nav_index.php';
       is a web application that tracks real-time data of available parking lots near
       various food establishments, allowing you to locate the nearest available
       parking location.</p>
+      <a href="viewAllFood.php"><span class="button button-red" id="foodEst-link">Browse Food Places</span></a>
       <img class="container-img" src="images/car.svg">
     </div>
   </section>
   <section class="container grey wrapper">
     <div class="container-responsive">
-      <h1>Search for the best in Singapore</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        In nibh justo, finibus ac semper non, eleifend sed sapien.
-        Suspendisse sit amet felis in sem egestas convallis eget ac erat.
-        Vestibulum nec aliquet tortor. Aliquam aliquam lorem non augue
-        tempor maximus. Duis dignissim mauris quis dui semper tempor.
-      </p>
-      <img class="container-img" src="images/food.svg">
-    </div>
-  </section>
-  <section class="container pink wrapper">
-    <div class="container-responsive">
-      <h1>Search for the best in Singapore</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        In nibh justo, finibus ac semper non, eleifend sed sapien.
-        Suspendisse sit amet felis in sem egestas convallis eget ac erat.
-        Vestibulum nec aliquet tortor. Aliquam aliquam lorem non augue
-        tempor maximus. Duis dignissim mauris quis dui semper tempor.
-      </p>
-    </div>
-  </section>
+      <h1>Search quickly with precision</h1>
+      <p>Our search algorithm brings the best results to you within seconds,
+        making sure you find a place to park and eat as quick as possible. Our
+        Advanced Search allows you to make detailed searches, solving all your
+        parking frustrations. </p>
+        <a href="advancedSearch.php"><span class="button button-white" id="advSearch-link">Try Advanced Search</span></a>
+        <img class="container-img-search" src="images/search.svg">
+      </div>
+    </section>
 
-  <?php include_once 'includes/modal.php' ?>
-  <?php include_once 'includes/footer_main.php' ?>
+    <?php include_once 'includes/modal.php' ?>
+    <?php include_once 'includes/footer_main.php' ?>

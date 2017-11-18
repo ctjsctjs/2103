@@ -47,7 +47,7 @@ button:focus, input:focus {outline:0 !important;}
 .container-default{
   width:100%;
   background-color: #fafafa;
-  padding-top: 50px;
+  padding: 50px;
   overflow: auto;
 }
 
@@ -58,11 +58,25 @@ button:focus, input:focus {outline:0 !important;}
   padding: 0 50px;
 }
 
-#container-narrow{
-  max-width: 1000px;
-}
 
 /*FONT*/
+
+.body-copy{
+  font-size:13px;
+  color: #444;
+  line-height: 1.5;
+}
+.body-copy h2{
+  font-size: 20px;
+  color: #888;
+  margin: 20px 0 20px 0;
+}
+.body-copy h1{
+  font-size: 16px;
+  color: #888;
+  margin: 20px 0 20px 0;
+}
+
 .black-body{
   font-size:15px;
   color: #222;
@@ -111,6 +125,12 @@ button:focus, input:focus {outline:0 !important;}
 
   -webkit-transition: 100ms ease;
   transition: 100ms ease;
+}
+
+.button-red-outer{
+  color: #444;
+  border-color: #ff7c7c !important;
+  border: 1px solid #ff7c7c !important;
 }
 
 
@@ -254,6 +274,27 @@ button:focus, input:focus {outline:0 !important;}
   border-top: 5px solid #ff7c7c;
 }
 
+.view-delete-form{
+  float:right;
+}
+
+.delete-fav{
+  cursor: pointer;
+  position: absolute;
+  font-size:24px;
+  color:white;
+  right:15px;
+  top:5px;
+  background-color:transparent;
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+}
+
+.delete-fav:hover{
+  color:#ff7c7c;
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+}
 
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }

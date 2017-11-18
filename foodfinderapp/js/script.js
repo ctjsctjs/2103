@@ -13,6 +13,13 @@ $(document).ready(function () {
     $(".nav-center").slideToggle(100, "linear");
   });
 
+  //Show Navigation upon resize to laptop scren
+  $( window ).resize(function() {
+    if ($(window).width() > 1024) {
+      $('.nav-center').show();
+    }
+  });
+
   //status of modal
   var status = "";
 

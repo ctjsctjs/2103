@@ -9,7 +9,7 @@ include_once 'includes/nav_index.php';
 
 if(isset($_GET['carparkId'])) {
 	$carparkID = $_GET['carparkId'];
-	$selectedCarpark = "SELECT latitude,longitude,development,CAST(AVG(feedback.AvgRating) as decimal(18,1)), COUNT(feedback.AvgRating) FROM carpark INNER JOIN feedback ON carpark.carparkId = feedback.carparkId WHERE carpark.carparkId = '".$_GET['carparkId']."'";
+	$selectedCarpark = "SELECT latitude,longitude,development,CAST(AVG(feedback.AvgRating) as decimal(18,1)), COUNT(feedback.AvgRating), image FROM carpark INNER JOIN feedback ON carpark.carparkId = feedback.carparkId WHERE carpark.carparkId = '".$_GET['carparkId']."'";
 	$result = mysqli_query($conn, $selectedCarpark) or die(mysqli_connect_error());
 	$row = mysqli_fetch_array($result);
 	$rating = $row[3];
@@ -47,85 +47,88 @@ $lots = $carparkJsonResult->{'value'}[$carparkID-1]->{'Lots'};
 
 <div class="container-results">
 	<div class="container-responsive">
-
 		<div class="res-left-col">
-			<div class="res-wrapper">
-				<div class="res-wrapper-header">
-					<h><?php echo $row["development"]; ?></h>
+			<div class="res-left-mod">
+				<div class="res-wrapper">
+					<div class="res-wrapper-header">
+						<h><?php echo $row["development"]; ?></h>
+					</div>
+					<div class="carpark-img" style="background-image: url(images/<?php echo $row['image'] ?>)"></div>
 				</div>
-				<div class="carpark-img"></div>
-			</div>
-			<div class="res-body">
-				<span class="res-add"><?php echo $json1->{'results'}[0]->{'formatted_address'}; ?></span>
-				<table class="demo-table">
-					<tbody>
-						<div id="tutorial-<?php echo $_GET['carparkId']; ?>">
-							<?php $property=array("Accessiblity","Cleaniness","Parking Rate","Space","User Friendly"); ?>
-							<?php
-							$reviewquery = "SELECT ROUND(AVG(accessibility)) AS accessibility, ROUND(AVG(clean)) AS clean,ROUND(AVG(parkRate)) AS parkRate,ROUND(AVG(space)) AS space,ROUND(AVG(userFriendly)) AS userFriendly FROM feedback WHERE carparkId = '".$_GET['carparkId']."'";
-							$listreview = mysqli_query($conn, $reviewquery);
+				<div class="res-body">
+					<span class="res-add"><?php echo $json1->{'results'}[0]->{'formatted_address'}; ?></span>
+					<table class="demo-table">
+						<tbody>
+							<div id="tutorial-<?php echo $_GET['carparkId']; ?>">
+								<?php $property=array("Accessiblity","Cleaniness","Parking Rate","Space","User Friendly"); ?>
+								<?php
+								$reviewquery = "SELECT ROUND(AVG(accessibility)) AS accessibility, ROUND(AVG(clean)) AS clean,ROUND(AVG(parkRate)) AS parkRate,ROUND(AVG(space)) AS space,ROUND(AVG(userFriendly)) AS userFriendly FROM feedback WHERE carparkId = '".$_GET['carparkId']."'";
+								$listreview = mysqli_query($conn, $reviewquery);
 
-							if ($listreview) {
+								if ($listreview) {
 
-								while ($row = mysqli_fetch_row($listreview)) {
-									$count = 0;
+									while ($row = mysqli_fetch_row($listreview)) {
+										$count = 0;
 
-									for($p = 0; $p < 5;$p++ ){
-										echo '<tr><td>'.$property[$p].'</td>';
-										echo '<td><input type="hidden" name="rating" id="rating" value="'.$rating.'"/>';
-										echo '<ul>';
+										for($p = 0; $p < 5;$p++ ){
+											echo '<tr><td>'.$property[$p].'</td>';
+											echo '<td><input type="hidden" name="rating" id="rating" value="'.$rating.'"/>';
+											echo '<ul>';
 
-										for($i=1;$i<=5;$i++) {
-											$selected = "";
-											if(!empty($row[$p]) && $i<=$row[$p]) {
-												$selected = "selected";
+											for($i=1;$i<=5;$i++) {
+												$selected = "";
+												if(!empty($row[$p]) && $i<=$row[$p]) {
+													$selected = "selected";
+												}
+												echo '<li class="'.$selected.'">&#9733;</li>';
 											}
-											echo '<li class="'.$selected.'">&#9733;</li>';
+											echo '</ul>';
+											echo '</td></tr>';
 										}
-										echo '</ul>';
-										echo '</td></tr>';
 									}
 								}
-							}
-							?>
-						</div>
-					</tbody>
-				</table>
-				<span class="res-no-review"><?php echo $numofreview?> reviews</span>
+								?>
+							</div>
+						</tbody>
+					</table>
+					<span class="res-no-review"><?php echo $numofreview?> reviews</span>
+				</div>
 			</div>
 		</div>
 
 		<div class="res-right-col">
-			<?php
-			$userID = $_SESSION['ID'];
-			if (isset($_POST['saveFood']) == 'save'.$carparkID){
-				$insert = "INSERT INTO favouriteCarpark(carparkId, userId, status)
-				VALUES  ($carparkID,$userID , '1')";
-				if ($conn->query($insert) === TRUE) {
-					echo "<span class='res-saved'><i class='fa fa-check' aria-hidden='true'></i> Added to favourites</span>";
-				} else {
-					echo "Error: " . $sql . "<br>" . $conn->error;
+
+			<div class="res-right-mod-wrap">
+				<?php
+				$userID = $_SESSION['ID'];
+				if (isset($_POST['saveFood']) == 'save'.$carparkID){
+					$insert = "INSERT INTO favouriteCarpark(carparkId, userId, status)
+					VALUES  ($carparkID,$userID , '1')";
+					if ($conn->query($insert) === TRUE) {
+						echo "<span class='res-saved'><i class='fa fa-check' aria-hidden='true'></i> Added to favourites</span>";
+					} else {
+						echo "Error: " . $sql . "<br>" . $conn->error;
+					}
 				}
-			}
 
-			echo "<form method='post' action='carpark.php?carparkId=".$carparkID."' id='form' name='form'>"
-			. "<input type='hidden' name='saveFood' value='save".$carparkID."'>"
-			. "<button class='button button-red button-wide' id='btn-save'>Save</button>"
-			. "<a href='carparkReview.php?carparkId=".$carparkID."' class='button button-red button-wide'>Rate</a>"
-			. "</form>";
-			?>
+				echo "<form method='post' action='carpark.php?carparkId=".$carparkID."' id='form' name='form'>"
+				. "<input type='hidden' name='saveFood' value='save".$carparkID."'>"
+				. "<button class='button button-red button-wide' id='btn-save'>Save</button>"
+				. "</form>";
+				?>
+			</div>
+
+			<div class="res-right-mod">
+				<span class='res-food-subheader'>Lots available</span>
+				<span class="res-lots-big res-lots"> <?php echo $lots ?></span>
+			</div>
+
+			<div class="res-right-mod"><div id="carparkMap"></div></div>
 		</div>
-
-		<div class="res-right-col">
-			<span class='res-food-subheader'>Lots available</span>
-			<span class="res-lots-big res-lots"> <?php echo $lots ?></span>
-		</div>
-
-		<div class="res-right-col"><div id="carparkMap"></div></div>
 	</div>
 </div>
 
-<?php include_once 'includes/footer_login_signup.php' ?>
+<?php include_once 'includes/footer_main.php' ?>
 <script type="text/javascript" src="js/lot-color.js"></script>
 
 <script>
