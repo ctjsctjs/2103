@@ -31,6 +31,7 @@ include_once 'includes/nav_index.php';
         $recentSearches = "";
         
         if (mysqli_num_rows($result) > 0) {
+            echo "<p>You've recently searched for: </p>";
             while(($row = mysqli_fetch_assoc($result)) and ($count != 3)) {
                 if($recentSearches == "") {
                     echo "<form action='resultsPage.php' method='POST'><input type='hidden' name='search' class='form-control' value='".$row['termSearch']."'><button class='recentSearchesButton' type='submit'>".$row['termSearch']."</button></form>";
