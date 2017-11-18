@@ -38,9 +38,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if($resultCheck < 1) {
       $url .= '&loginEmail=invalid';
-      $emailError = "We couldn't find your account. Please try again.";
       $_POST['email'] = "";
       $_POST['password'] = "";
+      $valid = false;
+    }
+
+    else if($resultCheck['accountActivated']==0) {
+      $url .= '&loginEmail=notActivated';
+      $_POST['email'] = "";
+      $_POST['password'] = "";
+      $valid = false;
     }
 
     else {
@@ -49,7 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashedPwdCheck = password_verify($password, $row['password']);
         if($hashedPwdCheck == false) {
           $url .= '&loginPw=invalid';
-          $passwordError = "Your password is incorrect. Please try again.";
           $_POST['email'] = "";
           $_POST['password'] = "";
         }

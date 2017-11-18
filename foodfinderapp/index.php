@@ -7,7 +7,13 @@ include_once 'includes/nav_user.php';
 else
 include_once 'includes/nav_index.php';
 ?>
-
+<?php
+if(isset($_GET['message'])){
+  if ($_GET['message']=="success"){
+    echo '<div class="message">Register successful! Check your email for verification</div>';
+  }
+}
+?>
 <section class="container-main">
   <div class="container-responsive">
     <a href="index.php">
@@ -23,13 +29,13 @@ include_once 'includes/nav_index.php';
       </div>
     </form>
     <?php if(isset($_SESSION['ID'])) {
-        
+
         $getTermSearches = "SELECT termSearch FROM foodSearch WHERE userId = ".$_SESSION['ID']." ORDER BY datetimeSearch DESC";
         $result = mysqli_query($conn,  $getTermSearches) or die(mysqli_connect_error());
-        
+
         $count = 0;
         $recentSearches = "";
-        
+
         if (mysqli_num_rows($result) > 0) {
             echo "<p>You've recently searched for: </p>";
             while(($row = mysqli_fetch_assoc($result)) and ($count != 3)) {
