@@ -97,6 +97,8 @@
         }
         ?>
       </span>
+      <input type="text" class="modal-form" placeholder="Reference Code for Admin" name="firstName" value="<?php echo (isset($_POST['refCode']) ? $_POST['refCode']:''); ?>">
+      <span class="modal-error reg-err"></span>
       <button type="submit" class="modal-login-cfm button-red">Register</button>
     </form>
   </div>
