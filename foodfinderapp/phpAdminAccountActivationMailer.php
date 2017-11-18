@@ -31,28 +31,22 @@ $message = 'Dear '.$firstName.',<br><br>
         
 Thank you for signing up as a vendor with Foodpark!<br><br>
 
-Before you can gain full access to your vendor account in Foodpark Portal, you are required to prepare the following documents to send to us! <br>
-As much as we would like to work with you to giver consumers a better experience, we would also want to ensure the authenticity of you as a vendor. <br><br>
+Congratulations! You have been granted to be an administrator/food blogger with Foodpark!<br>
+As much as we would like to give consumers a better experience, we believe we can do better as a team with like-minded souls to build this community. <br><br>
 
-You are required to send us your: <br><br>
+As an administrator/food blogger: <br><br>
 
-	1. Business Registration document <br>
-	2. NRIC and/or relevant documents to identify you as the owner of the business <br>
-	3. ACRA Business Tax Registration Information <br><br>
+You are able to delete or review the status of the comments to ensure that our community recieves genuine reviews that are truthful and of help to them.
 
-Please reply to this email with the following information. <br><br>
-
-Verification of this information will take 3-5 working days. <br><br>
-
-Once verified, you may login with the following credentials.<br><br>
+Your account has been created, you can login with the following credentials after you have activated your account by pressing on the url below.<br><br>
 
 -------------------------<br>
 Email: '.$email.'<br>
 Password: '.$passwordConfirm.'<br>
 -------------------------<br><br>
 
-Please click this link to login to your account once an verification email has been sent to you:<br>
-http://localhost/foodfinderapp/login.php<br><br>
+Please click this link to activate your account:<br>
+http://localhost/2103/foodfinderapp/userAccountVerification.php?email='.$email.'&hash='.$hash.'<br><br>
 
 ';
 

@@ -110,11 +110,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = mysqli_query($conn, $selectUser) or die(mysqli_connect_error());
         $resultCheck = mysqli_num_rows($result);
 
+        // Just some random code for website admin
 		if($_POST['refCode'] == 2103) {
 			if($resultCheck == 1) {
 				while($row = mysqli_fetch_assoc($result)) {
 	        		$insertWebAdmin = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'website admin')";
 	        		mysqli_query($conn, $insertWebAdmin) or die(mysqli_connect_error());
+	        		include_once("phpNonAdminAccountActivationMailer.php");
+	        	}
+			}
+		}
+		// Just some random code for food blogger
+		else if($_POST['refCode'] == 3012) {
+			if($resultCheck == 1) {
+				while($row = mysqli_fetch_assoc($result)) {
+	        		$insertBlogger = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'food blogger')";
+	        		mysqli_query($conn, $insertBlogger) or die(mysqli_connect_error());
+	        		include_once("phpNonAdminAccountActivationMailer.php");
+	        	}
+			}
+		}
+		else {
+			if($resultCheck == 1) {
+				while($row = mysqli_fetch_assoc($result)) {
+	        		$insertNonAdmin = "INSERT INTO nonadmin(userId)VALUES('".$row['userId']."')";
+	        		mysqli_query($conn, $insertNonAdmin) or die(mysqli_connect_error());
 	        		include_once("phpNonAdminAccountActivationMailer.php");
 	        	}
 			}
