@@ -236,20 +236,6 @@ and (max-width: 736px) {
   #advSearch-link{
     float:none;
   }
-
-  .modal-form{
-    height:40px;
-    font-size:12px;
-  }
-
-  .form-left{
-    width:100%;
-    margin-right: 0;
-  }
-
-  .form-right{
-    width:100%;
-  }
 }
 
 

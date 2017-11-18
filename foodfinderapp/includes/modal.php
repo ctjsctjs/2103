@@ -37,74 +37,67 @@
       <span class="modal-login-h">Register</span>
       <span class="modal-register-text">Already have an account?</span>
       <span class="modal-link" id="modal-loginlink">Login here.</span>
-      <div class="form-left">
-        <input type="text" class="modal-form" placeholder="First Name" name="firstName" value="<?php echo (isset($_POST['firstName']) ? $_POST['firstName']:''); ?>">
-        <span class="modal-error reg-err">
-          <?php
-          if(isset($_GET['regFname'])){
-            if ($_GET['regFname']=="empty"){
-              echo "&#xf06a; Please enter your First Name.";
-            } else if ($_GET['regFname']=="alphaNum"){
-              echo "&#xf06a; Please only enter alpha numeric characters.";
-            }
+      <input type="text" class="modal-form" placeholder="First Name" name="firstName" value="<?php echo (isset($_POST['firstName']) ? $_POST['firstName']:''); ?>">
+      <span class="modal-error reg-err">
+        <?php
+        if(isset($_GET['regFname'])){
+          if ($_GET['regFname']=="empty"){
+            echo "&#xf06a; Please enter your First Name.";
+          } else if ($_GET['regFname']=="alphaNum"){
+            echo "&#xf06a; Please only enter alpha numeric characters.";
           }
-          ?>
-        </span>
-        <input type="text" class="modal-form" placeholder="Last Name" name="lastName" value="<?php echo (isset($_POST['lastName']) ? $_POST['lastName']:''); ?>">
-        <span class="modal-error reg-err">
-          <?php
-          if(isset($_GET['regLname'])){
-            if ($_GET['regLname']=="empty"){
-              echo "&#xf06a; Please enter your Last Name.";
-            } else if ($_GET['regLname']=="alphaNum"){
-              echo "&#xf06a; Please only enter alpha numeric characters.";
-            }
+        }
+        ?>
+      </span>
+      <input type="text" class="modal-form" placeholder="Last Name" name="lastName" value="<?php echo (isset($_POST['lastName']) ? $_POST['lastName']:''); ?>">
+      <span class="modal-error reg-err">
+        <?php
+        if(isset($_GET['regLname'])){
+          if ($_GET['regLname']=="empty"){
+            echo "&#xf06a; Please enter your Last Name.";
+          } else if ($_GET['regLname']=="alphaNum"){
+            echo "&#xf06a; Please only enter alpha numeric characters.";
           }
-          ?>
-        </span>
-        <input type="text" class="modal-form" placeholder="Email" name="email"  value="<?php echo (isset($_POST['email']) ? $_POST['email']:''); ?>">
-        <span class="modal-error reg-err">
-          <?php
-          if(isset($_GET['regEmail'])){
-            if ($_GET['regEmail']=="empty"){
-              echo "&#xf06a; Please enter your email.";
-            } else if ($_GET['regEmail']=="invalid"){
-              echo "&#xf06a; Please enter a valid email address.";
-            }
+        }
+        ?>
+      </span>
+      <input type="text" class="modal-form" placeholder="Email" name="email"  value="<?php echo (isset($_POST['email']) ? $_POST['email']:''); ?>">
+      <span class="modal-error reg-err">
+        <?php
+        if(isset($_GET['regEmail'])){
+          if ($_GET['regEmail']=="empty"){
+            echo "&#xf06a; Please enter your email.";
+          } else if ($_GET['regEmail']=="invalid"){
+            echo "&#xf06a; Please enter a valid email address.";
           }
-          ?>
-        </span>
-      </div>
-      <div class="form-right">
-
-        <input type="password" class="modal-form" placeholder="Password" name="password" value="<?php echo (isset($_POST['password']) ? $_POST['password']:''); ?>">
-        <span class="modal-error reg-err">
-          <?php
-          if(isset($_GET['regPw'])){
-            if ($_GET['regPw']=="empty"){
-              echo "&#xf06a; Please enter your password.";
-            } else if ($_GET['regPw']=="lengthErr"){
-              echo "&#xf06a; Please enter 8 or more characters.";
-            }
+        }
+        ?>
+      </span>
+      <input type="password" class="modal-form" placeholder="Password" name="password" value="<?php echo (isset($_POST['password']) ? $_POST['password']:''); ?>">
+      <span class="modal-error reg-err">
+        <?php
+        if(isset($_GET['regPw'])){
+          if ($_GET['regPw']=="empty"){
+            echo "&#xf06a; Please enter your password.";
+          } else if ($_GET['regPw']=="lengthErr"){
+            echo "&#xf06a; Please enter 8 or more characters.";
           }
-          ?>
-        </span>
-        <input type="password" class="modal-form" placeholder="Re-enter Password"  name="passwordConfirm" value="<?php echo (isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm']:''); ?>">
-        <span class="modal-error reg-err">
-          <?php
-          if(isset($_GET['regPwCfm'])){
-            if ($_GET['regPwCfm']=="empty"){
-              echo "&#xf06a; Please re-enter your password.";
-            } else if ($_GET['regPwCfm']=="diff"){
-              echo "&#xf06a; Please ensure your password entered is correct.";
-            }
+        }
+        ?>
+      </span>
+      <input type="password" class="modal-form" placeholder="Re-enter Password"  name="passwordConfirm" value="<?php echo (isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm']:''); ?>">
+      <span class="modal-error reg-err">
+        <?php
+        if(isset($_GET['regPwCfm'])){
+          if ($_GET['regPwCfm']=="empty"){
+            echo "&#xf06a; Please re-enter your password.";
+          } else if ($_GET['regPwCfm']=="diff"){
+            echo "&#xf06a; Please ensure your password entered is correct.";
           }
-          ?>
-        </span>
-        <input type="text" class="modal-form" placeholder="Reference Code for Admin" name="refCode" value="<?php echo (isset($_POST['refCode']) ? $_POST['refCode']:''); ?>">
-        <span class="modal-error reg-err"></span>
-        <button type="submit" class="modal-login-cfm button-red">Register</button>
-      </div>
+        }
+        ?>
+      </span>
+      <button type="submit" class="modal-login-cfm button-red">Register</button>
     </form>
   </div>
 </section>
