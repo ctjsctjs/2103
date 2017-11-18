@@ -46,6 +46,7 @@
           echo "Added to new review";
         } else {
           echo "Error: " . $sql . "<br>" . $conn->error;
+          
         }
       }
       echo "<meta http-equiv='refresh' content='0;url=restaurant.php?foodEstablishmentId=".$_GET['foodEstablishmentId']."'>";
@@ -60,7 +61,7 @@
       }
       echo "</select>";
     }
-    echo "<textarea class='review-textarea select-button' placeholder='Leave a review here!'></textarea>";
+    echo "<textarea name='reviewText' class='review-textarea select-button' placeholder='Leave a review here!'></textarea>";
 
     echo "<input type='hidden' name='rate'>";
     echo "<button class='button button-red button-wide'>Submit Review</button>";

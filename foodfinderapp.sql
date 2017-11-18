@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2017 at 10:40 AM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Nov 18, 2017 at 02:56 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -29,7 +27,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `userId` int(11) NOT NULL
+  `userId` int(11) NOT NULL,
+  `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -91,6 +90,7 @@ INSERT INTO `carpark` (`carparkId`, `longitude`, `latitude`, `area`, `developmen
 --
 
 CREATE TABLE `carparksearch` (
+  `dateTimeSearch` datetime NOT NULL,
   `termSearch` varchar(255) NOT NULL,
   `userId` int(11) NOT NULL,
   `carparkId` int(11) NOT NULL
@@ -100,254 +100,38 @@ CREATE TABLE `carparksearch` (
 -- Dumping data for table `carparksearch`
 --
 
-INSERT INTO `carparksearch` (`termSearch`, `userId`, `carparkId`) VALUES
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('marina', 6, 1),
-('marina', 6, 2),
-('marina', 6, 3),
-('marina', 6, 4),
-('marina', 6, 5),
-('marina', 6, 25),
-('marina', 6, 31),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23),
-('sentosa', 6, 7),
-('sentosa', 6, 23);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `carparksearchold`
---
-
-CREATE TABLE `carparksearchold` (
-  `datetimeSearch` datetime NOT NULL,
-  `userId` int(11) NOT NULL,
-  `carparkId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `carparksearch` (`dateTimeSearch`, `termSearch`, `userId`, `carparkId`) VALUES
+('2017-11-18 21:19:00', 'marina', 1, 1),
+('2017-11-18 21:19:58', 'marina', 1, 1),
+('2017-11-18 21:21:21', 'marina', 1, 1),
+('2017-11-18 21:44:03', 'marina', 1, 1),
+('2017-11-18 21:19:00', 'marina', 1, 2),
+('2017-11-18 21:19:58', 'marina', 1, 2),
+('2017-11-18 21:21:21', 'marina', 1, 2),
+('2017-11-18 21:44:03', 'marina', 1, 2),
+('2017-11-18 21:19:00', 'marina', 1, 3),
+('2017-11-18 21:19:58', 'marina', 1, 3),
+('2017-11-18 21:21:21', 'marina', 1, 3),
+('2017-11-18 21:44:03', 'marina', 1, 3),
+('2017-11-18 21:19:00', 'marina', 1, 4),
+('2017-11-18 21:19:58', 'marina', 1, 4),
+('2017-11-18 21:21:21', 'marina', 1, 4),
+('2017-11-18 21:44:03', 'marina', 1, 4),
+('2017-11-18 21:19:00', 'marina', 1, 5),
+('2017-11-18 21:19:58', 'marina', 1, 5),
+('2017-11-18 21:21:21', 'marina', 1, 5),
+('2017-11-18 21:44:03', 'marina', 1, 5),
+('2017-11-18 21:19:00', 'marina', 1, 25),
+('2017-11-18 21:19:58', 'marina', 1, 25),
+('2017-11-18 21:21:21', 'marina', 1, 25),
+('2017-11-18 21:44:03', 'marina', 1, 25),
+('2017-11-18 21:20:17', 'jurong', 1, 26),
+('2017-11-18 21:20:17', 'jurong', 1, 28),
+('2017-11-18 21:20:17', 'jurong', 1, 29),
+('2017-11-18 21:19:01', 'marina', 1, 31),
+('2017-11-18 21:19:58', 'marina', 1, 31),
+('2017-11-18 21:21:22', 'marina', 1, 31),
+('2017-11-18 21:44:03', 'marina', 1, 31);
 
 -- --------------------------------------------------------
 
@@ -367,7 +151,8 @@ CREATE TABLE `favouritecarpark` (
 --
 
 INSERT INTO `favouritecarpark` (`favCarparkID`, `carparkId`, `userId`, `status`) VALUES
-(1, 2, 6, 1);
+(1, 2, 6, 1),
+(2, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -23364,6 +23149,7 @@ INSERT INTO `foodestablishment` (`foodEstablishmentId`, `name`, `address`, `area
 --
 
 CREATE TABLE `foodsearch` (
+  `dateTimeSearch` datetime NOT NULL,
   `termSearch` varchar(255) NOT NULL,
   `userId` int(11) NOT NULL,
   `foodEstablishmentId` int(11) NOT NULL
@@ -23373,151 +23159,150 @@ CREATE TABLE `foodsearch` (
 -- Dumping data for table `foodsearch`
 --
 
-INSERT INTO `foodsearch` (`termSearch`, `userId`, `foodEstablishmentId`) VALUES
-('marina', 6, 0),
-('park', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('park', 6, 0),
-('park', 6, 0),
-('park', 6, 0),
-('park', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('park', 6, 0),
-('park', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('seafood', 6, 0),
-('seafood', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('park', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('seafood', 6, 0),
-('seafood', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('marina', 6, 0),
-('marina', 6, 0),
-('grand park', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('food', 6, 0),
-('palm', 6, 0),
-('palm', 6, 0),
-('palm', 6, 0),
-('bedok', 6, 0),
-('palm', 6, 0),
-('palm', 6, 0),
-('grand park', 6, 0),
-('help', 6, 0),
-('palm', 6, 0),
-('palm', 6, 0),
-('palm', 6, 0),
-('seafood', 6, 0),
-('seafood', 6, 0),
-('seafood', 6, 0),
-('bear', 6, 0),
-('park', 6, 0),
-('palm', 6, 0),
-('park', 6, 0),
-('grand park', 6, 0),
-('palm', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('timbre', 6, 0),
-('sentosa', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('palm', 6, 0),
-('palm', 6, 0),
-('sentosa', 6, 0),
-('sentosa', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0),
-('grand park', 6, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `foodsearchold`
---
-
-CREATE TABLE `foodsearchold` (
-  `datetimeSearch` datetime NOT NULL,
-  `userId` int(11) NOT NULL,
-  `foodEstablishmentId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `foodsearch` (`dateTimeSearch`, `termSearch`, `userId`, `foodEstablishmentId`) VALUES
+('2017-11-18 21:18:47', 'marina', 1, 12),
+('2017-11-18 21:18:48', 'marina', 1, 266),
+('2017-11-18 21:18:49', 'marina', 1, 363),
+('2017-11-18 21:18:50', 'marina', 1, 458),
+('2017-11-18 21:18:50', 'marina', 1, 1207),
+('2017-11-18 21:18:51', 'marina', 1, 1520),
+('2017-11-18 21:18:52', 'marina', 1, 2187),
+('2017-11-18 21:18:52', 'marina', 1, 2787),
+('2017-11-18 21:18:53', 'marina', 1, 3125),
+('2017-11-18 21:18:54', 'marina', 1, 6834),
+('2017-11-18 21:18:54', 'marina', 1, 6848),
+('2017-11-18 21:18:54', 'marina', 1, 7369),
+('2017-11-18 21:18:55', 'marina', 1, 7710),
+('2017-11-18 21:18:55', 'marina', 1, 7954),
+('2017-11-18 21:18:56', 'marina', 1, 8068),
+('2017-11-18 21:18:56', 'marina', 1, 8099),
+('2017-11-18 21:18:57', 'marina', 1, 8105),
+('2017-11-18 21:18:57', 'marina', 1, 8273),
+('2017-11-18 21:18:58', 'marina', 1, 8696),
+('2017-11-18 21:18:58', 'marina', 1, 9270),
+('2017-11-18 21:18:59', 'marina', 1, 16064),
+('2017-11-18 21:19:00', 'marina', 1, 16415),
+('2017-11-18 21:19:52', 'marina', 1, 12),
+('2017-11-18 21:19:53', 'marina', 1, 266),
+('2017-11-18 21:19:53', 'marina', 1, 363),
+('2017-11-18 21:19:53', 'marina', 1, 458),
+('2017-11-18 21:19:54', 'marina', 1, 1207),
+('2017-11-18 21:19:54', 'marina', 1, 1520),
+('2017-11-18 21:19:55', 'marina', 1, 2187),
+('2017-11-18 21:19:55', 'marina', 1, 2787),
+('2017-11-18 21:19:55', 'marina', 1, 3125),
+('2017-11-18 21:19:55', 'marina', 1, 6834),
+('2017-11-18 21:19:55', 'marina', 1, 6848),
+('2017-11-18 21:19:55', 'marina', 1, 7369),
+('2017-11-18 21:19:56', 'marina', 1, 7710),
+('2017-11-18 21:19:56', 'marina', 1, 7954),
+('2017-11-18 21:19:56', 'marina', 1, 8068),
+('2017-11-18 21:19:56', 'marina', 1, 8099),
+('2017-11-18 21:19:57', 'marina', 1, 8105),
+('2017-11-18 21:19:57', 'marina', 1, 8273),
+('2017-11-18 21:19:57', 'marina', 1, 8696),
+('2017-11-18 21:19:57', 'marina', 1, 9270),
+('2017-11-18 21:19:57', 'marina', 1, 16064),
+('2017-11-18 21:19:57', 'marina', 1, 16415),
+('2017-11-18 21:20:10', 'jurong', 1, 2411),
+('2017-11-18 21:20:10', 'jurong', 1, 2726),
+('2017-11-18 21:20:11', 'jurong', 1, 2802),
+('2017-11-18 21:20:12', 'jurong', 1, 2977),
+('2017-11-18 21:20:12', 'jurong', 1, 2987),
+('2017-11-18 21:20:13', 'jurong', 1, 3221),
+('2017-11-18 21:20:13', 'jurong', 1, 3264),
+('2017-11-18 21:20:14', 'jurong', 1, 5652),
+('2017-11-18 21:20:14', 'jurong', 1, 5728),
+('2017-11-18 21:20:15', 'jurong', 1, 5740),
+('2017-11-18 21:20:15', 'jurong', 1, 9192),
+('2017-11-18 21:20:15', 'jurong', 1, 9196),
+('2017-11-18 21:20:16', 'jurong', 1, 9347),
+('2017-11-18 21:20:16', 'jurong', 1, 9463),
+('2017-11-18 21:20:17', 'jurong', 1, 9512),
+('2017-11-18 21:20:30', 'park', 1, 3),
+('2017-11-18 21:20:30', 'park', 1, 13),
+('2017-11-18 21:20:31', 'park', 1, 119),
+('2017-11-18 21:20:31', 'park', 1, 366),
+('2017-11-18 21:20:32', 'park', 1, 600),
+('2017-11-18 21:20:32', 'park', 1, 638),
+('2017-11-18 21:20:33', 'park', 1, 1001),
+('2017-11-18 21:20:33', 'park', 1, 1094),
+('2017-11-18 21:20:34', 'park', 1, 1276),
+('2017-11-18 21:20:34', 'park', 1, 1692),
+('2017-11-18 21:20:35', 'park', 1, 2019),
+('2017-11-18 21:20:35', 'park', 1, 2206),
+('2017-11-18 21:20:35', 'park', 1, 2458),
+('2017-11-18 21:20:36', 'park', 1, 2578),
+('2017-11-18 21:20:37', 'park', 1, 2726),
+('2017-11-18 21:20:37', 'park', 1, 3462),
+('2017-11-18 21:20:38', 'park', 1, 3857),
+('2017-11-18 21:20:38', 'park', 1, 4244),
+('2017-11-18 21:20:38', 'park', 1, 4405),
+('2017-11-18 21:20:39', 'park', 1, 4432),
+('2017-11-18 21:20:39', 'park', 1, 4450),
+('2017-11-18 21:20:39', 'park', 1, 4763),
+('2017-11-18 21:20:40', 'park', 1, 6433),
+('2017-11-18 21:20:40', 'park', 1, 6888),
+('2017-11-18 21:20:41', 'park', 1, 7460),
+('2017-11-18 21:20:41', 'park', 1, 7653),
+('2017-11-18 21:20:42', 'park', 1, 8046),
+('2017-11-18 21:20:42', 'park', 1, 8359),
+('2017-11-18 21:20:42', 'park', 1, 8576),
+('2017-11-18 21:20:43', 'park', 1, 8796),
+('2017-11-18 21:20:43', 'park', 1, 9162),
+('2017-11-18 21:20:43', 'park', 1, 9450),
+('2017-11-18 21:20:44', 'park', 1, 9559),
+('2017-11-18 21:20:44', 'park', 1, 9717),
+('2017-11-18 21:20:44', 'park', 1, 9909),
+('2017-11-18 21:20:45', 'park', 1, 10142),
+('2017-11-18 21:20:45', 'park', 1, 10485),
+('2017-11-18 21:20:46', 'park', 1, 11029),
+('2017-11-18 21:20:46', 'park', 1, 11357),
+('2017-11-18 21:20:47', 'park', 1, 14262),
+('2017-11-18 21:21:13', 'marina', 1, 12),
+('2017-11-18 21:21:14', 'marina', 1, 266),
+('2017-11-18 21:21:14', 'marina', 1, 363),
+('2017-11-18 21:21:15', 'marina', 1, 458),
+('2017-11-18 21:21:15', 'marina', 1, 1207),
+('2017-11-18 21:21:16', 'marina', 1, 1520),
+('2017-11-18 21:21:16', 'marina', 1, 2187),
+('2017-11-18 21:21:17', 'marina', 1, 2787),
+('2017-11-18 21:21:17', 'marina', 1, 3125),
+('2017-11-18 21:21:17', 'marina', 1, 6834),
+('2017-11-18 21:21:17', 'marina', 1, 6848),
+('2017-11-18 21:21:18', 'marina', 1, 7369),
+('2017-11-18 21:21:18', 'marina', 1, 7710),
+('2017-11-18 21:21:18', 'marina', 1, 7954),
+('2017-11-18 21:21:19', 'marina', 1, 8068),
+('2017-11-18 21:21:19', 'marina', 1, 8099),
+('2017-11-18 21:21:19', 'marina', 1, 8105),
+('2017-11-18 21:21:19', 'marina', 1, 8273),
+('2017-11-18 21:21:20', 'marina', 1, 8696),
+('2017-11-18 21:21:20', 'marina', 1, 9270),
+('2017-11-18 21:21:20', 'marina', 1, 16064),
+('2017-11-18 21:21:21', 'marina', 1, 16415),
+('2017-11-18 21:43:52', 'marina', 1, 12),
+('2017-11-18 21:43:53', 'marina', 1, 266),
+('2017-11-18 21:43:53', 'marina', 1, 363),
+('2017-11-18 21:43:54', 'marina', 1, 458),
+('2017-11-18 21:43:54', 'marina', 1, 1207),
+('2017-11-18 21:43:55', 'marina', 1, 1520),
+('2017-11-18 21:43:56', 'marina', 1, 2187),
+('2017-11-18 21:43:56', 'marina', 1, 2787),
+('2017-11-18 21:43:57', 'marina', 1, 3125),
+('2017-11-18 21:43:57', 'marina', 1, 6834),
+('2017-11-18 21:43:58', 'marina', 1, 6848),
+('2017-11-18 21:43:58', 'marina', 1, 7369),
+('2017-11-18 21:43:58', 'marina', 1, 7710),
+('2017-11-18 21:43:58', 'marina', 1, 7954),
+('2017-11-18 21:43:59', 'marina', 1, 8068),
+('2017-11-18 21:43:59', 'marina', 1, 8099),
+('2017-11-18 21:44:00', 'marina', 1, 8105),
+('2017-11-18 21:44:00', 'marina', 1, 8273),
+('2017-11-18 21:44:01', 'marina', 1, 8696),
+('2017-11-18 21:44:01', 'marina', 1, 9270),
+('2017-11-18 21:44:02', 'marina', 1, 16064),
+('2017-11-18 21:44:02', 'marina', 1, 16415);
 
 -- --------------------------------------------------------
 
@@ -23528,6 +23313,13 @@ CREATE TABLE `foodsearchold` (
 CREATE TABLE `nonadmin` (
   `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `nonadmin`
+--
+
+INSERT INTO `nonadmin` (`userId`) VALUES
+(8);
 
 -- --------------------------------------------------------
 
@@ -23589,7 +23381,9 @@ INSERT INTO `user` (`userId`, `firstName`, `lastName`, `email`, `password`, `has
 (3, 'Abel', 'Lim ', 'melvintan94@gmail.com', '$2y$10$jOoqxZul4gMP1eQlXhDTaeHTMKi7wum82fXJOlP5KFLXeQwZDZg7O', '', 0),
 (4, 's', 's', 'magnificentbluez@hotmail.com', '$2y$10$EjVEg0TAMJjouuPZ54H22efNbqDmZXrMr7l3MgQE/ORhPSJRnCd2m', '6766aa2750c19aad2fa1b32f36ed4aee', 1),
 (5, 'Peter', 'Tan', 'jtysjtys@gmail.com', '$2y$10$O6pe9D8hXwV24dIaz4rxJO4sGrNFai9DFAHyvjYusxMGWDeMRXhOO', 'd14220ee66aeec73c49038385428ec4c', 1),
-(6, 'clement', 'toh ', 'ctjsctjs@gmail.com', '$2y$10$g8tsZj/nLeUY8MOQuqpXDeBfNdAyYzcMbx8QZ2KdDJ8CX/n6MgI.6', '', 0);
+(6, 'clement', 'toh ', 'ctjsctjs@gmail.com', '$2y$10$g8tsZj/nLeUY8MOQuqpXDeBfNdAyYzcMbx8QZ2KdDJ8CX/n6MgI.6', '', 0),
+(7, 'jeremt', 'te ', 'a@g.co', '$2y$10$fas3WRCOXNEP/J96aPt8Nexrl.aP.CvB7/oQ50./tea2LokJHxqNy', '', 0),
+(8, 'jeremyt', 'fdfsdf', 'jeremyteh8@gmail.com', '$2y$10$pBmfnaJpqfapobxGP9vMkuooHTff1gbVyq4jojWbZkP2Jkk50jOSO', 'ebd9629fc3ae5e9f6611e2ee05a31cef', 1);
 
 --
 -- Indexes for dumped tables
@@ -23608,12 +23402,12 @@ ALTER TABLE `carpark`
   ADD PRIMARY KEY (`carparkId`);
 
 --
--- Indexes for table `carparksearchold`
+-- Indexes for table `carparksearch`
 --
-ALTER TABLE `carparksearchold`
-  ADD PRIMARY KEY (`datetimeSearch`),
-  ADD KEY `fkUserCarparkId` (`userId`,`carparkId`),
-  ADD KEY `carparksearch_ibfk_2` (`carparkId`);
+ALTER TABLE `carparksearch`
+  ADD PRIMARY KEY (`userId`,`carparkId`,`dateTimeSearch`),
+  ADD KEY `userId` (`userId`),
+  ADD KEY `carparkId` (`carparkId`);
 
 --
 -- Indexes for table `favouritecarpark`
@@ -23642,11 +23436,11 @@ ALTER TABLE `foodestablishment`
   ADD PRIMARY KEY (`foodEstablishmentId`);
 
 --
--- Indexes for table `foodsearchold`
+-- Indexes for table `foodsearch`
 --
-ALTER TABLE `foodsearchold`
-  ADD PRIMARY KEY (`datetimeSearch`),
-  ADD KEY `fkUserFoodEstablishmentId` (`userId`,`foodEstablishmentId`),
+ALTER TABLE `foodsearch`
+  ADD PRIMARY KEY (`dateTimeSearch`,`userId`,`foodEstablishmentId`),
+  ADD KEY `userId` (`userId`),
   ADD KEY `foodEstablishmentId` (`foodEstablishmentId`);
 
 --
@@ -23682,7 +23476,7 @@ ALTER TABLE `carpark`
 -- AUTO_INCREMENT for table `favouritecarpark`
 --
 ALTER TABLE `favouritecarpark`
-  MODIFY `favCarparkID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `favCarparkID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `favouritefood`
 --
@@ -23707,7 +23501,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --
@@ -23719,11 +23513,11 @@ ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `carparksearchold`
+-- Constraints for table `carparksearch`
 --
-ALTER TABLE `carparksearchold`
-  ADD CONSTRAINT `carparksearchold_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `carparksearchold_ibfk_2` FOREIGN KEY (`carparkId`) REFERENCES `carpark` (`carparkId`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `carparksearch`
+  ADD CONSTRAINT `carparksearch_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`),
+  ADD CONSTRAINT `carparksearch_ibfk_2` FOREIGN KEY (`carparkId`) REFERENCES `carpark` (`carparkId`);
 
 --
 -- Constraints for table `feedback`
@@ -23733,11 +23527,11 @@ ALTER TABLE `feedback`
   ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`carparkId`) REFERENCES `carpark` (`carparkId`);
 
 --
--- Constraints for table `foodsearchold`
+-- Constraints for table `foodsearch`
 --
-ALTER TABLE `foodsearchold`
-  ADD CONSTRAINT `foodsearchold_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`) ON DELETE NO ACTION,
-  ADD CONSTRAINT `foodsearchold_ibfk_2` FOREIGN KEY (`foodEstablishmentId`) REFERENCES `foodestablishment` (`foodEstablishmentId`) ON DELETE NO ACTION;
+ALTER TABLE `foodsearch`
+  ADD CONSTRAINT `foodsearch_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`),
+  ADD CONSTRAINT `foodsearch_ibfk_2` FOREIGN KEY (`foodEstablishmentId`) REFERENCES `foodestablishment` (`foodEstablishmentId`);
 
 --
 -- Constraints for table `nonadmin`
@@ -23751,7 +23545,6 @@ ALTER TABLE `nonadmin`
 ALTER TABLE `review`
   ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`) ON DELETE CASCADE,
   ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`foodEstablishmentId`) REFERENCES `foodestablishment` (`foodEstablishmentId`) ON DELETE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

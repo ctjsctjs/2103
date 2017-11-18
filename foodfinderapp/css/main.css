@@ -296,6 +296,25 @@ button:focus, input:focus {outline:0 !important;}
   transition: 300ms ease;
 }
 
+.delete-carpark{
+    cursor: pointer;
+  position: absolute;
+  font-size:24px;
+  color:white;
+  right:15px;
+  top:5px;
+  background-color:transparent;
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+    
+}
+
+.delete-carpark:hover{
+  color:#ff7c7c;
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+}
+
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }

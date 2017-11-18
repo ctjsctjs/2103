@@ -103,10 +103,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		// hash the password
 		$hashedPassword = password_hash($passwordConfirm, PASSWORD_DEFAULT);
 
-
 		$insertUser = "INSERT INTO user(firstName, lastName, email, password)VALUES('$firstName', '$lastName ', '$email', '$hashedPassword')";
-
 		mysqli_query($conn, $insertUser) or die(mysqli_connect_error());
+
+		$selectUser = "SELECT userId FROM user WHERE firstName = '$firstName' AND lastName = '$lastName'";
+        $result = mysqli_query($conn, $selectUser) or die(mysqli_connect_error());
+        $resultCheck = mysqli_num_rows($result);
+
+		if($_POST['refCode'] == 2103) {
+			if($resultCheck == 1) {
+				while($row = mysqli_fetch_assoc($result)) {
+	        		$insertWebAdmin = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'website admin')";
+	        		mysqli_query($conn, $insertWebAdmin) or die(mysqli_connect_error());
+	        		include_once("phpNonAdminAccountActivationMailer.php");
+	        	}
+			}
+		}
+
+
 		$_POST['firstName'] = '';
 		$_POST['lastName'] = '';
 		$_POST['email'] = '';

@@ -22,6 +22,30 @@ include_once 'includes/nav_index.php';
         <button type ="submit" class="main-button"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
     </form>
+    <?php if(isset($_SESSION['ID'])) {
+        
+        $getTermSearches = "SELECT termSearch FROM foodSearch WHERE userId = ".$_SESSION['ID']." ORDER BY datetimeSearch DESC";
+        $result = mysqli_query($conn,  $getTermSearches) or die(mysqli_connect_error());
+        
+        $count = 0;
+        $recentSearches = "";
+        
+        if (mysqli_num_rows($result) > 0) {
+            echo "<p>You've recently searched for: </p>";
+            while(($row = mysqli_fetch_assoc($result)) and ($count != 3)) {
+                if($recentSearches == "") {
+                    echo "<form action='resultsPage.php' method='POST'><input type='hidden' name='search' class='form-control' value='".$row['termSearch']."'><button class='recentSearchesButton' type='submit'>".$row['termSearch']."</button></form>";
+                    $recentSearches = $row['termSearch'];
+                    $count++;
+                }else if($recentSearches != $row['termSearch']) {
+                   echo "<form action='resultsPage.php' method='POST'><input type='hidden' name='search' class='form-control' value='".$row['termSearch']."'><button class='recentSearchesButton' type='submit'>".$row['termSearch']."</button></form>";
+                    $recentSearches = $row['termSearch'];
+                    $count++;
+                }
+            }
+        }
+    }
+    ?>
   </div>
 </section>
 

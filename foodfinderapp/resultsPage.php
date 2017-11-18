@@ -1,11 +1,13 @@
 <?php include_once 'includes/header.php' ?>
 
 <?php
-if(isset($_SESSION['FIRSTNAME']))
-include_once 'includes/nav_user.php';
-else
-include_once 'includes/nav_index.php';
-
+  if(isset($_SESSION['FIRSTNAME']))
+    include_once 'includes/nav_user.php';
+  else
+    include_once 'includes/nav_index.php';
+  
+   date_default_timezone_set("Asia/Singapore");
+    $datetime = date('Y-m-d H:i:s');
 ?>
 <section class="container-searchbar">
   <div class="container-responsive">
@@ -41,6 +43,19 @@ include_once 'includes/nav_index.php';
         if (mysqli_num_rows($result) > 0) {
           echo '<ul class="load" id="res-food-cont">';
           while($row = mysqli_fetch_assoc($result)) {
+
+            $userId = $_SESSION['ID'];
+            $foodId = $row['foodEstablishmentId'];
+            $term = $_POST['search'];
+            date_default_timezone_set("Asia/Singapore");
+            $datetime = date('Y-m-d H:i:s');
+
+            if(isset($_SESSION['ID'])) {
+
+              $insertFoodSearch = "INSERT INTO foodsearch(userId, foodEstablishmentId, termSearch, datetimeSearch)VALUES('$userId', '$foodId', '$term', '$datetime')";
+
+              mysqli_query($conn, $insertFoodSearch) or die(mysqli_connect_error());
+            }
 
             /*EACH FOOD INSTANCE*/
             echo '<li class="res-row-food">'
@@ -94,13 +109,17 @@ include_once 'includes/nav_index.php';
 
           while($row1 = mysqli_fetch_assoc($result1)) {
 
-            $term = $_POST['search'];
             $userId = $_SESSION['ID'];
-            $carparkId1 = $row1['carparkId'];
+            $carparkId = $row1['carparkId'];
+            $term = $_POST['search'];
+            date_default_timezone_set("Asia/Singapore");
+            $datetime = date('Y-m-d H:i:s');
 
-            if(isset($_SESSION['FIRSTNAME'])) {
-              $insertCarparkSearch = "INSERT INTO carparksearch(termSearch, userId, carparkId)VALUES('$term', '$userId', ' $carparkId1')";
-              mysqli_query($conn, $insertCarparkSearch) or die(mysqli_connect_error());
+            if(isset($_SESSION['ID'])) {
+
+              $insertFoodSearch = "INSERT INTO carparksearch(userId, carparkId, termSearch, datetimeSearch)VALUES('$userId', '$carparkId', '$term', '$datetime')";
+
+              mysqli_query($conn, $insertFoodSearch) or die(mysqli_connect_error());
             }
 
             $lots = getLots($row1, $datamallKey); //Get number of lots available
