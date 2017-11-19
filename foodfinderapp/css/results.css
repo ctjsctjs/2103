@@ -20,6 +20,10 @@
   text-align: center;
 }
 
+#res-carpark-cont, #res-food-cont{
+  overflow-x: auto;
+}
+
 .res-single{
   margin-top:8px;
 }
@@ -219,10 +223,6 @@
 .res-dist{
   color: #888;
   font-size:12px;
-}
-
-#res-carpark-cont{
-  display:none;
 }
 
 #res-allFood{

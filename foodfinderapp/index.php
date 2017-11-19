@@ -37,14 +37,14 @@ if(isset($_GET['message'])){
         $recentSearches = "";
 
         if (mysqli_num_rows($result) > 0) {
-            echo "<p>You've recently searched for: </p>";
+            echo "<span class='recent-search'>Recent searches: </span>";
             while(($row = mysqli_fetch_assoc($result)) and ($count != 3)) {
                 if($recentSearches == "") {
-                    echo "<form action='resultsPage.php' method='POST'><input type='hidden' name='search' class='form-control' value='".$row['termSearch']."'><button class='recentSearchesButton' type='submit'>".$row['termSearch']."</button></form>";
+                    echo "<form class='recent-form' action='resultsPage.php' method='POST'><input type='hidden' name='search' class='form-control' value='".$row['termSearch']."'><button class='recentSearchesButton' type='submit'>".$row['termSearch']."</button></form>";
                     $recentSearches = $row['termSearch'];
                     $count++;
                 }else if($recentSearches != $row['termSearch']) {
-                   echo "<form action='resultsPage.php' method='POST'><input type='hidden' name='search' class='form-control' value='".$row['termSearch']."'><button class='recentSearchesButton' type='submit'>".$row['termSearch']."</button></form>";
+                   echo "<form class='recent-form' action='resultsPage.php' method='POST'><input type='hidden' name='search' class='form-control' value='".$row['termSearch']."'><button class='recentSearchesButton' type='submit'>".$row['termSearch']."</button></form>";
                     $recentSearches = $row['termSearch'];
                     $count++;
                 }

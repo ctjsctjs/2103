@@ -44,14 +44,7 @@
           echo "<p hidden id='foodCounts'>" . mysqli_num_rows($result) . "</p>";
           $currentFoodPage = 1;
           $maxFoodPage = ceil(mysqli_num_rows($result) / 24);
-          echo "<div class='page-row'>";
-          echo "<a onclick='prevFoodPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
-          echo "<span class='inline-text'>Displaying page&nbsp</span>";
-          echo "<span class='inline-text' id='foodCurrentPage'>" . $currentFoodPage . "</span>";
-          echo "<span class='inline-text'>&nbsp of &nbsp</span>";
-          echo "<span class='inline-text' id='foodMaxPage'>" . $maxFoodPage . "</span>";
-          echo "<a onclick='nextFoodPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
-          echo "</div>";
+
           echo '<ul class="load" id="res-food-cont">';
           while($row = mysqli_fetch_assoc($result)) {
 
@@ -69,8 +62,6 @@
             }
 
             /*EACH FOOD INSTANCE*/
-
-
             #SQL statement to find all carpark within 500m
             $locationVector = getLocation($row['postalcode'], $googleKey); //Get Coords
             $dist = "( 6371 * acos( cos( radians(". $locationVector[0] .")) * cos( radians( latitude )) * cos( radians( longitude ) - radians(". $locationVector[1] .")) + sin(radians(". $locationVector[0] .")) * sin(radians(latitude))))";
@@ -99,6 +90,13 @@
             echo "</li>";
           }
           echo '</ul>';
+          echo "<div class='page-row label-food load'>";
+          echo "<a onclick='prevFoodPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
+          echo "<span class='inline-text' id='foodCurrentPage'>" . $currentFoodPage . "</span>";
+          echo "<span class='inline-text'>&nbsp of &nbsp</span>";
+          echo "<span class='inline-text' id='foodMaxPage'>" . $maxFoodPage . "</span>";
+          echo "<a onclick='nextFoodPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
+          echo "</div>";
         }
       }
 
@@ -113,15 +111,8 @@
           echo "<p hidden id='carparkCount'>" . mysqli_num_rows($result1) . "</p>";
           $currentCarparkPage = 1;
           $maxCarparkPage = ceil(mysqli_num_rows($result1) / 3);
-          echo "<div class='page-row'>";
-          echo "<a onclick='prevCarparkPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
-          echo "<span class='inline-text'>Displaying page&nbsp</span>";
-          echo "<span class='inline-text' id='carparkCurrentPage'>" . $currentCarparkPage . "</span>";
-          echo "<span class='inline-text'>&nbsp of &nbsp</span>";
-          echo "<span class='inline-text' id='carparkMaxPage'>" . $maxCarparkPage . "</span>";
-          echo "<a onclick='nextCarparkPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
-          echo "</div>";
-          echo '<ul id="res-carpark-cont">';
+
+          echo '<ul id="res-carpark-cont" style="display:none;">';
           while($row1 = mysqli_fetch_assoc($result1)) {
 
             $userId = $_SESSION['ID'];
@@ -142,6 +133,13 @@
 
           }
           echo '</ul>';
+          echo "<div class='page-row label-carpark' style='none'>";
+          echo "<a onclick='prevCarparkPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
+          echo "<span class='inline-text' id='carparkCurrentPage'>" . $currentCarparkPage . "</span>";
+          echo "<span class='inline-text'>&nbsp of &nbsp</span>";
+          echo "<span class='inline-text' id='carparkMaxPage'>" . $maxCarparkPage . "</span>";
+          echo "<a onclick='nextCarparkPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
+          echo "</div>";
         }
         else {
           echo "<span class='empty-result label-carpark'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Results are found. Please try another keyword.</span>";
@@ -160,5 +158,7 @@ var cpArray = <?php echo json_encode($cpResults);?>;
 </script>
 <script type="text/javascript" src="js/lot-color.js"></script>
 <script type="text/javascript" src="js/resultsPage.js"></script>
+<script type="text/javascript" src="js/loader.js"></script>
+
 <script>initialFoodLoad();</script>
 <script>initialCarparkLoad();</script>

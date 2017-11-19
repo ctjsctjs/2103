@@ -74,6 +74,31 @@
   -webkit-transition: border linear 0.2 s;
 }
 
+.recent-search{
+  margin-top:20px;
+  font-size:15px;
+  color: #888;
+  display:inline-block;
+}
+
+.recent-form{
+  display:inline-block;
+}
+
+.recentSearchesButton{
+  cursor: pointer;
+  display:inline-block;
+  background-color: #ff7c7c;
+  padding:5px 15px;
+  color:white;
+  margin-left: 4px;
+  border-radius: 2px;
+}
+
+.recentSearchesButton:hover{
+  background-color: #ff5555;
+}
+
 .container-news{
   position:relative;
   width: 100%;

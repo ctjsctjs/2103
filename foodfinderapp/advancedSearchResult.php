@@ -92,7 +92,6 @@ if (isset($_SESSION['FIRSTNAME'])) {
               echo "</div>";
               echo "<div class='page-row'>";
               echo "<a onclick='prevPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
-              echo "<span class='inline-text'>Displaying page&nbsp</span>";
               echo "<span class='inline-text' id='resultsCurrentPage'>" . $currentPage . "</span>";
               echo "<span class='inline-text'>&nbsp of &nbsp</span>";
               echo "<span class='inline-text' id='resultsMaxPage'>" . $pageCount . "</span>";
@@ -110,6 +109,8 @@ if (isset($_SESSION['FIRSTNAME'])) {
     <?php include_once 'includes/footer_main.php' ?>
     <script>var validArray = <?php echo json_encode($storedResult);?>;</script>
     <script src='js/advanceResultJS.js'></script>
+    <script type="text/javascript" src="js/lot-color.js"></script>
+
     <script>
     initialLoad();
     </script>

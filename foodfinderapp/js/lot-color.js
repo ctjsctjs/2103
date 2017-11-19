@@ -1,4 +1,8 @@
 $( document ).ready(function() {
+  applyLotColor();
+});
+
+function applyLotColor (){
   $('.res-lots').each(function () {
     if ($(this).text() >= 30) {
       $(this).addClass("res-lots-green");
@@ -11,4 +15,4 @@ $( document ).ready(function() {
       $(this).parent().addClass("res-block-red");
     }
   });
-});
+}

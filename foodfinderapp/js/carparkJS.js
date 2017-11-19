@@ -46,7 +46,7 @@ function initialLoad(){
           + "<div class='res-food'>"
           + "<a class='results-header hide-overflow' href=carpark.php?carparkId=" + cpArray[i][0] + ">" + location + "</a>"
           + "<span class='res-food-subheader'>Lots Available</span>"
-          + "<a href=carpark.php?carparkId="  + cpArray[i][0] +  "class='res-blocks'>"
+          + "<a href='carpark.php?carparkId="  + cpArray[i][0] +  "' class='res-blocks'>"
           + "<span class='res-lots'>" + lots + "</span>"
           + "<span class='res-name res-single hide-overflow'>" + location + "</span>"
           + "</a>"
@@ -65,7 +65,7 @@ function nextPage(){
         var endResult = currentPage;
         listResult(startResult,endResult);
     }
-
+    applyLotColor();
 }
 
 function prevPage(){
@@ -77,6 +77,7 @@ function prevPage(){
         var startResult = currentPage - 1;
         listResult(startResult,endResult);
     }
+    applyLotColor();
 }
 
 function listResult(x,y){
@@ -99,7 +100,7 @@ function listResult(x,y){
         + "<div class='res-food'>"
         + "<a class='results-header hide-overflow' href=carpark.php?carparkId=" + cpArray[i][0] + ">" + location + "</a>"
         + "<span class='res-food-subheader'>Lots Available</span>"
-        + "<a href=carpark.php?carparkId="  + cpArray[i][0] +  "class='res-blocks'>"
+        + "<a href='carpark.php?carparkId="  + cpArray[i][0] +  "' class='res-blocks'>"
         + "<span class='res-lots'>" + lots + "</span>"
         + "<span class='res-name res-single hide-overflow'>" + location + "</span>"
         + "</a>"

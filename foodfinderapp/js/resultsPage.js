@@ -1,8 +1,3 @@
-$( document ).ready(function() {
-  $('.load').show();
-  $('.loader').hide();
-});
-
 $('#toggle-res-carpark').click(function() {
   $(this).addClass("active");
   $('#toggle-res-food').removeClass("active");
@@ -42,7 +37,7 @@ function initialFoodLoad(){
             + "<a class='results-header hide-overflow' href='restaurant.php?foodEstablishmentId=" + foodArray[i].foodEstablishmentId + "'>" + foodArray[i].name + "</a>"
             + "<span class='res-food-subheader'>Nearest Carpark</span>";
         if (foodArray[i].cpStatus == true){
-            document.getElementById("res-food-" + i).innerHTML += "<a href=carpark.php?carparkId=" + foodArray[i].carparkId + " class='res-blocks'>"
+            document.getElementById("res-food-" + i).getElementsByClassName("res-food")[0].innerHTML += "<a href='carpark.php?carparkId=" + foodArray[i].carparkId + "' class='res-blocks'>"
                 + "<span class='res-lots'>" + foodArray[i].lots + "</span>"
                 + "<span class='res-name hide-overflow'>" + foodArray[i].development + "</span>"
                 + "<span class='res-dist'>" + (foodArray[i].distance * 1000).toFixed(2) + "m</span>"
@@ -50,7 +45,7 @@ function initialFoodLoad(){
         } else {
             document.getElementById("res-food-" + i).innerHTML += "<span class='res-empty'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Carparks Nearby</span>";
         }
-        document.getElementById("res-food-" + i).innerHTML += "<a class='res-more' href='restaurant.php?foodEstablishmentId=" + foodArray[i].foodEstablishmentId + "'>View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>";
+        document.getElementById("res-food-" + i).innerHTML += "</div><a class='res-more' href='restaurant.php?foodEstablishmentId=" + foodArray[i].foodEstablishmentId + "'>View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></li>";
     }
   }
 }
@@ -65,6 +60,7 @@ function nextFoodPage(){
         var endResult = currentPage;
         listFoodResult(startResult,endResult);
     }
+    applyLotColor();
 }
 
 function prevFoodPage(){
@@ -76,6 +72,7 @@ function prevFoodPage(){
         var startResult = currentPage - 1;
         listFoodResult(startResult,endResult);
     }
+    applyLotColor();
 }
 
 function listFoodResult(x,y){
@@ -95,15 +92,15 @@ function listFoodResult(x,y){
             + "<a class='results-header hide-overflow' href='restaurant.php?foodEstablishmentId=" + foodArray[i].foodEstablishmentId + "'>" + foodArray[i].name + "</a>"
             + "<span class='res-food-subheader'>Nearest Carpark</span>";
         if (foodArray[i].cpStatus == true){
-            document.getElementById("res-food-" + i).innerHTML += "<a href=carpark.php?carparkId=" + foodArray[i].carparkId + " class='res-blocks'>"
+            document.getElementById("res-food-" + i).getElementsByClassName("res-food")[0].innerHTML += "<a href='carpark.php?carparkId=" + foodArray[i].carparkId + "' class='res-blocks'>"
                 + "<span class='res-lots'>" + foodArray[i].lots + "</span>"
                 + "<span class='res-name hide-overflow'>" + foodArray[i].development + "</span>"
                 + "<span class='res-dist'>" + (foodArray[i].distance * 1000).toFixed(2) + "m</span>"
-                + "</a>";
+                + "</a></div>";
         } else {
             document.getElementById("res-food-" + i).innerHTML += "<span class='res-empty'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Carparks Nearby</span>";
         }
-        document.getElementById("res-food-" + i).innerHTML += "<a class='res-more' href='restaurant.php?foodEstablishmentId=" + foodArray[i].foodEstablishmentId + "'>View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>";
+        document.getElementById("res-food-" + i).innerHTML += "<a class='res-more' href='restaurant.php?foodEstablishmentId=" + foodArray[i].foodEstablishmentId + "'>View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></li>";
     }
 }
 
@@ -122,7 +119,7 @@ function initialCarparkLoad(){
       + "<div class='res-food'>"
       + "<a class='results-header hide-overflow' href=carpark.php?carparkId=" + cpArray[i].carparkId + ">" + cpArray[i].development + "</a>"
       + "<span class='res-food-subheader'>Lots Available</span>"
-      + "<a href=carpark.php?carparkId=" + cpArray[i].carparkId + " class='res-blocks'>"
+      + "<a href='carpark.php?carparkId=" + cpArray[i].carparkId + "' class='res-blocks'>"
       + "<span class='res-lots'>" + cpArray[i].lots + "</span>"
       + "<span class='res-name res-single hide-overflow'>" + cpArray[i].development + "</span>"
       + "</a>"
@@ -141,6 +138,7 @@ function nextCarparkPage(){
         var endResult = currentPage;
         listCarparkResult(startResult,endResult);
     }
+    applyLotColor();
 }
 
 function prevCarparkPage(){
@@ -152,6 +150,7 @@ function prevCarparkPage(){
         var startResult = currentPage - 1;
         listCarparkResult(startResult,endResult);
     }
+    applyLotColor();
 }
 
 function listCarparkResult(x,y){
@@ -170,7 +169,7 @@ function listCarparkResult(x,y){
       + "<div class='res-food'>"
       + "<a class='results-header hide-overflow' href=carpark.php?carparkId=" + cpArray[i].carparkId + ">" + cpArray[i].development + "</a>"
       + "<span class='res-food-subheader'>Lots Available</span>"
-      + "<a href=carpark.php?carparkId=" + cpArray[i].carparkId + " class='res-blocks'>"
+      + "<a href='carpark.php?carparkId=" + cpArray[i].carparkId + "' class='res-blocks'>"
       + "<span class='res-lots'>" + cpArray[i].lots + "</span>"
       + "<span class='res-name res-single hide-overflow'>" + cpArray[i].development + "</span>"
       + "</a>"

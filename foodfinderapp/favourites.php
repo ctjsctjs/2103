@@ -43,7 +43,7 @@ include_once 'includes/nav_index.php';
 				{
 					$orderID = $_POST['deleteFavorite'];
 					$deleteFoodQuery = "DELETE from favouritefood WHERE favFoodID = ".$orderID;
-                                        
+
 					if ($conn->query($deleteFoodQuery) === TRUE) {
 						echo "<span class='res-deleted load label-food'><i class='fa fa-check' aria-hidden='true'></i> Record deleted successfully</span>";
 					} else {
@@ -54,14 +54,14 @@ include_once 'includes/nav_index.php';
 				{
 					$carparkID = $_POST['deleteCarpark'];
 					$deleteCarparkQuery = "DELETE from favouritecarpark WHERE favcarparkid = ".$carparkID;
-                                        
+
 					if ($conn->query($deleteCarparkQuery) === TRUE) {
 						echo "<span class='res-deleted load label-food'><i class='fa fa-check' aria-hidden='true'></i> Record deleted successfully</span>";
 					} else {
 						echo "Error deleting record: " . $conn->error;
 					}
 				}
-                                
+
 			}
 			echo '<ul class="results-container load" id="res-food-cont">';
 			if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
@@ -120,7 +120,7 @@ include_once 'includes/nav_index.php';
 		<?php
 		$query = "SELECT favouriteCarpark.favCarparkID,favouriteCarpark.carparkId,carpark.carparkId,carpark.development,carpark.area, carpark.image FROM `favouriteCarpark` INNER JOIN carpark on favouriteCarpark.carparkId = carpark.carparkId WHERE favouriteCarpark.userID = ".$_SESSION['ID'];
 		if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
-			echo '<ul id="res-carpark-cont">';
+			echo '<ul id="res-carpark-cont" style="display:none;">';
 			$rowcount = mysqli_num_rows($result);
 			if ($rowcount > 0) {
 				for ($i = 0; $i < $rowcount; $i++) {
@@ -151,9 +151,9 @@ include_once 'includes/nav_index.php';
 			}
 			echo "</ul>";
 		}
-                
-                
-                               
+
+
+
 		?>
 	</div>
 
@@ -171,5 +171,6 @@ include_once 'includes/nav_index.php';
 <section>-->
 
 <?php include_once 'includes/footer_main.php' ?>
+<script type="text/javascript" src="js/loader.js"></script>
 <script type="text/javascript" src="js/resultsPage.js"></script>
 <script type="text/javascript" src="js/lot-color.js"></script>
