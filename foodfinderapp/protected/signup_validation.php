@@ -115,9 +115,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if($resultCheck == 1) {
 				while($row = mysqli_fetch_assoc($result)) {
 	        		$insertWebAdmin = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'website admin')";
-	        		mysqli_query($conn, $insertWebAdmin) or die(mysqli_connect_error());
-	        		include_once("phpNonAdminAccountActivationMailer.php");
+	        		mysqli_query($conn, $insertWebAdmin) or die(mysqli_connect_error());	        		
 	        	}
+	        	include_once("../phpAdminAccountActivationMailer.php");
 			}
 		}
 		// Just some random code for food blogger
@@ -125,9 +125,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if($resultCheck == 1) {
 				while($row = mysqli_fetch_assoc($result)) {
 	        		$insertBlogger = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'food blogger')";
-	        		mysqli_query($conn, $insertBlogger) or die(mysqli_connect_error());
-	        		include_once("phpNonAdminAccountActivationMailer.php");
+	        		mysqli_query($conn, $insertBlogger) or die(mysqli_connect_error());	        		
 	        	}
+	        	include_once("../phpAdminAccountActivationMailer.php");
 			}
 		}
 		else {
@@ -135,8 +135,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				while($row = mysqli_fetch_assoc($result)) {
 	        		$insertNonAdmin = "INSERT INTO nonadmin(userId)VALUES('".$row['userId']."')";
 	        		mysqli_query($conn, $insertNonAdmin) or die(mysqli_connect_error());
-	        		include_once("phpNonAdminAccountActivationMailer.php");
 	        	}
+	        	include_once("../phpNonAdminAccountActivationMailer.php");
 			}
 		}
 
