@@ -53,9 +53,8 @@ if (isset($_SESSION['FIRSTNAME'])) {
       $result = mysqli_query($conn, $sql);
       if ($result) {
         if (mysqli_num_rows($result) > 0) {
-
           echo '<div class="results-container" id="res-food-cont">';
-
+          $storedResult = array();
           while($row = mysqli_fetch_assoc($result)){
             //reset counter for valid carpark and lot;
             $validCarparks = 0;
@@ -83,23 +82,24 @@ if (isset($_SESSION['FIRSTNAME'])) {
                 }
                 //if number of carpark with enough lots meet carpark input
                 if ($validCarparks >= $input_carpark){
-                  echo '<div class="res-row-food res-advanced">';
-                  echo '<div class="res-food-img">';
-                  echo '<img src=http://ctjsctjs.com/'. $row['image'] .'>';
-                  echo '</div>';
-                  echo "<div class='res-food'>";
-                  echo '<a class="results-header hide-overflow" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">' . $row["name"] . '</a>';
-                  echo "<span class='res-food-subheader'>Advanced Results</span>";
-                  echo "<div class='res-blocks'>";
-                  echo "<span class='res-lots'>". $lotCount ."</span>";
-                  echo "<span class='res-name hide-overflow'>Total Available Lots</span>";
-                  echo "<span class='res-dist'>" .$validCarparks. " Valid Carparks</span>";
-                  echo "</div></div>";
-                  echo "<a class='res-more' href='restaurant.php?foodEstablishmentId=".$row['foodEstablishmentId']."'>View more <i class='fa fa-caret-right' aria-hidden='true'></i></a>";
-                  echo "</div>";
+                  $row['lotCount'] = $lotCount;
+                  $row['validCarparks'] = $validCarparks;
+                  array_push($storedResult,$row);
                 }
               }
+              $currentPage = 1;
+              $pageCount = ceil(count($storedResult) / 24);
               echo "</div>";
+              echo "<div class='page-row'>";
+              echo "<a onclick='prevPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
+              echo "<span class='inline-text'>Displaying page&nbsp</span>";
+              echo "<span class='inline-text' id='resultsCurrentPage'>" . $currentPage . "</span>";
+              echo "<span class='inline-text'>&nbsp of &nbsp</span>";
+              echo "<span class='inline-text' id='resultsMaxPage'>" . $pageCount . "</span>";
+              echo "<a onclick='nextPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
+              echo "</div>";
+              echo "<p hidden id='resultsCount'>" . count($storedResult) . "</p>";
+
             }
           }
         }
@@ -108,3 +108,8 @@ if (isset($_SESSION['FIRSTNAME'])) {
       </div>
     </div>
     <?php include_once 'includes/footer_main.php' ?>
+    <script>var validArray = <?php echo json_encode($storedResult);?>;</script>
+    <script src='js/advanceResultJS.js'></script>
+    <script>
+    initialLoad();
+    </script>

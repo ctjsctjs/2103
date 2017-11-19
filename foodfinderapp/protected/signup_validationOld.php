@@ -114,29 +114,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if($_POST['refCode'] == 2103) {
 			if($resultCheck == 1) {
 				while($row = mysqli_fetch_assoc($result)) {
-					$insertWebAdmin = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'website admin')";
-					mysqli_query($conn, $insertWebAdmin) or die(mysqli_connect_error());
-					include_once("phpNonAdminAccountActivationMailer.php");
-				}
+	        		$insertWebAdmin = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'website admin')";
+	        		mysqli_query($conn, $insertWebAdmin) or die(mysqli_connect_error());	        		
+	        	}
+	        	include_once("../phpAdminAccountActivationMailer.php");
 			}
 		}
 		// Just some random code for food blogger
 		else if($_POST['refCode'] == 3012) {
 			if($resultCheck == 1) {
 				while($row = mysqli_fetch_assoc($result)) {
+<<<<<<< HEAD
 					$insertBlogger = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'food blogger')";
 					mysqli_query($conn, $insertBlogger) or die(mysqli_connect_error());
 					include_once("../phpNonAdminAccountActivationMailer.php");
 				}
+=======
+	        		$insertBlogger = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'food blogger')";
+	        		mysqli_query($conn, $insertBlogger) or die(mysqli_connect_error());	        		
+	        	}
+	        	include_once("../phpAdminAccountActivationMailer.php");
+>>>>>>> fbace46f78837267e96e30b606a7f460147a1cf4
 			}
 		}
 		else {
 			if($resultCheck == 1) {
 				while($row = mysqli_fetch_assoc($result)) {
+<<<<<<< HEAD
 					$insertNonAdmin = "INSERT INTO nonadmin(userId)VALUES('".$row['userId']."')";
 					mysqli_query($conn, $insertNonAdmin) or die(mysqli_connect_error());
 					include_once("../phpNonAdminAccountActivationMailer.php");
 				}
+=======
+	        		$insertNonAdmin = "INSERT INTO nonadmin(userId)VALUES('".$row['userId']."')";
+	        		mysqli_query($conn, $insertNonAdmin) or die(mysqli_connect_error());
+	        	}
+	        	include_once("../phpNonAdminAccountActivationMailer.php");
+>>>>>>> fbace46f78837267e96e30b606a7f460147a1cf4
 			}
 		}
 		$_POST['firstName'] = '';

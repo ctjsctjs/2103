@@ -66,9 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $_SESSION['EMAIL'] = $row['email'];
           $_SESSION['PASSWORD'] = $row['password'];
           $_SESSION['ID'] = $row['userId'];
+
+          header("Location: $url");
         }
       }
     }
   }
-  header("Location: $url");
 }
