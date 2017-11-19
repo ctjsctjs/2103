@@ -26,7 +26,6 @@ $mail->WordWrap = 50; // set word wrap
 $mail->IsHTML(true); // set email format to HTML
 $mail->Subject = 'Food Finder App Email Verification';
 
-
 $message = 'Dear '.$firstName.',<br><br>
 
 Thank you for signing up as a vendor with Foodpark!<br><br>

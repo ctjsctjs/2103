@@ -34,25 +34,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $selectUser = "SELECT * FROM user WHERE email = '$email'";
     $result = mysqli_query($conn, $selectUser) or die(mysqli_connect_error());
+    $row = mysqli_fetch_array($result);
     $resultCheck = mysqli_num_rows($result);
 
     if($resultCheck < 1) {
       $url .= '&loginEmail=invalid';
       $_POST['email'] = "";
       $_POST['password'] = "";
-      $valid = false;
     }
 
-    else if($resultCheck['accountActivated']==0) {
+    if($row['accountActivated']==0) {
       $url .= '&loginEmail=notActivated';
       $_POST['email'] = "";
       $_POST['password'] = "";
-      $valid = false;
     }
 
     else {
 
-      if($row = mysqli_fetch_array($result)) {
+      if($row) {
         $hashedPwdCheck = password_verify($password, $row['password']);
         if($hashedPwdCheck == false) {
           $url .= '&loginPw=invalid';
@@ -66,10 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $_SESSION['EMAIL'] = $row['email'];
           $_SESSION['PASSWORD'] = $row['password'];
           $_SESSION['ID'] = $row['userId'];
-
-          header("Location: $url");
         }
       }
     }
   }
+  header("Location: $url");
 }
