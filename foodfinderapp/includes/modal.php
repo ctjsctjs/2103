@@ -105,8 +105,8 @@
             case "empty":
             echo "&#xf06a; Please enter your password.";
             break;
-            case "lengthErr":
-            echo "&#xf06a; Please enter 8 or more characters.";
+            case "validErr":
+            echo "&#xf06a; Please ensure your password is at least 8 characters and alpha-numeric.";
             break;
           }
         }
