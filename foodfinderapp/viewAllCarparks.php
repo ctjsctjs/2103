@@ -32,12 +32,14 @@ if (isset($_SESSION['FIRSTNAME'])) {
         echo "<p hidden id='carparkCounts'>" . $rowcount . "</p>";
         $pageCount = ceil($rowcount / 24);
         $currentPage = 1;
+        echo "<div class='page-row'>";
+        echo "<a onclick='prevPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
         echo "<span class='inline-text'>Displaying page&nbsp</span>";
         echo "<span class='inline-text' id='carparksCurrentPage'>" . $currentPage . "</span>";
         echo "<span class='inline-text'>&nbsp of &nbsp</span>";
-        echo "<span class='inline-text' id='carparksMaxPage'>" . $pageCount . "</span><br/>";
-        echo "<button id='carparkPrev' onclick=prevPage()>Prev</button>";
-        echo "<button id='carparkNext' onclick='nextPage()'>Next</button>";
+        echo "<span class='inline-text' id='carparksMaxPage'>" . $pageCount . "</span>";
+        echo "<a onclick='nextPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
+        echo "</div>";
         if ($rowcount > 0) {
           $datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';
           $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
