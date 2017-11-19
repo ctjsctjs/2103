@@ -106,3 +106,75 @@ function listFoodResult(x,y){
         document.getElementById("res-food-" + i).innerHTML += "<a class='res-more' href='restaurant.php?foodEstablishmentId=" + foodArray[i].foodEstablishmentId + "'>View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>";
     }
 }
+
+function initialCarparkLoad(){
+    var carparkCount = document.getElementById("carparkCount").innerHTML;
+    if (carparkCount > 0 && carparkCount < 3){
+        var endLength = carparkCount;
+    } else if (carparkCount >= 3){
+        var endLength = 3;
+    }
+    for (var i = 0; i < endLength; i++){
+      document.getElementById("res-carpark-cont").innerHTML += "<li class='res-row-food'>"
+      + "<a class='res-food-img' href=carpark.php?carparkId=" + cpArray[i].carparkId + ">"
+      + "<img src=http://ctjsctjs.com/" + cpArray[i].image + ">"
+      + "</a>"
+      + "<div class='res-food'>"
+      + "<a class='results-header hide-overflow' href=carpark.php?carparkId=" + cpArray[i].carparkId + ">" + cpArray[i].development + "</a>"
+      + "<span class='res-food-subheader'>Lots Available</span>"
+      + "<a href=carpark.php?carparkId=" + cpArray[i].carparkId + " class='res-blocks'>"
+      + "<span class='res-lots'>" + cpArray[i].lots + "</span>"
+      + "<span class='res-name res-single hide-overflow'>" + cpArray[i].development + "</span>"
+      + "</a>"
+      + "<a class='res-more' href=carpark.php?carparkId=" + cpArray[i].carparkId + ">View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>"
+      + "</li>";
+    }
+}
+
+function nextCarparkPage(){
+    var currentPage = document.getElementById("carparkCurrentPage").innerHTML;
+    var maxPage = document.getElementById("carparkMaxPage").innerHTML;
+    var startResult = currentPage;
+    if (currentPage < maxPage){
+        currentPage++;
+        document.getElementById("carparkCurrentPage").innerHTML = currentPage;
+        var endResult = currentPage;
+        listFoodResult(startResult,endResult);
+    }
+}
+
+function prevCarparkPage(){
+    var currentPage = document.getElementById("carparkCurrentPage").innerHTML;
+    if (currentPage > 1){
+        currentPage--;
+        var endResult = currentPage;
+        document.getElementById("carparkCurrentPage").innerHTML = currentPage;
+        var startResult = currentPage - 1;
+        listFoodResult(startResult,endResult);
+    }
+}
+
+function listCarparkResult(x,y){
+    var startIndex = x * 3;
+    var endIndex = y * 3;
+    var totalFood = document.getElementById("carparkCount").innerHTML;
+    if (endIndex > totalFood){
+        endIndex = totalFood;
+    }
+    document.getElementById("res-carpark-cont").innerHTML = "";
+    for (var i = startIndex; i < endIndex; i++){
+      document.getElementById("res-carpark-cont").innerHTML += "<li class='res-row-food'>"
+      + "<a class='res-food-img' href=carpark.php?carparkId=" + cpArray[i].carparkId + ">"
+      + "<img src=http://ctjsctjs.com/" + cpArray[i].image + ">"
+      + "</a>"
+      + "<div class='res-food'>"
+      + "<a class='results-header hide-overflow' href=carpark.php?carparkId=" + cpArray[i].carparkId + ">" + cpArray[i].development + "</a>"
+      + "<span class='res-food-subheader'>Lots Available</span>"
+      + "<a href=carpark.php?carparkId=" + cpArray[i].carparkId + " class='res-blocks'>"
+      + "<span class='res-lots'>" + cpArray[i].lots + "</span>"
+      + "<span class='res-name res-single hide-overflow'>" + cpArray[i].development + "</span>"
+      + "</a>"
+      + "<a class='res-more' href=carpark.php?carparkId=" + cpArray[i].carparkId + ">View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>"
+      + "</li>";
+    }
+}

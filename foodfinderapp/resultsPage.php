@@ -44,6 +44,7 @@
           echo "<p hidden id='foodCounts'>" . mysqli_num_rows($result) . "</p>";
           $currentFoodPage = 1;
           $maxFoodPage = ceil(mysqli_num_rows($result) / 24);
+          echo '<ul class="load" id="res-food-cont">';
           echo "<div class='page-row'>";
           echo "<a onclick='prevFoodPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
           echo "<span class='inline-text'>Displaying page&nbsp</span>";
@@ -52,7 +53,6 @@
           echo "<span class='inline-text' id='foodMaxPage'>" . $maxFoodPage . "</span>";
           echo "<a onclick='nextFoodPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
           echo "</div>";
-          echo '<ul class="load" id="res-food-cont">';
           while($row = mysqli_fetch_assoc($result)) {
 
             //$userId = $_SESSION['ID'];
@@ -106,11 +106,20 @@
 
       $sql1 = "SELECT * FROM carpark WHERE area LIKE '%" . $_POST["search"] . "%' OR development LIKE '%" . $_POST["search"] . "%'";
       $result1 = mysqli_query($conn, $sql1) or die(mysqli_connect_error());
+      $cpResults = array();
       if ($result1) {
         if (mysqli_num_rows($result1) > 0) {
           // output data of each row
+          echo "<p hidden id='carparkCount'>" . mysqli_num_rows($result1) . "</p>";
           echo '<ul id="res-carpark-cont">';
-
+          echo "<div class='page-row'>";
+          echo "<a onclick='prevCarparkPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
+          echo "<span class='inline-text'>Displaying page&nbsp</span>";
+          echo "<span class='inline-text' id='carparkCurrentPage'>" . $currentCarparkPage . "</span>";
+          echo "<span class='inline-text'>&nbsp of &nbsp</span>";
+          echo "<span class='inline-text' id='carparkMaxPage'>" . $maxCarparkPage . "</span>";
+          echo "<a onclick='nextCarparkPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
+          echo "</div>";
           while($row1 = mysqli_fetch_assoc($result1)) {
 
             //$userId = $_SESSION['ID'];
@@ -118,7 +127,6 @@
             $term = $_POST['search'];
             date_default_timezone_set("Asia/Singapore");
             $datetime = date('Y-m-d H:i:s');
-
             if(isset($_SESSION['ID'])) {
 
               $insertFoodSearch = "INSERT INTO carparksearch(userId, carparkId, termSearch, datetimeSearch)VALUES('$userId', '$carparkId', '$term', '$datetime')";
@@ -127,20 +135,9 @@
             }
 
             $lots = getLots($row1, $datamallKey); //Get number of lots available
+            $row1['lots'] = $lots;
+            array_push($cpResults,$row1);
 
-            echo '<li class="res-row-food">'
-            .'<a class="res-food-img" href=carpark.php?carparkId='.$row1["carparkId"].'>'
-            .'<img src=http://ctjsctjs.com/'.$row1["image"].'>'
-            .'</a>'
-            ."<div class='res-food'>"
-            .'<a class="results-header hide-overflow" href=carpark.php?carparkId='.$row1["carparkId"].'>' . $row1["development"] . '</a>'
-            ."<span class='res-food-subheader'>Lots Available</span>"
-            .'<a href=carpark.php?carparkId='.$row1["carparkId"].' class="res-blocks">'
-            ."<span class='res-lots'>". $lots ."</span>"
-            ."<span class='res-name res-single hide-overflow'>". $row1["development"] ."</span>"
-            ."</a>"
-            . "<a class='res-more' href=carpark.php?carparkId=".$row1["carparkId"].">View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>"
-            ."</li>";
           }
           echo '</ul>';
         }
@@ -157,7 +154,9 @@
 <?php include_once 'includes/footer_main.php' ?>
 <script>
 var foodArray = <?php echo json_encode($foodResults);?>;
+var cpArray = <?php echo json_encode($cpResults);?>;
 </script>
 <script type="text/javascript" src="js/lot-color.js"></script>
 <script type="text/javascript" src="js/resultsPage.js"></script>
 <script>initialFoodLoad();</script>
+<script>initialCarparkLoad();</script>
