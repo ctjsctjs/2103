@@ -94,6 +94,7 @@ $lots = $carparkJsonResult->{'value'}[$carparkID-1]->{'Lots'};
 					<span class="res-no-review"><?php echo $numofreview?> reviews</span>
 				</div>
 			</div>
+                    <?php   include_once 'includes/viewReviewCarpark_module.php'; ?>
 		</div>
 
 		<div class="res-right-col">
@@ -124,6 +125,7 @@ $lots = $carparkJsonResult->{'value'}[$carparkID-1]->{'Lots'};
 			</div>
 
 			<div class="res-right-mod"><div id="carparkMap"></div></div>
+                        <?php   include_once 'includes/carparkReview_module.php'; ?>
 		</div>
 	</div>
 </div>
