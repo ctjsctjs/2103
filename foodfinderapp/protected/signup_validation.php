@@ -1,14 +1,10 @@
 <?php
-
 // include database connection
 include_once 'databaseconnection.php';
-
 // set a boolean variable to check if the fields have errors and retrun true if no error was detected
 $valid = True;
 $url = '../index.php?';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
 	//=====================  first name validation ==========================
 	// if the first name field is empty
 	if (empty($_POST["firstName"])){
@@ -22,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$_POST["firstName"] = "";
 		$valid = False;
 	}
-
 	//=====================  last name validation ==========================
 	// if the last name field is empty
 	if (empty($_POST["lastName"])){
@@ -36,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$_POST["lastName"] = "";
 		$valid = False;
 	}
-
 	//=====================  email validation ==========================
 	// if the email field is empty
 	if (empty($_POST["email"])){
@@ -63,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			}
 		}
 	}
-
 	//=====================  password validation ==========================
 	// if the password field is empty
 	if (empty($_POST["password"])){
@@ -77,7 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$_POST["password"] = "";
 		$valid = False;
 	}
-
 	//=====================  password confirm validation ==========================
 	// if the confiemed password field is empty
 	if (empty($_POST["passwordConfirm"])){
@@ -91,31 +83,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$_POST["passwordConfirm"] = "";
 		$valid = False;
 	}
-
 	// if there are no errors in the sign up form, it will proceed to insert the user information into the database
 	if($valid==True){
-
 		$firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
 		$lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
 		$email = mysqli_real_escape_string($conn, $_POST['email']);
 		$passwordConfirm = mysqli_real_escape_string($conn, $_POST['passwordConfirm']);
-
 		// hash the password
 		$hashedPassword = password_hash($passwordConfirm, PASSWORD_DEFAULT);
-
 		$insertUser = "INSERT INTO user(firstName, lastName, email, password)VALUES('$firstName', '$lastName ', '$email', '$hashedPassword')";
 		mysqli_query($conn, $insertUser) or die(mysqli_connect_error());
-
 		$selectUser = "SELECT userId FROM user WHERE firstName = '$firstName' AND lastName = '$lastName'";
 		$result = mysqli_query($conn, $selectUser) or die(mysqli_connect_error());
 		$resultCheck = mysqli_num_rows($result);
-
 		// Just some random code for website admin
 		if($_POST['refCode'] == 2103) {
 			if($resultCheck == 1) {
 				while($row = mysqli_fetch_assoc($result)) {
 	        		$insertWebAdmin = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'website admin')";
-	        		mysqli_query($conn, $insertWebAdmin) or die(mysqli_connect_error());	        		
+	        		mysqli_query($conn, $insertWebAdmin) or die(mysqli_connect_error());
 	        	}
 	        	include_once("../phpAdminAccountActivationMailer.php");
 			}
@@ -124,33 +110,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		else if($_POST['refCode'] == 3012) {
 			if($resultCheck == 1) {
 				while($row = mysqli_fetch_assoc($result)) {
-<<<<<<< HEAD
-					$insertBlogger = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'food blogger')";
-					mysqli_query($conn, $insertBlogger) or die(mysqli_connect_error());
-					include_once("../phpNonAdminAccountActivationMailer.php");
-				}
-=======
 	        		$insertBlogger = "INSERT INTO admin(userId, role)VALUES('".$row['userId']."', 'food blogger')";
-	        		mysqli_query($conn, $insertBlogger) or die(mysqli_connect_error());	        		
+	        		mysqli_query($conn, $insertBlogger) or die(mysqli_connect_error());
 	        	}
 	        	include_once("../phpAdminAccountActivationMailer.php");
->>>>>>> fbace46f78837267e96e30b606a7f460147a1cf4
 			}
 		}
 		else {
 			if($resultCheck == 1) {
 				while($row = mysqli_fetch_assoc($result)) {
-<<<<<<< HEAD
-					$insertNonAdmin = "INSERT INTO nonadmin(userId)VALUES('".$row['userId']."')";
-					mysqli_query($conn, $insertNonAdmin) or die(mysqli_connect_error());
-					include_once("../phpNonAdminAccountActivationMailer.php");
-				}
-=======
 	        		$insertNonAdmin = "INSERT INTO nonadmin(userId)VALUES('".$row['userId']."')";
 	        		mysqli_query($conn, $insertNonAdmin) or die(mysqli_connect_error());
 	        	}
 	        	include_once("../phpNonAdminAccountActivationMailer.php");
->>>>>>> fbace46f78837267e96e30b606a7f460147a1cf4
 			}
 		}
 		$_POST['firstName'] = '';
