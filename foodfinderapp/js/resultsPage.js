@@ -139,7 +139,7 @@ function nextCarparkPage(){
         currentPage++;
         document.getElementById("carparkCurrentPage").innerHTML = currentPage;
         var endResult = currentPage;
-        listFoodResult(startResult,endResult);
+        listCarparkResult(startResult,endResult);
     }
 }
 
@@ -150,7 +150,7 @@ function prevCarparkPage(){
         var endResult = currentPage;
         document.getElementById("carparkCurrentPage").innerHTML = currentPage;
         var startResult = currentPage - 1;
-        listFoodResult(startResult,endResult);
+        listCarparkResult(startResult,endResult);
     }
 }
 

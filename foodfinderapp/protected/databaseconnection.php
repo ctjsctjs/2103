@@ -4,7 +4,7 @@
 	$dbUserName = "root";
 	$dbPassword = "";
 	$dbName = "foodfinderapp";
-	$googleKey = 'AIzaSyC6ChGkann86AaOtwsWrt3HbQfusjJMY_Q';
+	$googleKey = 'AIzaSyDbEqIHfTZwLD9cgm9-elubEhOCm7_C3VE';
 	$datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';
 
 	$conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);

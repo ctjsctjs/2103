@@ -44,7 +44,6 @@
           echo "<p hidden id='foodCounts'>" . mysqli_num_rows($result) . "</p>";
           $currentFoodPage = 1;
           $maxFoodPage = ceil(mysqli_num_rows($result) / 24);
-          echo '<ul class="load" id="res-food-cont">';
           echo "<div class='page-row'>";
           echo "<a onclick='prevFoodPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
           echo "<span class='inline-text'>Displaying page&nbsp</span>";
@@ -53,6 +52,7 @@
           echo "<span class='inline-text' id='foodMaxPage'>" . $maxFoodPage . "</span>";
           echo "<a onclick='nextFoodPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
           echo "</div>";
+          echo '<ul class="load" id="res-food-cont">';
           while($row = mysqli_fetch_assoc($result)) {
 
             //$userId = $_SESSION['ID'];
@@ -111,7 +111,8 @@
         if (mysqli_num_rows($result1) > 0) {
           // output data of each row
           echo "<p hidden id='carparkCount'>" . mysqli_num_rows($result1) . "</p>";
-          echo '<ul id="res-carpark-cont">';
+          $currentCarparkPage = 1;
+          $maxCarparkPage = ceil(mysqli_num_rows($result1) / 3);
           echo "<div class='page-row'>";
           echo "<a onclick='prevCarparkPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
           echo "<span class='inline-text'>Displaying page&nbsp</span>";
@@ -120,6 +121,7 @@
           echo "<span class='inline-text' id='carparkMaxPage'>" . $maxCarparkPage . "</span>";
           echo "<a onclick='nextCarparkPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
           echo "</div>";
+          echo '<ul id="res-carpark-cont">';
           while($row1 = mysqli_fetch_assoc($result1)) {
 
             //$userId = $_SESSION['ID'];
