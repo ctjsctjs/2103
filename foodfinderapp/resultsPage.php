@@ -55,7 +55,7 @@
           echo '<ul class="load" id="res-food-cont">';
           while($row = mysqli_fetch_assoc($result)) {
 
-            //$userId = $_SESSION['ID'];
+            $userId = $_SESSION['ID'];
             $foodId = $row['foodEstablishmentId'];
             $term = $_POST['search'];
             date_default_timezone_set("Asia/Singapore");
@@ -113,7 +113,7 @@
 
           while($row1 = mysqli_fetch_assoc($result1)) {
 
-            //$userId = $_SESSION['ID'];
+            $userId = $_SESSION['ID'];
             $carparkId = $row1['carparkId'];
             $term = $_POST['search'];
             date_default_timezone_set("Asia/Singapore");
