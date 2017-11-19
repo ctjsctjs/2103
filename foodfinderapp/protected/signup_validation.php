@@ -107,10 +107,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		mysqli_query($conn, $insertUser) or die(mysqli_connect_error());
 
 		$selectUser = "SELECT userId FROM user WHERE firstName = '$firstName' AND lastName = '$lastName'";
-        $result = mysqli_query($conn, $selectUser) or die(mysqli_connect_error());
-        $resultCheck = mysqli_num_rows($result);
+		$result = mysqli_query($conn, $selectUser) or die(mysqli_connect_error());
+		$resultCheck = mysqli_num_rows($result);
 
-        // Just some random code for website admin
+		// Just some random code for website admin
 		if($_POST['refCode'] == 2103) {
 			if($resultCheck == 1) {
 				while($row = mysqli_fetch_assoc($result)) {
@@ -139,8 +139,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	        	include_once("../phpNonAdminAccountActivationMailer.php");
 			}
 		}
-
-
 		$_POST['firstName'] = '';
 		$_POST['lastName'] = '';
 		$_POST['email'] = '';

@@ -18,7 +18,7 @@ $mail->SMTPAuth = true;
 $mail->Username = "jeremyteh8@gmail.com"; // SMTP username
 $mail->Password = "jtys#2804"; // SMTP password
 $mail->setFrom("jeremyteh8@gmail.com");  //add sender email address.
-$mail->AddAddress("$email"); 
+$mail->AddAddress("$email");
 $mail->WordWrap = 50; // set word wrap
 
 
@@ -26,9 +26,9 @@ $mail->WordWrap = 50; // set word wrap
 $mail->IsHTML(true); // set email format to HTML
 $mail->Subject = 'Food Finder App Email Verification';
 
-        
+
 $message = 'Dear '.$firstName.',<br><br>
-        
+
 Thank you for signing up as a vendor with Foodpark!<br><br>
 
 Congratulations! You have been granted to be an administrator/food blogger with Foodpark!<br>

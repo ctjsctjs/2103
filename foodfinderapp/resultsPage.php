@@ -5,7 +5,7 @@
     include_once 'includes/nav_user.php';
   else
     include_once 'includes/nav_index.php';
-  
+
    date_default_timezone_set("Asia/Singapore");
     $datetime = date('Y-m-d H:i:s');
 ?>
@@ -126,7 +126,7 @@
 
             echo '<li class="res-row-food">'
             .'<a class="res-food-img" href=carpark.php?carparkId='.$row1["carparkId"].'>'
-            .'<src=http://ctjsctjs.com/'.$row1["image"].'>'
+            .'<img src=http://ctjsctjs.com/'.$row1["image"].'>'
             .'</a>'
             ."<div class='res-food'>"
             .'<a class="results-header hide-overflow" href=carpark.php?carparkId='.$row1["carparkId"].'>' . $row1["development"] . '</a>'
