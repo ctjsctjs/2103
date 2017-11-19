@@ -29,6 +29,15 @@ if (isset($_SESSION['FIRSTNAME'])) {
       $query = "SELECT * FROM carpark";
       if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
         $rowcount = mysqli_num_rows($result);
+        echo "<p hidden id='carparkCounts'>" . $rowcount . "</p>";
+        $pageCount = ceil($rowcount / 24);
+        $currentPage = 1;
+        echo "<span class='inline-text'>Displaying page&nbsp</span>";
+        echo "<span class='inline-text' id='carparksCurrentPage'>" . $currentPage . "</span>";
+        echo "<span class='inline-text'>&nbsp of &nbsp</span>";
+        echo "<span class='inline-text' id='carparksMaxPage'>" . $pageCount . "</span><br/>";
+        echo "<button id='carparkPrev' onclick=prevPage()>Prev</button>";
+        echo "<button id='carparkNext' onclick='nextPage()'>Next</button>";
         if ($rowcount > 0) {
           $datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';
           $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
@@ -44,25 +53,10 @@ if (isset($_SESSION['FIRSTNAME'])) {
           $carparkJsonResult = json_decode($carparkJsonResult);
 
           echo '<ul class="results-container" id="res-carpark-cont">';
+          $storedResult = array();
           for ($i = 0; $i < $rowcount; $i++) {
-            $row = mysqli_fetch_array($result, MYSQLI_NUM);
-            $lat = $row[2];
-            $lng = $row[1];
-            $lots = $carparkJsonResult->{'value'}[$row[0]-1]->{'Lots'};
-            $location =  $carparkJsonResult->{'value'}[$row[0]-1]->{'Development'};
-            echo '<li class="res-row-food">'
-            .'<a class="res-food-img" href=carpark.php?carparkId='.$row[0].'>'
-            .'<img src=http://ctjsctjs.com/'. $row[5] .'>'
-            .'</a>'
-            ."<div class='res-food'>"
-            .'<a class="results-header hide-overflow" href=carpark.php?carparkId='.$row[0].'>' .$location. '</a>'
-            ."<span class='res-food-subheader'>Lots Available</span>"
-            .'<a href=carpark.php?carparkId='.$row[0].' class="res-blocks">'
-            ."<span class='res-lots'>". $lots ."</span>"
-            ."<span class='res-name res-single hide-overflow'>".$location."</span>"
-            ."</a>"
-            . "<a class='res-more' href=carpark.php?carparkId=".$row[0].">View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>"
-            ."</li>";
+              $row = mysqli_fetch_array($result, MYSQLI_NUM);
+              array_push($storedResult, $row);
           }
         }
         echo '<ul>';
@@ -74,5 +68,10 @@ if (isset($_SESSION['FIRSTNAME'])) {
 <p id="demo"></p>
 
 <?php include_once 'includes/footer_main.php' ?>
+<script>
+var cpArray = <?php echo json_encode($storedResult);?>;
+var cpJson = <?php echo  json_encode($carparkJsonResult);?>;
+</script>
 <script type="text/javascript" src="js/carparkJS.js"></script>
 <script type="text/javascript" src="js/lot-color.js"></script>
+<script>initialLoad();</script>
