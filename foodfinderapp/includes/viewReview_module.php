@@ -38,8 +38,10 @@
 
         echo '<div class="review-text">'.$rowReview['reviewResponse'].'</div>';
         // Pending for Jeremy's Session
-        if($_SESSION["IsAdmin"] > 0){
-        echo '<form role="form" method="POST" action="restaurant.php?foodEstablishmentId='.$_GET['foodEstablishmentId'].'"><input type="hidden" name="deleteReview" value='.$rowReview['reviewId'].'><button class="delete-review"><i class="fa fa-times" aria-hidden="true"></i></button></form>';
+        if(isset($_SESSION['ID'])) {
+          if($_SESSION["IsAdmin"] > 0){
+            echo '<form role="form" method="POST" action="restaurant.php?foodEstablishmentId='.$_GET['foodEstablishmentId'].'"><input type="hidden" name="deleteReview" value='.$rowReview['reviewId'].'><button class="delete-review"><i class="fa fa-times" aria-hidden="true"></i></button></form>';
+          }
         }
         echo "</div>";
       }
