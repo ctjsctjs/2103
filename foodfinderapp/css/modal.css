@@ -101,7 +101,7 @@
   transition: 100ms ease;
 }
 
-#modal-registerlink, #modal-loginlink{
+#modal-registerlink, #modal-loginlink, #modal-forgotPwBack{
   margin-bottom: 20px;
 }
 

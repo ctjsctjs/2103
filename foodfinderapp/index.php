@@ -28,6 +28,13 @@ if(isset($_GET['message'])){
         <button type ="submit" class="main-button"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
     </form>
+    <?php
+    if(isset($_GET['message'])){
+      if ($_GET['message']=='search_empty'){
+        echo "&#xf06a; Please enter your search input";
+      }
+    }
+    ?>
     <?php if(isset($_SESSION['ID'])) {
 
         $getTermSearches = "SELECT termSearch FROM foodSearch WHERE userId = ".$_SESSION['ID']." ORDER BY datetimeSearch DESC";

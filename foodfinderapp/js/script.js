@@ -68,7 +68,12 @@ $(document).ready(function () {
         marginTop: "-=30px",
         opacity: "hide"
       },200);
+      $('#modal-forgotPw').css({
+        marginTop: "-=30px",
+        display:"none",
+      });
     }
+
     else if (status == "register"){
       $('#modal-register')
       .stop(true, true)
@@ -101,6 +106,26 @@ $(document).ready(function () {
     $('#modal-login').css({
       marginTop: "+=30px",
       display: "block",
+    });
+  });
+
+  $("#modal-forgotPwlink").click(function(){
+    $('#modal-login').css({
+      display:"none",
+    });
+    $('#modal-forgotPw').css({
+      marginTop: "+=30px",
+      display: "block",
+    });
+  });
+
+  $("#modal-forgotPwBack").click(function(){
+    $('#modal-login').css({
+      display:"block",
+    });
+    $('#modal-forgotPw').css({
+      marginTop: "-=30px",
+      display: "none",
     });
   });
 

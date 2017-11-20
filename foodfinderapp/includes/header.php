@@ -23,6 +23,8 @@ session_start();
     <link rel="stylesheet" type="text/css" href="css/results.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
     <link rel="stylesheet" type="text/css" href="css/advSearch.css">
+    <link rel="stylesheet" type="text/css" href="css/404.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   </head>

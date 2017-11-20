@@ -34,7 +34,6 @@ if (isset($_SESSION['FIRSTNAME'])) {
         $currentPage = 1;
 
         if ($rowcount > 0) {
-          $datamallKey = 'SFHPvNC5RP+jFTzftMxxFQ==';
           $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
 
           $ch      = curl_init($carparkLotsJson);

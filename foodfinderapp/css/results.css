@@ -420,6 +420,11 @@
   font-size:13px;
   color:#888;
   text-align: left;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .res-lots-big{
@@ -449,7 +454,7 @@
 .demo-table td {border-bottom: transparent 1px solid;background-color: #ffffff;padding: 5px;font-size:13px;}
 .demo-table td div.feed_title{text-decoration: none;color:#00d4ff;font-weight:bold;}
 .demo-table ul{margin:0;padding:0;}
-.demo-table li{cursor:pointer;list-style-type: none;display: inline-block;color: #F0F0F0;font-size:20px;}
+.demo-table li{list-style-type: none;display: inline-block;color: #F0F0F0;font-size:20px;}
 .demo-table .highlight, .demo-table .selected {color:#ff7c7c;}
 
 .review-wrapper{
@@ -500,8 +505,8 @@
   transition: 200ms ease;
   outline: 0;
   font-family: inherit;
-   font-size: inherit;
-   font-size:11px;
+  font-size: inherit;
+  font-size:11px;
 
 }
 

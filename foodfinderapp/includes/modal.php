@@ -38,7 +38,33 @@
         ?>
       </span>
       <button type="submit" class="modal-login-cfm button-red">Login</button>
-      <a href="#" class="modal-link" id="modal-forgotpw">Forget Password?</a>
+      <a href="#" class="modal-link" id="modal-forgotPwlink">Forget Password?</a>
+    </form>
+  </div>
+  <div class="modal-container" id="modal-forgotPw" style="display:none;">
+    <form role="form" autocomplete="off" action="protected/forget_password.php" method="POST">
+      <span class="modal-login-h">Forgot Password</span>
+      <span class="modal-register-text">Remember your password?</span>
+      <span class="modal-link" id="modal-forgotPwBack">Login here.</span>
+      <input type="text" class="modal-form" name="email" placeholder="Email" value="<?php echo (isset($_POST['email']) ? $_POST['email']:''); ?>">
+      <span class="modal-error login-err" id="login-err">
+        <?php
+        if(isset($_GET['loginEmail'])){
+          switch ($_GET['loginEmail']){
+            case "empty":
+            echo "&#xf06a; Please enter your email";
+            break;
+            case "invalid":
+            echo "&#xf06a; The account is invalid.";
+            break;
+            case "notActivated":
+            echo "&#xf06a; The account has not yet been activated.";
+            break;
+          }
+        }
+        ?>
+      </span>
+      <button type="submit" class="modal-login-cfm button-red">Reset</button>
     </form>
   </div>
   <div class="modal-container" id="modal-register">

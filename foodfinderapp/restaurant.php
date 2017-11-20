@@ -83,17 +83,22 @@ if(isset($_GET['foodEstablishmentId'])) {
     <div class="container-results">
       <div class="container-responsive">
         <div class="res-left-col">
-          <?php   include_once 'includes/mainRestaurant_module.php'; ?>
-          <?php   include_once 'includes/viewReview_module.php'; ?>
+          <?php  include_once 'includes/mainRestaurant_module.php';?>
+          <?php  include_once 'includes/viewReview_module.php';?>
         </div>
 
         <div class="res-right-col">
-          <?php   include_once 'includes/saveRestaurant_module.php'; ?>
+          <?php   if(isset($_SESSION['ID'])) {
+            include_once 'includes/saveRestaurant_module.php';
+          }
+          ?>
           <div class="res-right-mod" id="viewMap">
             <div id="foodCarparkMap"></div>
           </div>
           <?php   include_once 'includes/restaurantLots_module.php'; ?>
-          <?php   include_once 'includes/restaurantReview_module.php'; ?>
+          <?php   if(isset($_SESSION['ID'])) {
+            include_once 'includes/restaurantReview_module.php';
+          }?>
         </div>
       </div>
     </div>

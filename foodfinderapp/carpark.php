@@ -18,7 +18,7 @@ if(isset($_GET['carparkId'])) {
 	$longtitude = $row[1];
 }
 
-$json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?&latlng='.$row["latitude"].','.$row["longitude"].'&key=AIzaSyDbEqIHfTZwLD9cgm9-elubEhOCm7_C3VE');
+$json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?&latlng='.$row["latitude"].','.$row["longitude"].'&key='. $googleKey);
 $json1 = json_decode($json);
 
 /*GET LOTS*/
@@ -94,38 +94,24 @@ $lots = $carparkJsonResult->{'value'}[$carparkID-1]->{'Lots'};
 					<span class="res-no-review"><?php echo $numofreview?> reviews</span>
 				</div>
 			</div>
-                    <?php   include_once 'includes/viewReviewCarpark_module.php'; ?>
+			<?php   include_once 'includes/viewReviewCarpark_module.php'; ?>
 		</div>
 
 		<div class="res-right-col">
 
-			<div class="res-right-mod-wrap">
-				<?php
-				$userID = $_SESSION['ID'];
-				if (isset($_POST['saveFood']) == 'save'.$carparkID){
-					$insert = "INSERT INTO favouriteCarpark(carparkId, userId, status)
-					VALUES  ($carparkID,$userID , '1')";
-					if ($conn->query($insert) === TRUE) {
-						echo "<span class='res-saved'><i class='fa fa-check' aria-hidden='true'></i> Added to favourites</span>";
-					} else {
-						echo "Error: " . $sql . "<br>" . $conn->error;
-					}
-				}
+			<?php
+			if(isset($_SESSION['ID'])) {
+				include_once 'includes/saveCarpark_module.php';
+			}
+			?>
 
-				echo "<form method='post' action='carpark.php?carparkId=".$carparkID."' id='form' name='form'>"
-				. "<input type='hidden' name='saveFood' value='save".$carparkID."'>"
-				. "<button class='button button-red button-wide' id='btn-save'>Save</button>"
-				. "</form>";
-				?>
-			</div>
-
-			<div class="res-right-mod">
-				<span class='res-food-subheader'>Lots available</span>
-				<span class="res-lots-big res-lots"> <?php echo $lots ?></span>
-			</div>
+			<?php   include_once 'includes/carparkLots_module.php'; ?>
 
 			<div class="res-right-mod"><div id="carparkMap"></div></div>
-                        <?php   include_once 'includes/carparkReview_module.php'; ?>
+
+			<?php if(isset($_SESSION['ID'])) {
+				include_once 'includes/carparkReview_module.php';
+			}?>
 		</div>
 	</div>
 </div>

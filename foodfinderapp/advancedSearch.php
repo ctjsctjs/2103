@@ -23,6 +23,15 @@ include_once 'includes/nav_index.php';
     <div class="adv-search-inner">
       <form role="form" autocomplete="off" action="advancedSearchResult.php" method="POST">
         <input type="text" class="form slider-form" placeholder="Enter a food establishment" name="search">
+        <span class="modal-error login-err">
+        <?php
+        if(isset($_GET['message'])){
+          if ($_GET['message']=='search_empty'){
+            echo "&#xf06a; Please enter your search input";
+          }
+        }
+        ?>
+      </span>
         <div class="slider-wrappper">
           <div class="slidecontainer">
             <span class='res-slider-subheader' id="radius-output"></span>
