@@ -42,7 +42,7 @@
     </form>
   </div>
   <div class="modal-container" id="modal-forgotPw" style="display:none;">
-    <form role="form" autocomplete="off" action="protected/forget_password.php" method="POST">
+    <form role="form" autocomplete="off" action="protected/forgetpassword_validation.php" method="POST">
       <span class="modal-login-h">Forgot Password</span>
       <span class="modal-register-text">Remember your password?</span>
       <span class="modal-link" id="modal-forgotPwBack">Login here.</span>
