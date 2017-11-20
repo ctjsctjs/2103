@@ -99,19 +99,13 @@ $lots = $carparkJsonResult->{'value'}[$carparkID-1]->{'Lots'};
 
 		<div class="res-right-col">
 
-			<?php
-			if(isset($_SESSION['ID'])) {
-				include_once 'includes/saveCarpark_module.php';
-			}
-			?>
+			<?php if(isset($_SESSION['ID'])) { include_once 'includes/saveCarpark_module.php';} ?>
 
-			<?php   include_once 'includes/carparkLots_module.php'; ?>
+			<?php include_once 'includes/carparkLots_module.php'; ?>
 
 			<div class="res-right-mod"><div id="carparkMap"></div></div>
 
-			<?php if(isset($_SESSION['ID'])) {
-				include_once 'includes/carparkReview_module.php';
-			}?>
+			<?php if(isset($_SESSION['ID'])) {include_once 'includes/carparkReview_module.php';} ?>
 		</div>
 	</div>
 </div>
