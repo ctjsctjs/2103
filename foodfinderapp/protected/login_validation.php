@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $selectUser = "SELECT * FROM user WHERE email = '$email'";
+    $selectUser = " SELECT user.*, COUNT(admin.userId) AS isAdmin FROM user LEFT JOIN admin ON user.userId = admin.userId  WHERE email = '$email'";
     $result = mysqli_query($conn, $selectUser) or die(mysqli_connect_error());
     $row = mysqli_fetch_array($result);
     $resultCheck = mysqli_num_rows($result);
@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $_SESSION['EMAIL'] = $row['email'];
           $_SESSION['PASSWORD'] = $row['password'];
           $_SESSION['ID'] = $row['userId'];
+          $_SESSION['IsAdmin'] = $row['isAdmin'];
         }
       }
     }
