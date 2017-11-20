@@ -9,18 +9,19 @@ $emailError = "";
 // set a boolean variable to check if the fields have errors and retrun true if no error was detected
 $valid = True;
 $emailExist = False;
+$url = '../index.php?';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //=====================  email validation ==========================
 	// if the email field is empty    
 	if (empty($_POST["email"])){
-		$emailError = "Please enter a valid email address.";
+		$url .= "&resetEmail=empty";
 		$_POST["email"] = "";
 		$valid = False;
 	}
     // else if the email field is invalid
 	else if (!preg_match("/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i" ,$_POST["email"])){
-		$emailError = "The email format is not valid. Please enter again.";
+		$url .= "&resetEmail=invalid";
 		$_POST["email"] = "";
 		$valid = False;
 	}
@@ -35,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			}
 		}
 		if($emailExist == False) {
-			$emailError = "This email does not exists. Please register an account";
+		$url .= "&resetEmail=notExist";
 			$_POST["email"] = "";
 			$valid = False;
 		}
@@ -45,8 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if($valid==True){
 
 		$email = mysqli_real_escape_string($conn, $_POST['email']);
-		include_once("phpForgetPasswordMailer.php");
-		header("Location: index.php?message=forgetPassword");
+		include_once("../phpForgetPasswordMailer.php");
+		header("Location: ../index.php?message=resetSuccess");
+	} else{
+		header("Location: $url");
 	}
 }	
 

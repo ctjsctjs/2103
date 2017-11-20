@@ -38,11 +38,11 @@
         echo "</ul>";
 
         echo '<div class="review-text">'.$rowReview['reviewResponse'].'</div>';
-        // Pending for Jeremy's Session
-        //if($_SESSION["IsAdmin"] == 0){
+      
+        if($_SESSION["IsAdmin"] == 1){
         echo '<form role="form" method="POST" action="carpark.php?carparkId='.$_GET['carparkId'].'"><input type="hidden" name="deleteReview" value='.$rowReview['feedbackId'].'><button class="button button-red">Delete</button></form>';
         
-        //}
+        }
         echo "</div>";
       }
     }
