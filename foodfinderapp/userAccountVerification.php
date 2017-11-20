@@ -1,5 +1,5 @@
 <?php include_once 'includes/header.php' ?>
-<?php include_once 'includes/nav_userVerification.php' ?>
+<?php include_once 'includes/nav_index.php' ?>
 <?php include_once 'protected/databaseconnection.php' ?>
 
 <section class="container-searchbar">

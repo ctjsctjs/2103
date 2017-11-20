@@ -91,7 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$passwordConfirm = mysqli_real_escape_string($conn, $_POST['passwordConfirm']);
 		// hash the password
 		$hashedPassword = password_hash($passwordConfirm, PASSWORD_DEFAULT);
-		$insertUser = "INSERT INTO user(firstName, lastName, email, password)VALUES('$firstName', '$lastName ', '$email', '$hashedPassword')";
+		$hash = md5(rand(0,1000));
+		$insertUser = "INSERT INTO user(firstName, lastName, email, password, hash)VALUES('$firstName', '$lastName ', '$email', '$hashedPassword', '$hash')";
 		mysqli_query($conn, $insertUser) or die(mysqli_connect_error());
 		$selectUser = "SELECT userId FROM user WHERE firstName = '$firstName' AND lastName = '$lastName'";
 		$result = mysqli_query($conn, $selectUser) or die(mysqli_connect_error());
