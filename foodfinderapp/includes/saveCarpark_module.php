@@ -10,10 +10,19 @@
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
   }
-
+  
+  $checkFav = "SELECT COUNT(*) FROM favouritecarpark WHERE carparkId = ".$carparkID." AND userId = ".$_SESSION['ID'];
+  
+  $result = mysqli_query($conn, $checkFav) or die(mysqli_connect_error());
+  $row = mysqli_fetch_array($result);
+  if($row[0] == 0)  {
   echo "<form method='post' action='carpark.php?carparkId=".$carparkID."' id='form' name='form'>"
   . "<input type='hidden' name='saveFood' value='save".$carparkID."'>"
   . "<button class='button button-red button-wide' id='btn-save'>Save</button>"
-  . "</form>";
+  . "</form>";}
+  
+  else{
+       echo "<span class='res-saved'><i class='fa fa-check' aria-hidden='true'></i> Your favourites</span>";
+  }
   ?>
 </div>
