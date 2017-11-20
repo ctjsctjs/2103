@@ -16,7 +16,7 @@ if(isset($_GET['foodEstablishmentId'])) {
   $result = mysqli_query($conn, $selectedFoodEstablishment) or die(mysqli_connect_error());
   $row = mysqli_fetch_array($result);
   $rating = $row[3];
-  $numofreview = $row[4];
+  $numofreview = $row[5];
 
   $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key=AIzaSyDbEqIHfTZwLD9cgm9-elubEhOCm7_C3VE');
   $json = json_decode($json);
