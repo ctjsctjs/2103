@@ -12,6 +12,9 @@ if(isset($_GET['message'])){
   if ($_GET['message']=="success"){
     echo '<div class="message">Register successful! Check your email for verification</div>';
   }
+  else if ($_GET['message']=="resetsuccess"){
+    echo '<div class="message">Reset successful! Log in now to start browsing!</div>';
+  }
 }
 ?>
 <section class="container-main">

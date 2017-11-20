@@ -32,6 +32,10 @@ $(document).ready(function () {
     status ="register";
     $(".modal").show();
     $("#modal-register").show();
+  } else if (window.location.href.indexOf("resetEmail") > -1){
+    status ="login";
+    $(".modal").show();
+    $("#modal-forgotPw").show();
   }
 
   //login modal button
