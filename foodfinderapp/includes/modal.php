@@ -49,16 +49,16 @@
       <input type="text" class="modal-form" name="email" placeholder="Email" value="<?php echo (isset($_POST['email']) ? $_POST['email']:''); ?>">
       <span class="modal-error login-err" id="login-err">
         <?php
-        if(isset($_GET['loginEmail'])){
-          switch ($_GET['loginEmail']){
+        if(isset($_GET['resetEmail'])){
+          switch ($_GET['resetEmail']){
             case "empty":
-            echo "&#xf06a; Please enter your email";
+            echo "&#xf06a; Please enter your registered email";
             break;
             case "invalid":
-            echo "&#xf06a; The account is invalid.";
+            echo "&#xf06a; Please enter a valid email account";
             break;
-            case "notActivated":
-            echo "&#xf06a; The account has not yet been activated.";
+            case "notExist":
+            echo "&#xf06a; The email does not exist";
             break;
           }
         }
