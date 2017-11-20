@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 // include database connection
 include_once 'databaseconnection.php';
@@ -13,7 +13,7 @@ $url = '../index.php?';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //=====================  email validation ==========================
-	// if the email field is empty    
+	// if the email field is empty
 	if (empty($_POST["email"])){
 		$url .= "&resetEmail=empty";
 		$_POST["email"] = "";
@@ -47,10 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		$email = mysqli_real_escape_string($conn, $_POST['email']);
 		include_once("../phpForgetPasswordMailer.php");
-		header("Location: ../index.php?message=resetSuccess");
+		header("Location: ../index.php?message=resetSent");
 	} else{
 		header("Location: $url");
 	}
-}	
+}
 
 ?>

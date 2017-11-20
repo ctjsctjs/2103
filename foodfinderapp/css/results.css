@@ -327,7 +327,7 @@
 }
 
 .res-wrapper-header{
-  z-index: 10;
+  z-index: 5;
   height:300px;
   position: absolute;
   width: 100%;

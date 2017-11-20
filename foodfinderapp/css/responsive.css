@@ -59,6 +59,14 @@ and (max-width: 1024px) {
     display:block;
   }
 
+  .nav-mobile-user{
+    display:block !important;
+  }
+
+  .nav-button-container{
+    display:none;
+  }
+
   .container-img{
     color: #ff7c7c;
     bottom:-2px;

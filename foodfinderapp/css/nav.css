@@ -116,6 +116,17 @@ nav .modal-registerBtn{
   color: #ff7c7c;
 }
 
+.nav-mobile-user{
+  display:none !important;
+  text-align: center;
+}
+
+.nav-mobile-user a{
+  width:100%;
+  margin-right: 0;
+  cursor: pointer;
+}
+
 #nav-mobile-logout{
   display:none;
 }
@@ -137,9 +148,4 @@ nav .modal-registerBtn{
   font-size:13px;
   -webkit-transition: 100ms ease;
   transition: 100ms ease;
-}
-
-
-.modal-advSearchBtn{
-  cursor: pointer;
 }

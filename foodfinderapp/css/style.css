@@ -45,7 +45,7 @@
   top:0;
   text-align: center;
   font-size:13px;
-  color:#888;
+  color:#ff7c7c;
   z-index:20;
   position:relative;
   top:-60px
@@ -74,11 +74,16 @@
   -webkit-transition: border linear 0.2 s;
 }
 
+.container-recentSearch{
+  text-align: center;
+  padding: 20px 0;
+  background-color: white;
+  border-bottom: 1px solid #efefef;
+}
 .recent-search{
-  margin-top:20px;
-  font-size:15px;
-  color: #888;
-  display:inline-block;
+  font-size:13px;
+  color: #444;
+  margin-bottom: 10px;
 }
 
 .recent-form{
@@ -88,15 +93,17 @@
 .recentSearchesButton{
   cursor: pointer;
   display:inline-block;
-  background-color: #ff7c7c;
-  padding:5px 15px;
-  color:white;
+  background-color: white;
+  padding:5px 10px;
+  color:#444;
   margin-left: 4px;
   border-radius: 2px;
+  border: 1px solid #888;
 }
 
 .recentSearchesButton:hover{
-  background-color: #ff5555;
+  color: #888;
+  border: 1px solid #aaa;
 }
 
 .container-news{
@@ -179,23 +186,6 @@
   background-color:#fafafa;
 }
 
-.grey{
-  background-color:#ff7c7c;
-  overflow-x: auto;
-}
-
-.grey h1{
-  color:white;
-  text-align: right;
-}
-
-.grey p{
-  color:white;
-  text-align: right;
-  width:100%;
-  margin-left:auto;
-}
-
 #advSearch-link{
   float:right;
   margin-top:40px;
@@ -206,17 +196,21 @@
   margin-top:40px;
 }
 
-
 .pink{
   background-color:#ff7c7c;
+  overflow-x: auto;
 }
 
 .pink h1{
   color:white;
+  text-align: right;
 }
 
 .pink p{
   color:white;
+  text-align: right;
+  width:100%;
+  margin-left:auto;
 }
 
 .container-register-right{
@@ -277,6 +271,57 @@
 .featured-stars{
   text-align: center;
 }
+
+.container-resetPw{
+  min-height: 100vh;
+  max-width:300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container-resetPw img{
+  max-width:100px;
+  width:100%;
+  margin-bottom: 50px;
+}
+
+.container-activate{
+  min-height: 100vh;
+  text-align: center;
+}
+
+.container-activate img{
+  max-width:200px;
+  width:100%;
+  margin-bottom: 50px;
+}
+
+.container-activate h1{
+  text-align: center;
+  color:888;
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+
+.delete-review{
+  cursor: pointer;
+  position: absolute;
+  font-size:24px;
+  color:#888;
+  right:-8px;
+  top:-12px;
+  background-color:transparent;
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+}
+
+.delete-review:hover{
+  color:#ff5555;
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+}
+
 
 
 table {

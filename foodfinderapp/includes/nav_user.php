@@ -4,7 +4,7 @@
       <li><a href="viewAllCarparks.php">Carpark</a></li>
       <li><a href="viewAllFood.php">Food Establishment</a></li>
       <li><a href="favourites.php">Favourites</a></li>
-      <li><a href="advancedSearch.php" class="modal-advSearchBtn">Advanced Search</a></li>
+      <li><a href="advancedSearch.php">Advanced Search</a></li>
       <li id="nav-mobile-logout">
         <form action="protected/logout_validation.php" method="POST">
           <button class="nav-logout-link" name="submit" type="submit">Logout</button>

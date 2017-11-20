@@ -4,7 +4,7 @@
 
 <section class="container-searchbar">
 	<div class="container-responsive">
-		<span class="page-title">Food Establishments</span>
+		<span class="page-title">Activate Account</span>
 		<form role="form" autocomplete="off" action="resultsPage.php" method="POST">
 			<div class="search-row">
 				<input type="text" class="search-form" placeholder="Enter a food establishment or carpark" name="search">
@@ -16,11 +16,11 @@
 </section>
 <div class="container-carpark">
 	<div class="container-responsive">
-		<div class="container-results">
+		<div class="container-activate">
+			<img src="images/noodles.svg">
+
 			<?php
 			error_reporting(E_ERROR | E_PARSE);
-
-
 			if (isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])) {
 				// Verify data
 				$email = $_GET['email']; // Set email variable
@@ -34,16 +34,21 @@
 					// We have a match, activate the account
 					$updateAccount = "UPDATE user SET accountActivated = 1 WHERE email='$email' AND hash='$hash' AND accountActivated='0'";
 					mysqli_query($conn, $updateAccount) or die(mysqli_connect_error());
-					echo "<p align='center'>Your account has been activated, you can now login.</p>";
+					echo "<h1 align='center'>Your account has been activated! Happy parking and eating!</h1>";
+					echo '<div class="error-return">Click <a class="inline-text" href="index.php">here</a> to return home.</div>';
 				}
 				else {
 					// No match -> invalid url or account has already been activated.
-					echo "<p align='center'>The url is either invalid or you already have activated your account.</p>";
+					//header("Location:../404.php");
+					echo "<script>location.href='404.php';</script>";
+					exit();
 				}
 			}
 			else {
 				// Invalid approach
-				echo "<p align='center'>Invalid approach, please use the link that has been sent to your email.</p>";
+				//header("Location:../404.php");
+				echo "<script>location.href='404.php';</script>";
+				exit();
 			}
 			?>
 		</div>

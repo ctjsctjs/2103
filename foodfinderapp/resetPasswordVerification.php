@@ -17,7 +17,8 @@
 </section>
 <div class="container-default">
   <div class="container-responsive">
-    <div class="adv-search-inner">
+    <div class="container-resetPw">
+      <img src="images/reset.svg">
       <form role="form" autocomplete="off" action="protected/resetPasswordVerification_validation.php" method="POST">
         <input type="password" class="form slider-form" placeholder="New Password" name="password">
         <span class="modal-error login-err">

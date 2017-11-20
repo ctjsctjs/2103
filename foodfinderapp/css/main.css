@@ -47,7 +47,7 @@ button:focus, input:focus {outline:0 !important;}
 .container-default{
   width:100%;
   background-color: #fafafa;
-  padding: 50px;
+  padding: 50px 0;
   overflow: auto;
 }
 
@@ -297,7 +297,7 @@ button:focus, input:focus {outline:0 !important;}
 }
 
 .delete-carpark{
-    cursor: pointer;
+  cursor: pointer;
   position: absolute;
   font-size:24px;
   color:white;
