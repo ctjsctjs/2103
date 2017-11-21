@@ -36,19 +36,17 @@ if (isset($_SESSION['FIRSTNAME'])) {
 
         if ($rowcount > 0) {
           
-
           echo '<ul class="results-container" id="res-carpark-cont">';
           $storedResult = array();
+          $carparkJsonResult = array();
           for ($i = 0; $i < $rowcount; $i++) {
-              $row = mysqli_fetch_array($result, MYSQLI_NUM);
+              $row = mysqli_fetch_assoc($result);
               array_push($storedResult, $row);
+              $tempLot = getLots($row,$datamallKey);
+              array_push($carparkJsonResult,$tempLot);
           }
         }
-        $carparkJsonResult = array();
-        for ($i = 0; $i < count($storedResult); $i++){
-            $tempLot = getLots($storedResult[$i][0],$datamallKey);
-            array_push($carparkJsonResult,$tempLot);
-        }
+
         echo '</ul>';
         echo "<div class='page-row load'>";
         echo "<a onclick='prevPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
