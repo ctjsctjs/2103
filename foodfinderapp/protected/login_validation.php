@@ -31,11 +31,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    echo 'I';
     $selectUser = " SELECT user.*, COUNT(admin.userId) AS isAdmin FROM user LEFT JOIN admin ON user.userId = admin.userId  WHERE email = '$email'";
     $result = mysqli_query($conn, $selectUser) or die(mysqli_connect_error());
     $row = mysqli_fetch_array($result);
+    echo 'HI';
     $resultCheck = mysqli_num_rows($result);
+    echo 'HI2';
+    echo $resultCheck;
 
     if($resultCheck < 1) {
       $url .= '&loginEmail=invalid';

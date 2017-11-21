@@ -14,7 +14,7 @@
     <?php
     $getTermSearches = "SELECT termSearch FROM foodSearch WHERE userId = ".$_SESSION['ID']." ORDER BY datetimeSearch DESC";
     $result = mysqli_query($conn,  $getTermSearches) or die(mysqli_connect_error());
-
+    
     $count = 0;
     $recentSearches = "";
 
