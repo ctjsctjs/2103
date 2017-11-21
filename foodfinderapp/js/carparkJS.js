@@ -37,8 +37,8 @@ function initialLoad(){
     for (var i = 0; i < endLength; i++){
           var lat = cpArray[i][2];
           var lng = cpArray[i][1];
-          var lots = cpJson.value[cpArray[i][0]-1].Lots;
-          var location = cpJson.value[cpArray[i][0]-1].Development;
+          var lots = cpJson[i];
+          var location = cpArray[i][4];
           document.getElementById("res-carpark-cont").innerHTML += "<li class='res-row-food'>"
           + "<a class='res-food-img' href=carpark.php?carparkId=" + cpArray[i][0] + ">"
           + "<img src=http://ctjsctjs.com/" + cpArray[i][5] + ">"
@@ -91,8 +91,8 @@ function listResult(x,y){
     for (var i = startIndex; i < endIndex; i++){
         var lat = cpArray[i][2];
         var lng = cpArray[i][1];
-        var lots = cpJson.value[cpArray[i][0]-1].Lots;
-        var location = cpJson.value[cpArray[i][0]-1].Development;
+        var lots = cpJson[i];
+        var location = cpArray[i][4];
         document.getElementById("res-carpark-cont").innerHTML += "<li class='res-row-food'>"
         + "<a class='res-food-img' href=carpark.php?carparkId=" + cpArray[i][0] + ">"
         + "<img src=http://ctjsctjs.com/" + cpArray[i][5] + ">"

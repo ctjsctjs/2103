@@ -1,6 +1,7 @@
 <?php
 include_once 'includes/header.php';
 include_once 'protected/databaseconnection.php';
+include_once 'protected/functions.php';
 
 if (isset($_SESSION['FIRSTNAME'])) {
   include_once 'includes/nav_user.php';
@@ -34,17 +35,7 @@ if (isset($_SESSION['FIRSTNAME'])) {
         $currentPage = 1;
 
         if ($rowcount > 0) {
-          $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
-
-          $ch      = curl_init($carparkLotsJson);
-          $options = array(
-            CURLOPT_HTTPHEADER     => array( "AccountKey: ". $datamallKey . ", Accept: application/json" ),
-          );
-          curl_setopt_array($ch, $options);
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-          $carparkJsonResult = curl_exec($ch);
-          $carparkJsonResult = json_decode($carparkJsonResult);
+          
 
           echo '<ul class="results-container" id="res-carpark-cont">';
           $storedResult = array();
@@ -52,6 +43,11 @@ if (isset($_SESSION['FIRSTNAME'])) {
               $row = mysqli_fetch_array($result, MYSQLI_NUM);
               array_push($storedResult, $row);
           }
+        }
+        $carparkJsonResult = array();
+        for ($i = 0; $i < count($storedResult); $i++){
+            $tempLot = getLots($storedResult[$i][0],$datamallKey);
+            array_push($carparkJsonResult,$tempLot);
         }
         echo '</ul>';
         echo "<div class='page-row load'>";
