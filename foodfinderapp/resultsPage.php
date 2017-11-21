@@ -53,13 +53,13 @@ $datetime = date('Y-m-d H:i:s');
             echo '<ul class="load" id="res-food-cont">';
             while($row = mysqli_fetch_assoc($result)) {
 
-              $userId = $_SESSION['ID'];
               $foodId = $row['foodEstablishmentId'];
               $term = $_POST['search'];
               date_default_timezone_set("Asia/Singapore");
               $datetime = date('Y-m-d H:i:s');
 
               if(isset($_SESSION['ID'])) {
+                $userId = $_SESSION['ID'];
 
                 $insertFoodSearch = "INSERT INTO foodsearch(userId, foodEstablishmentId, termSearch, datetimeSearch)VALUES('$userId', '$foodId', '$term', '$datetime')";
 

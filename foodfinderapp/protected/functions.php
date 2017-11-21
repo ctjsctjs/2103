@@ -22,6 +22,7 @@ function getLots($locateRow, $key){
   $carparkJsonResult = json_decode($carparkJsonResult);
 
   return ($carparkJsonResult->{'value'}[$locateRow["carparkId"]-1]->{'Lots'});
+  //return (rand(0,10));
 }
 
 ?>

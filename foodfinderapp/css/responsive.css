@@ -121,7 +121,11 @@ and (max-width: 736px) {
   .main-header{
     text-align: center;
     font-size: 25px;
-    color: white;
+  }
+
+  .top-btn{
+    padding: 9px 5px 9px !important;
+    min-width: 75px;
   }
 
   .main-logo{
@@ -243,6 +247,10 @@ and (max-width: 736px) {
 
   #advSearch-link{
     float:none;
+  }
+
+  .pink h1{
+    text-align: center;
   }
 }
 
