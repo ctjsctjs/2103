@@ -12,9 +12,9 @@
 </section>
 
     <?php
-    $getTermSearches = "SELECT termSearch FROM foodSearch WHERE userId = ".$_SESSION['ID']." ORDER BY datetimeSearch DESC";
+    $getTermSearches = "SELECT termSearch FROM foodsearch WHERE userId = ".$_SESSION['ID']." ORDER BY dateTimeSearch DESC";
     $result = mysqli_query($conn,  $getTermSearches) or die(mysqli_connect_error());
-    
+
     $count = 0;
     $recentSearches = "";
 
@@ -36,5 +36,3 @@
       echo '</div></section>';
     }
     ?>
-  </div>
-</section>
