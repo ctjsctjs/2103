@@ -39,6 +39,7 @@ if (isset($_SESSION['FIRSTNAME'])) {
           echo '<ul class="results-container" id="res-carpark-cont">';
           $storedResult = array();
           $carparkJsonResult = array();
+
           for ($i = 0; $i < $rowcount; $i++) {
               $row = mysqli_fetch_assoc($result);
               array_push($storedResult, $row);
