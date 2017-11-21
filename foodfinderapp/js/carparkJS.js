@@ -10,10 +10,10 @@ function updateLots() {
       for (var i = 0; i < myObj.value.length; i++) {
         //if lot is not displayed due to google api limitation reached
         //skip the lot
-        if (document.getElementById("lot" + (i + 1)) === null) {
+        if (document.getElementById("res-lots" + (i)) === null) {
           continue;
         } else {
-          document.getElementById("lot" + (i + 1)).innerHTML = myObj.value[i].Lots;
+          document.getElementById("res-lots" + (i)).innerHTML = myObj.value[i].Lots;
         }
 
       }
@@ -47,7 +47,7 @@ function initialLoad(){
           + "<a class='results-header hide-overflow' href=carpark.php?carparkId=" + cpArray[i]['carparkId'] + ">" + location + "</a>"
           + "<span class='res-food-subheader'>Lots Available</span>"
           + "<a href='carpark.php?carparkId="  + cpArray[i]['carparkId'] +  "' class='res-blocks'>"
-          + "<span class='res-lots'>" + lots + "</span>"
+          + "<span class='res-lots" + i + "'>" + lots + "</span>"
           + "<span class='res-name res-single hide-overflow'>" + location + "</span>"
           + "</a>"
           + "<a class='res-more' href=carpark.php?carparkId=" + cpArray[i]['carparkId'] + ">View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>"
@@ -101,13 +101,12 @@ function listResult(x,y){
         + "<a class='results-header hide-overflow' href=carpark.php?carparkId=" + cpArray[i][0] + ">" + location + "</a>"
         + "<span class='res-food-subheader'>Lots Available</span>"
         + "<a href='carpark.php?carparkId="  + cpArray[i][0] +  "' class='res-blocks'>"
-        + "<span class='res-lots'>" + lots + "</span>"
+        + "<span class='res-lots" + i + "'>" + lots + "</span>"
         + "<span class='res-name res-single hide-overflow'>" + location + "</span>"
         + "</a>"
         + "<a class='res-more' href=carpark.php?carparkId=" + cpArray[i][0] + ">View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>"
         + "</li>";
     }
-
 }
 
 $( document ).ready(function() {
