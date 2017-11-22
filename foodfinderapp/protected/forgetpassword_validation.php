@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		for ($i = 0; $i < mysqli_num_rows($result); $i++) {
 			$row = mysqli_fetch_array($result);
 			if (strtoupper($row['email']) == strtoupper($_POST["email"])) {
+				$firstName = $row['firstName'];
 				$emailExist = True;
 			}
 		}

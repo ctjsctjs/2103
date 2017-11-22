@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 require("PHPMailer_5.2.4/class.phpmailer.php");
 
 $mail = new PHPMailer();
-$mail->IsSMTP(); // set mailer to use SMTP
+//$mail->IsSMTP(); // set mailer to use SMTP
 //$mail->SMTPDebug  = 0;
 //$mail->Debugoutput = 'html';
 $mail->From = "jeremyteh8@gmail.com";
@@ -38,7 +38,7 @@ Password: '.$passwordConfirm.'<br>
 -------------------------<br><br>
 
 Please click this link to activate your account:<br>
-http://localhost/2103/foodfinderapp/userAccountVerification.php?email='.$email.'&hash='.$hash.'<br><br>
+http://47.74.176.36/userAccountVerification.php?email='.$email.'&hash='.$hash.'<br><br>
 
 ';
 

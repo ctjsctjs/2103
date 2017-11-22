@@ -24,7 +24,7 @@ $mail->WordWrap = 50; // set word wrap
 
 
 $mail->IsHTML(true); // set email format to HTML
-$mail->Subject = 'Food Finder App Email Verification';
+$mail->Subject = 'Foodpark Email Verification';
 
         
 $message = 'Dear '.$firstName.',<br><br>
@@ -32,7 +32,7 @@ $message = 'Dear '.$firstName.',<br><br>
 Your request to reset your password for your account has been received.<br><br>
 
 Please click this link below to reset your account password:<br>
-http://localhost/foodfinderapp/resetPasswordVerification.php?email='.$email.'<br><br>
+http://47.74.176.36/foodfinderapp/resetPasswordVerification.php?email='.$email.'<br><br>
 
 Regards,<br><br>
 

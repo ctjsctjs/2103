@@ -25,7 +25,7 @@ $mail->WordWrap = 50; // set word wrap
 
 
 $mail->IsHTML(true); // set email format to HTML
-$mail->Subject = 'Food Finder App Email Verification';
+$mail->Subject = 'Foodpark Email Verification';
 
 $message = 'Dear '.$firstName.',<br><br>
 
@@ -46,7 +46,7 @@ Password: '.$passwordConfirm.'<br>
 -------------------------<br><br>
 
 Please click this link to activate your account:<br>
-http://localhost/2103/foodfinderapp/userAccountVerification.php?email='.$email.'&hash='.$hash.'<br><br>
+http://47.74.176.36/userAccountVerification.php?email='.$email.'&hash='.$hash.'<br><br>
 
 ';
 
