@@ -21,7 +21,7 @@ $mail->WordWrap = 50; // set word wrap
 
 
 $mail->IsHTML(true); // set email format to HTML
-$mail->Subject = 'Foodpark Email Verification';
+$mail->Subject = 'Foodpark Account Email Verification';
 
 $message = 'Dear '.$firstName.',<br><br>
 
