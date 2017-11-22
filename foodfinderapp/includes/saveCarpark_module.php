@@ -2,7 +2,7 @@
   <?php
   $userID = $_SESSION['ID'];
   if (isset($_POST['saveFood']) == 'save'.$carparkID){
-    $insert = "INSERT INTO favouriteCarpark(carparkId, userId, status)
+    $insert = "INSERT INTO favouritecarpark(carparkId, userId, status)
     VALUES  ($carparkID,$userID , '1')";
     if ($conn->query($insert) === TRUE) {
     } else {
