@@ -9,3 +9,11 @@ document.getElementById("feCurrentPageNo")
     document.getElementById("pageJump").click();
   }
 });
+
+$( document ).ready(function() {
+  $(".res-img").on('load', function(){
+    console.log('HERE');
+    $(this).siblings(".img-loader").hide();
+    $(this).show();
+  });
+});

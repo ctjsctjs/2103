@@ -66,6 +66,8 @@ function listResult(x, y) {
     + '</li>';
   }
   document.getElementById("feListing").innerHTML += "</ul>";
+  $('.loader').hide();
+  $('.load').show();
 }
 
 function initialLoad() {
