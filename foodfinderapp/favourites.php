@@ -64,7 +64,8 @@ header('Location: 404.php');
 
 			}
 			echo '<ul class="results-container load" id="res-food-cont">';
-			if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
+			
+			if ($result = mysqli_query($conn, $query)) {
 				$rowcount = mysqli_num_rows($result);
 				if ($rowcount > 0) {
 					for ($i = 0; $i < $rowcount; $i++) {
@@ -118,8 +119,9 @@ header('Location: 404.php');
 			?>
 
 		<?php
-		$query = "SELECT favouriteCarpark.favCarparkID,favouriteCarpark.carparkId,carpark.carparkId,carpark.development,carpark.area, carpark.image FROM `favouriteCarpark` INNER JOIN carpark on favouriteCarpark.carparkId = carpark.carparkId WHERE favouriteCarpark.userID = ".$_SESSION['ID'];
-		if ($result = mysqli_query($conn, $query) or die(mysqli_connect_error)) {
+		$query1 = "SELECT favouriteCarpark.favCarparkID,favouriteCarpark.carparkId,carpark.carparkId,carpark.development,carpark.area, carpark.image FROM `favouriteCarpark` INNER JOIN carpark on favouriteCarpark.carparkId = carpark.carparkId WHERE favouriteCarpark.userID = ".$_SESSION['ID'];
+		
+		if ($result = mysqli_query($conn, $query1)) {
 			echo '<ul id="res-carpark-cont" style="display:none;">';
 			$rowcount = mysqli_num_rows($result);
 			if ($rowcount > 0) {
