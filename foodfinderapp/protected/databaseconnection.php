@@ -1,15 +1,15 @@
 <?php
 
 	// For localhost
-	// $dbServerName = "localhost";
+	//$dbServer = "localhost";
 
 	// For Alicloud
-	$dbServerName = "47.74.176.36";
+	$dbServer = "47.74.176.36";
 
 	$dbUserName = "root";
 
 	// For localhost
-	$dbPassword = "";
+	//$dbPassword = "";
 
 	// For Alicloud
 	$dbPassword = "foobar123!";
