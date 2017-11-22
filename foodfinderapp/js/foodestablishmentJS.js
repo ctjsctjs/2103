@@ -55,7 +55,8 @@ function listResult(x, y) {
     //document.getElementById("feListingTable").innerHTML += "<div class='res-row-food'>" + feArray[i][0] + "</br>" + feArray[i][1] + "</br>" + feArray[i][2] + "</div>";
     document.getElementById("feListingTable").innerHTML += '<li class="res-row-food">'
     + '<a class="res-food-img" href="restaurant.php?foodEstablishmentId='+ feArray[i][0] +'">'
-    + '<img src=http://ctjsctjs.com/'+ feArray[i][4] + ">"
+    + "<div class='img-loader' ></div>"
+    + '<img class="res-img" src=http://ctjsctjs.com/'+ feArray[i][4] + ">"
     + '</a>'
     + "<div class='res-food'>"
     + '<a class="results-header hide-overflow" href="restaurant.php?foodEstablishmentId='+ feArray[i][0] +'">' + feArray[i][1] + '</a>'
@@ -65,9 +66,6 @@ function listResult(x, y) {
     + '</li>';
   }
   document.getElementById("feListing").innerHTML += "</ul>";
-  $('.loader').hide();
-  $('#feResults').show();
-  $('#res-pageNo').show();
 }
 
 function initialLoad() {

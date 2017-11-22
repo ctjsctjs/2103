@@ -322,6 +322,10 @@
   transition: 300ms ease;
 }
 
+.res-img{
+  display:none;
+}
+
 
 
 table {

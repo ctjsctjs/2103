@@ -23,7 +23,8 @@ if ($result) {
       /*EACH FOOD INSTANCE*/
       echo '<li class="res-row-food">';
       echo '<a class="res-food-img" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">';
-      echo '<img src=http://ctjsctjs.com/'. $row['image'] .'>';
+      echo  "<div class='img-loader' ></div>";
+      echo '<img class="res-img" src=http://ctjsctjs.com/'. $row['image'] .'>';
       echo '</a>';
       echo "<div class='res-food'>";
       echo '<a class="results-header hide-overflow" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">' . $row["name"] . '</a>';

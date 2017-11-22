@@ -49,3 +49,4 @@ if(isset($_SESSION['ID'])) {
     </section>
 
     <?php include_once 'includes/footer_main.php' ?>
+    <script type="text/javascript" src="js/loader.js"></script>

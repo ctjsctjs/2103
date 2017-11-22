@@ -64,7 +64,7 @@ header('Location: 404.php');
 
 			}
 			echo '<ul class="results-container load" id="res-food-cont">';
-			
+
 			if ($result = mysqli_query($conn, $query)) {
 				$rowcount = mysqli_num_rows($result);
 				if ($rowcount > 0) {
@@ -72,7 +72,8 @@ header('Location: 404.php');
 						$row = mysqli_fetch_array($result, MYSQLI_NUM);
 						echo '<li class="res-row-food">';
 						echo '<a class="res-food-img" href="restaurant.php?foodEstablishmentId='.$row[4].'">';
-						echo '<img src=http://ctjsctjs.com/'. $row[3] .'>';
+						echo "<div class='img-loader' ></div>";
+						echo '<img class="res-img" src=http://ctjsctjs.com/'. $row[3] .'>';
 						echo '</a>';
 						echo "<form class='view-delete-form' role='form' method='POST' action='favourites.php'>"
 						. "<input type='hidden' name='deleteFavorite' value='".$row[0]."'>"
@@ -120,7 +121,7 @@ header('Location: 404.php');
 
 		<?php
 		$query1 = "SELECT favouritecarpark.favCarparkID,favouritecarpark.carparkId,carpark.carparkId,carpark.development,carpark.area, carpark.image FROM `favouritecarpark` INNER JOIN carpark on favouritecarpark.carparkId = carpark.carparkId WHERE favouritecarpark.userID = ".$_SESSION['ID'];
-		
+
 		if ($result = mysqli_query($conn, $query1)) {
 			echo '<ul id="res-carpark-cont" style="display:none;">';
 			$rowcount = mysqli_num_rows($result);
@@ -131,7 +132,8 @@ header('Location: 404.php');
 
 					echo '<li class="res-row-food">'
           .'<a class="res-food-img" href=carpark.php?carparkId='.$row[1].'>'
-          .'<img src=http://ctjsctjs.com/'. $row[5] .'>'
+					. "<div class='img-loader' ></div>"
+          .'<img class="res-img" src=http://ctjsctjs.com/'. $row[5] .'>'
           .'</a>'
 					."<form class='view-delete-form' role='form' method='POST' action='favourites.php'>"
 					. "<input type='hidden' name='deleteCarpark' value='".$row[0]."'>"
@@ -173,6 +175,6 @@ header('Location: 404.php');
 <section>-->
 
 <?php include_once 'includes/footer_main.php' ?>
-<script type="text/javascript" src="js/loader.js"></script>
 <script type="text/javascript" src="js/resultsPage.js"></script>
 <script type="text/javascript" src="js/lot-color.js"></script>
+<script type="text/javascript" src="js/loader.js"></script>

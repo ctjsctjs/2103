@@ -41,7 +41,8 @@ function initialLoad(){
           var location = cpArray[i]['development'];
           document.getElementById("res-carpark-cont").innerHTML += "<li class='res-row-food'>"
           + "<a class='res-food-img' href=carpark.php?carparkId=" + cpArray[i]['carparkId'] + ">"
-          + "<img src=http://ctjsctjs.com/" + cpArray[i]['image'] + ">"
+          + "<div class='img-loader' ></div>"
+          + "<img class='res-img' src=http://ctjsctjs.com/" + cpArray[i]['image'] + ">"
           + "</a>"
           + "<div class='res-food'>"
           + "<a class='results-header hide-overflow' href=carpark.php?carparkId=" + cpArray[i]['carparkId'] + ">" + location + "</a>"
@@ -95,7 +96,8 @@ function listResult(x,y){
         var location = cpArray[i]['development'];
         document.getElementById("res-carpark-cont").innerHTML += "<li class='res-row-food'>"
         + "<a class='res-food-img' href=carpark.php?carparkId=" + cpArray[i]['carparkId'] + ">"
-        + "<img src=http://ctjsctjs.com/" + cpArray[i]['image'] + ">"
+        + "<div class='img-loader' ></div>"
+        + "<img res-img src=http://ctjsctjs.com/" + cpArray[i]['image'] + ">"
         + "</a>"
         + "<div class='res-food'>"
         + "<a class='results-header hide-overflow' href=carpark.php?carparkId=" + cpArray[i]['carparkId'] + ">" + location + "</a>"

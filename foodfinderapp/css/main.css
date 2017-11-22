@@ -13,6 +13,9 @@ button:focus, input:focus {outline:0 !important;}
   box-sizing: border-box;
 }
 
+body{
+  display:none;
+}
 .map-section {
   width: 100%;
   height: 540px;
@@ -267,11 +270,17 @@ button:focus, input:focus {outline:0 !important;}
   animation: spin 0.5s ease infinite;
 }
 
-.loader-small{
-  width:40px;
-  height:40px;
-  border: 5px solid #eee;
-  border-top: 5px solid #ff7c7c;
+.img-loader{
+  text-align: center;
+  z-index: 1;
+  margin:50px auto;
+  border: 3px solid #eee;
+  border-radius: 50%;
+  border-top: 3px solid #ff7c7c;;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 0.3s ease infinite;
+  animation: spin 0.3s ease infinite;
 }
 
 .view-delete-form{

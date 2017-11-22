@@ -119,6 +119,7 @@ if (isset($_SESSION['FIRSTNAME'])) {
     <script>var validArray = <?php echo json_encode($storedResult);?>;</script>
     <script src='js/advanceResultJS.js'></script>
     <script type="text/javascript" src="js/lot-color.js"></script>
+    <script type="text/javascript" src="js/loader.js"></script>
 
     <script>
     initialLoad();

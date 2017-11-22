@@ -31,8 +31,8 @@ if (isset($_SESSION['FIRSTNAME'])) {
       </select>
       <hr class="divider" id="result-divider">
       <div class="loader"></div>
-      <div id="feResults"></div>
-      <div class="page-row" id="res-pageNo" style="display:none;">
+      <div id="feResults" class="load"></div>
+      <div class="page-row load" id="res-pageNo" style="display:none;">
         <a onclick="prevPage()" class="page-arrow"><i class="fa fa-caret-left" aria-hidden="true"></i></a>
         <span class="inline-text" id='feCurrentPageNo'>1</span>
         <span class="inline-text"> of </span>
@@ -46,3 +46,4 @@ if (isset($_SESSION['FIRSTNAME'])) {
 <?php include_once 'includes/footer_main.php' ?>
 <script src='js\foodestablishmentJS.js'></script>
 <script type="text/javascript" src="js/viewAllFood.js"></script>
+<script type="text/javascript" src="js/loader.js"></script>
