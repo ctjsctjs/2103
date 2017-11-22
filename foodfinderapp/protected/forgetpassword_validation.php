@@ -4,7 +4,7 @@
 include_once 'databaseconnection.php';
 
 // declare variables to get the value from input
-$emailError = "";
+$firstName = $emailError = "";
 
 // set a boolean variable to check if the fields have errors and retrun true if no error was detected
 $valid = True;
@@ -27,15 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	// else if the email field is not empty check if the email is unique
 	else if (!empty($_POST["email"])) {
-		$checkUniqueEmail = "SELECT * FROM user";
+		$checkUniqueEmail = "SELECT * FROM user WHERE email = '".$_POST["email"]."'";
 		$result = mysqli_query($conn, $checkUniqueEmail) or die(mysqli_connect_error());
-		for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+
+		if(mysqli_num_rows($result) == 1) {
 			$row = mysqli_fetch_array($result);
-			if (strtoupper($row['email']) == strtoupper($_POST["email"])) {
-				$firstName = $row['firstName'];
-				$emailExist = True;
-			}
+			$firstName = $row['firstName'];
+			$emailExist = True;
 		}
+
 		if($emailExist == False) {
 		$url .= "&resetEmail=notExist";
 			$_POST["email"] = "";
