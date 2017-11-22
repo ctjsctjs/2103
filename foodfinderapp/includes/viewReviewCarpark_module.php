@@ -40,7 +40,7 @@
         echo '<div class="review-text">'.$rowReview['reviewResponse'].'</div>';
         if(isset($_SESSION['ID'])) {
           if($_SESSION["IsAdmin"] > 0){
-          echo '<form role="form" method="POST" action="carpark.php?carparkId='.$_GET['carparkId'].'"><input type="hidden" name="deleteReview" value='.$rowReview['feedbackId'].'><button class="button button-red">Delete</button></form>';
+          echo '<form role="form" method="POST" action="carpark.php?carparkId='.$_GET['carparkId'].'"><input type="hidden" name="deleteReview" value='.$rowReview['feedbackId'].'><button class="delete-review"><i class="fa fa-times" aria-hidden="true"></i></button></form>';
 
           }
         }

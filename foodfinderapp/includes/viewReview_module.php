@@ -7,7 +7,6 @@
           $deleteFoodQuery = "DELETE from review WHERE reviewId = " . $orderID;
 
           if ($conn->query($deleteFoodQuery) === TRUE) {
-
               echo "<span class='res-deleted load label-food'><i class='fa fa-check' aria-hidden='true'></i> Record deleted successfully</span>";
           } else {
               echo "Error deleting record: " . $conn->error;
@@ -37,7 +36,7 @@
         echo "</ul>";
 
         echo '<div class="review-text">'.$rowReview['reviewResponse'].'</div>';
-        
+
         if(isset($_SESSION['ID'])) {
           if($_SESSION["IsAdmin"] > 0){
             echo '<form role="form" method="POST" action="restaurant.php?foodEstablishmentId='.$_GET['foodEstablishmentId'].'"><input type="hidden" name="deleteReview" value='.$rowReview['reviewId'].'><button class="delete-review"><i class="fa fa-times" aria-hidden="true"></i></button></form>';
