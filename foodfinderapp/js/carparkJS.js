@@ -101,7 +101,7 @@ function listResult(x,y){
         + "<a class='results-header hide-overflow' href=carpark.php?carparkId=" + cpArray[i]['carparkId'] + ">" + location + "</a>"
         + "<span class='res-food-subheader'>Lots Available</span>"
         + "<a href='carpark.php?carparkId="  + cpArray[i]['carparkId'] +  "' class='res-blocks'>"
-        + "<span class='res-lots" + i + "'>" + lots + "</span>"
+        + "<span class='res-lots res-lots" + i + "'>" + lots + "</span>"
         + "<span class='res-name res-single hide-overflow'>" + location + "</span>"
         + "</a>"
         + "<a class='res-more' href=carpark.php?carparkId=" + cpArray[i]['carparkId'] + ">View more <i class='fa fa-caret-right' aria-hidden='true'></i></a></div>"
