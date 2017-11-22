@@ -119,7 +119,7 @@ header('Location: 404.php');
 			?>
 
 		<?php
-		$query1 = "SELECT favouriteCarpark.favCarparkID,favouriteCarpark.carparkId,carpark.carparkId,carpark.development,carpark.area, carpark.image FROM `favouriteCarpark` INNER JOIN carpark on favouriteCarpark.carparkId = carpark.carparkId WHERE favouriteCarpark.userID = ".$_SESSION['ID'];
+		$query1 = "SELECT favouritecarpark.favCarparkID,favouritecarpark.carparkId,carpark.carparkId,carpark.development,carpark.area, carpark.image FROM `favouritecarpark` INNER JOIN carpark on favouritecarpark.carparkId = carpark.carparkId WHERE favouritecarpark.userID = ".$_SESSION['ID'];
 		
 		if ($result = mysqli_query($conn, $query1)) {
 			echo '<ul id="res-carpark-cont" style="display:none;">';
