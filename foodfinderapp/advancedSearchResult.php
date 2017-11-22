@@ -34,7 +34,7 @@ if (isset($_SESSION['FIRSTNAME'])) {
     $advanced_search = false;
     $resultList = array();
     $locationVector = array();
-
+    $hasResult = false;
     // Check connection
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
@@ -63,7 +63,7 @@ if (isset($_SESSION['FIRSTNAME'])) {
 
             //Select carparks within radius
             $locateSQL = "SELECT *, ( 6371 *
-                acos(
+              acos(
                 cos( radians(". $locationVector[0] .")) * cos( radians( latitude )) *
                 cos( radians( longitude ) - radians(". $locationVector[1] .")) +
                 sin(radians(". $locationVector[0] .")) * sin(radians(latitude))
@@ -82,23 +82,32 @@ if (isset($_SESSION['FIRSTNAME'])) {
                 }
                 //if number of carpark with enough lots meet carpark input
                 if ($validCarparks >= $input_carpark){
+                  $hasResult = true;
                   $row['lotCount'] = $lotCount;
                   $row['validCarparks'] = $validCarparks;
                   array_push($storedResult,$row);
                 }
-              }
-              $currentPage = 1;
-              $pageCount = ceil(count($storedResult) / 24);
-              echo "</div>";
-              echo "<div class='page-row'>";
-              echo "<a onclick='prevPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
-              echo "<span class='inline-text' id='resultsCurrentPage'>" . $currentPage . "</span>";
-              echo "<span class='inline-text'>&nbsp of &nbsp</span>";
-              echo "<span class='inline-text' id='resultsMaxPage'>" . $pageCount . "</span>";
-              echo "<a onclick='nextPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
-              echo "</div>";
-              echo "<p hidden id='resultsCount'>" . count($storedResult) . "</p>";
 
+                if ($hasResult==false){
+                  echo "<span class='empty-result'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Results are found. Please try another keyword.</span>";
+                }
+              }
+              if ($hasResult){
+                $currentPage = 1;
+                $pageCount = ceil(count($storedResult) / 24);
+                echo "</div>";
+                echo "<div class='page-row'>";
+                echo "<a onclick='prevPage()' class='page-arrow'><i class='fa fa-caret-left' aria-hidden='true'></i></a>";
+                echo "<span class='inline-text' id='resultsCurrentPage'>" . $currentPage . "</span>";
+                echo "<span class='inline-text'>&nbsp of &nbsp</span>";
+                echo "<span class='inline-text' id='resultsMaxPage'>" . $pageCount . "</span>";
+                echo "<a onclick='nextPage()' class='page-arrow'><i class='fa fa-caret-right' aria-hidden='true'></i></a>";
+                echo "</div>";
+                echo "<p hidden id='resultsCount'>" . count($storedResult) . "</p>";
+              }
+              else{
+                echo "</div>";
+              }
             }
           }
         }
