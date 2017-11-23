@@ -87,10 +87,6 @@ if (isset($_SESSION['FIRSTNAME'])) {
                   $row['validCarparks'] = $validCarparks;
                   array_push($storedResult,$row);
                 }
-
-                if ($hasResult==false){
-                  echo "<span class='empty-result'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Results are found. Please try another keyword.</span>";
-                }
               }
               if ($hasResult){
                 $currentPage = 1;
@@ -106,8 +102,9 @@ if (isset($_SESSION['FIRSTNAME'])) {
                 echo "<p hidden id='resultsCount'>" . count($storedResult) . "</p>";
               }
               else{
-                echo "</div>";
+                echo "<span class='empty-result'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Results are found. Please try another keyword.</span>";
               }
+              echo "</div>";
             }
           }
         }

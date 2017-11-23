@@ -3,7 +3,8 @@ padding-right:0px !important;
 margin-right:0px !important;
 }
 span, ul, li, div, a{display:block;}
-input, button, submit { border:none; }
+input, button, submit { border:none;}
+input[type="text"], input[type="submit"]{-webkit-appearance: none; -moz-appearance: none; appearance: none;};
 button:focus, input:focus {outline:0 !important;}
 *
 {

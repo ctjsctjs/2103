@@ -7,7 +7,7 @@ session_start();
 <html>
   <head>
     <title>Food Finder App</title>
-
+    <link rel="shortcut icon" type="image/svg" href="images/fav-icon.svg"/>
     <!-- CSS -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="css/font-awesome.min.css">
