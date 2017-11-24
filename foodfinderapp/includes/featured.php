@@ -24,7 +24,7 @@ if ($result) {
       echo '<li class="res-row-food">';
       echo '<a class="res-food-img" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">';
       echo  "<div class='img-loader' ></div>";
-      echo '<img class="res-img" src=http://ctjsctjs.com/'. $row['image'] .'>';
+      echo '<img class="res-img" src=images/'. $row['image'] .'>';
       echo '</a>';
       echo "<div class='res-food'>";
       echo '<a class="results-header hide-overflow" href="restaurant.php?foodEstablishmentId='.$row["foodEstablishmentId"].'">' . $row["name"] . '</a>';

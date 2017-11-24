@@ -88,7 +88,7 @@ if (isset($_SESSION['FIRSTNAME'])) {
                   array_push($storedResult,$row);
                 }
               }
-              if ($hasResult){
+              if ($hasResult == true){
                 $currentPage = 1;
                 $pageCount = ceil(count($storedResult) / 24);
                 echo "</div>";
@@ -101,11 +101,11 @@ if (isset($_SESSION['FIRSTNAME'])) {
                 echo "</div>";
                 echo "<p hidden id='resultsCount'>" . count($storedResult) . "</p>";
               }
-              else{
-                echo "<span class='empty-result'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Results are found. Please try another keyword.</span>";
-              }
               echo "</div>";
             }
+          }
+          if ($hasResult == false){
+            echo "<span class='empty-result'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> No Results are found. Please try another keyword.</span>";
           }
         }
         ?>

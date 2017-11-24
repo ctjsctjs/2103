@@ -8,4 +8,10 @@ $( document ).ready(function() {
     $(this).siblings(".img-loader").hide();
     $(this).show();
   });
+
+  $(".res-img").onload(){
+    console.log('Img loaded');
+    $(this).siblings(".img-loader").hide();
+    $(this).show();
+  });
 });

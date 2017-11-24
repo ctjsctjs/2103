@@ -73,7 +73,7 @@ header('Location: 404.php');
 						echo '<li class="res-row-food">';
 						echo '<a class="res-food-img" href="restaurant.php?foodEstablishmentId='.$row[4].'">';
 						echo "<div class='img-loader' ></div>";
-						echo '<img class="res-img" src=http://ctjsctjs.com/'. $row[3] .'>';
+						echo '<img class="res-img" src=images/'. $row[3] .'>';
 						echo '</a>';
 						echo "<form class='view-delete-form' role='form' method='POST' action='favourites.php'>"
 						. "<input type='hidden' name='deleteFavorite' value='".$row[0]."'>"
@@ -133,7 +133,7 @@ header('Location: 404.php');
 					echo '<li class="res-row-food">'
           .'<a class="res-food-img" href=carpark.php?carparkId='.$row[1].'>'
 					. "<div class='img-loader' ></div>"
-          .'<img class="res-img" src=http://ctjsctjs.com/'. $row[5] .'>'
+          .'<img class="res-img" src=images/'. $row[5] .'>'
           .'</a>'
 					."<form class='view-delete-form' role='form' method='POST' action='favourites.php'>"
 					. "<input type='hidden' name='deleteCarpark' value='".$row[0]."'>"

@@ -9,7 +9,7 @@ function initialLoad(){
     document.getElementById("res-food-cont").innerHTML += "<div class='res-row-food res-advanced'>"
     + "<div class='res-food-img'>"
     + "<div class='img-loader' ></div>"
-    + "<img class='res-img' src=http://ctjsctjs.com/" + validArray[i].image + ">"
+    + "<img class='res-img' src=images/" + validArray[i].image + ">"
     + "</div>"
     + "<div class='res-food'>"
     + "<a class='results-header hide-overflow' href='restaurant.php?foodEstablishmentId=" + validArray[i].foodEstablishmentId + "'>" + validArray[i].name + "</a>"
@@ -35,7 +35,7 @@ function listResult(x,y){
   for (var i = startIndex; i < endIndex; i++){
     document.getElementById("res-food-cont").innerHTML += "<div class='res-row-food res-advanced'>"
     + "<div class='res-food-img'>"
-    + "<img src=http://ctjsctjs.com/" + validArray[i].image + ">"
+    + "<img src=images/" + validArray[i].image + ">"
     + "</div>"
     + "<div class='res-food'>"
     + "<a class='results-header hide-overflow' href='restaurant.php?foodEstablishmentId=" + validArray[i].foodEstablishmentId + "'>" + validArray[i].name + "</a>"
