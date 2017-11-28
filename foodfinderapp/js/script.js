@@ -1,6 +1,5 @@
 
 $(document).ready(function () {
-  $("body").show();
   //hide main menu jumbo buttons when user is logged in
   $('#nav-hamburger').click(function(){
     $(".nav-center").slideToggle(100, "linear");
