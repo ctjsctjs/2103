@@ -348,7 +348,7 @@
 .res-left-mod{
   border-radius: 5px;
   background-color: white;
-  box-shadow: 0 1px 2px rgba(25,25,25,0.2);
+  box-shadow: 0 2px 2px rgba(25,25,25,0.2);
   margin-right:10px;
   margin-bottom: 20px;
   overflow: auto;
