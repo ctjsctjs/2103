@@ -46,3 +46,4 @@ if (isset($_SESSION['FIRSTNAME'])) {
 <?php include_once 'includes/footer_main.php' ?>
 <script src='js\foodestablishmentJS.js'></script>
 <script type="text/javascript" src="js/viewAllFood.js"></script>
+<script type="text/javascript" src="js/loader.js"></script>
