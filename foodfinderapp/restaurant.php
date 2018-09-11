@@ -18,9 +18,8 @@ if(isset($_GET['foodEstablishmentId'])) {
   $rating = $row[3];
   $numofreview = $row[5];
 
-  $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&key=AIzaSyDbEqIHfTZwLD9cgm9-elubEhOCm7_C3VE');
+  $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&AIzaSyA7yo2mB_XCwyyrg0j43lduD5iXK6zbdnY');
   $json = json_decode($json);
-
   $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
   $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
 

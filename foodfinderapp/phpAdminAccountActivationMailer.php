@@ -43,7 +43,7 @@ Password: '.$passwordConfirm.'<br>
 
 Please click this link to activate your account:<br>
 
-<a href="http://47.74.176.36/userAccountVerification.php?email='.$email.'&hash='.$hash.'">http://47.74.176.36/userAccountVerification.php?email='.$email.'&hash='.$hash.'</a><br><br>
+<a href="http://localhost/2103/foodfinderapp/userAccountVerification.php?email='.$email.'&hash='.$hash.'">http://locahost/2103/foodfinderapp/userAccountVerification.php?email='.$email.'&hash='.$hash.'</a><br><br>
 
 Regards,<br><br>
 
