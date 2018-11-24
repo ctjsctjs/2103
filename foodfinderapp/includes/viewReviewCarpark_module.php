@@ -17,7 +17,7 @@
   }
 
   $showReview = "SELECT firstName, lastName, AvgRating, reviewResponse, feedbackId FROM user INNER JOIN feedback ON user.userId = feedback.userId WHERE feedback.carparkId=".$_GET['carparkId'];
-  if ($result1 = mysqli_query($conn, $showReview) or die(mysqli_connect_error)) {
+  if ($result1 = mysqli_query($conn, $showReview)) {
     $rowcount1 = mysqli_num_rows($result1);
     if ($rowcount1 > 0) {
       //for ($i = 0; $i < $rowcount1; $i++) {

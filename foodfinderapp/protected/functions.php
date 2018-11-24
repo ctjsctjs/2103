@@ -17,7 +17,7 @@ function getLocation($postalCode, $googleKey){
 
 //get carpark lot live number
 function getLots($locateRow, $key){
-  $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
+  $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailabilityv2";
   $ch = curl_init( $carparkLotsJson );
   $options = array(
     CURLOPT_HTTPHEADER => array( "AccountKey: ". $key . ", Accept: application/json" ),
@@ -26,7 +26,7 @@ function getLots($locateRow, $key){
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
   $carparkJsonResult = curl_exec( $ch );
   $carparkJsonResult = json_decode($carparkJsonResult);
-  return ($carparkJsonResult->{'value'}[$locateRow["carparkId"]-1]->{'Lots'});
+  return ($carparkJsonResult->{'value'}[$locateRow["carparkId"]-1]->{'AvailableLots'});
   //return (rand(0,10));
 }
 

@@ -1,5 +1,7 @@
 <?php include_once 'includes/header.php' ?>
 <?php include_once 'protected/databaseconnection.php' ?>
+<?php include_once 'protected/functions.php' ?>
+
 <?php
 if (isset($_SESSION['FIRSTNAME'])) {
   include_once 'includes/nav_user.php';
@@ -17,18 +19,15 @@ if(isset($_GET['foodEstablishmentId'])) {
   $row = mysqli_fetch_array($result);
   $rating = $row[3];
   $numofreview = $row[5];
-
-  $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=.' . $row['postalcode']. '&AIzaSyA7yo2mB_XCwyyrg0j43lduD5iXK6zbdnY');
-  $json = json_decode($json);
-  $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
-  $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+  
+  $array = getLocation( $row['postalcode'], $googleKey);
 
   #SQL statement to find all carpark within 500m
   $locateSQL = "SELECT *, ( 6371 *
     acos(
-      cos( radians(". $lat .")) * cos( radians( latitude )) *
-      cos( radians( longitude ) - radians(". $long .")) +
-      sin(radians(". $lat .")) * sin(radians(latitude))
+      cos( radians(". $array[0] .")) * cos( radians( latitude )) *
+      cos( radians( longitude ) - radians(". $array[1] .")) +
+      sin(radians(". $array[0] .")) * sin(radians(latitude))
       ))
       as distance FROM carpark HAVING distance < 0.5 ORDER BY distance";
 
@@ -53,11 +52,11 @@ if(isset($_GET['foodEstablishmentId'])) {
           }
         }
       }
-      $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
+      $carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailabilityv2";
 
       $ch      = curl_init( $carparkLotsJson );
       $options = array(
-        CURLOPT_HTTPHEADER     => array( "AccountKey: SFHPvNC5RP+jFTzftMxxFQ==, Accept: application/json" ),
+        CURLOPT_HTTPHEADER     => array( "AccountKey: ". $datamallKey .", Accept: application/json" ),
       );
       curl_setopt_array( $ch, $options );
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);

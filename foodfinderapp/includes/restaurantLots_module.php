@@ -6,7 +6,7 @@
 
     for($i=0; $i < count($carparkNameArray); $i++) {
       echo '<a href=carpark.php?carparkId=1" class="res-blocks">';
-      echo "<span class='res-lots'>".$carparkJsonResult->{'value'}[$carparkIdsArray[$i]-1]->{'Lots'}."</span>";
+      echo "<span class='res-lots'>".$carparkJsonResult->{'value'}[$carparkIdsArray[$i]-1]->{'AvailableLots'}."</span>";
       echo '<div class="res-name" >' .$carparkNameArray[$i]. '</div>';
       echo '<div class="res-dist" >' .$carparkDistanceArray[$i]. 'm</div>';
       echo "</a>";

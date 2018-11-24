@@ -22,14 +22,14 @@ $json = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?&la
 $json1 = json_decode($json);
 
 /*GET LOTS*/
-$carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability";
+$carparkLotsJson = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailabilityv2";
 $ch = curl_init($carparkLotsJson );
 $options = array(CURLOPT_HTTPHEADER=>array("AccountKey: SFHPvNC5RP+jFTzftMxxFQ==, Accept: application/json" ),);
 curl_setopt_array( $ch, $options );
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 $carparkJsonResult = curl_exec( $ch );
 $carparkJsonResult = json_decode($carparkJsonResult);
-$lots = $carparkJsonResult->{'value'}[$carparkID-1]->{'Lots'};
+$lots = $carparkJsonResult->{'value'}[$carparkID-1]->{'AvailableLots'};
 ?>
 
 <section class="container-searchbar">
@@ -53,7 +53,7 @@ $lots = $carparkJsonResult->{'value'}[$carparkID-1]->{'Lots'};
 					<div class="res-wrapper-header">
 						<h><?php echo $row["development"]; ?></h>
 					</div>
-					<div class="carpark-img" style="background-image: url(http://ctjsctjs.com/<?php echo $row['image'] ?>)"></div>
+					<div class="carpark-img" style="background-image: url(images/<?php echo $row['image'] ?>)"></div>
 				</div>
 				<div class="res-body">
 					<span class="res-add"><?php echo $json1->{'results'}[0]->{'formatted_address'}; ?></span>
